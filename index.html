@@ -27,94 +27,102 @@
         <h2 class="text-lg font-semibold mt-4">총 칼로리: <span id="total-calories">0</span> kcal</h2>
     </div>
 
-    <script>
-        let recipes = {};
-        let currentRecipe = "seaweedsoup";
+   <script>
+    let recipes = {};
+    let currentRecipe = "seaweedsoup";
 
-        async function loadRecipes() {
-            const response = await fetch('recipes.json');
-            recipes = await response.json();
-            const savedServings = localStorage.getItem("servings") || recipes[currentRecipe].servings;
-            document.getElementById("servings").value = savedServings;
-            renderRecipe(savedServings);
-        }
+    async function loadRecipes() {
+        const response = await fetch('recipes.json');
+        recipes = await response.json();
+        const savedServings = localStorage.getItem("servings") || recipes[currentRecipe].servings;
+        document.getElementById("servings").value = savedServings;
+        renderRecipe(savedServings);
+    }
 
-        function renderRecipe(servings) {
-            document.getElementById("recipe-title").textContent = recipes[currentRecipe].name;
-            document.body.style.backgroundColor = recipes[currentRecipe].color || "#f8f8f8";
-            updateIngredients(servings);
-            renderInstructions();
-            startVoiceRecognition();
-        }
+    function renderRecipe(servings) {
+        document.getElementById("recipe-title").textContent = recipes[currentRecipe].name;
+        document.body.style.backgroundColor = recipes[currentRecipe].color || "#f8f8f8";
+        updateIngredients(servings);
+        renderInstructions();
+        startVoiceRecognition();
+    }
 
-        function updateIngredients(servings) {
-            localStorage.setItem("servings", servings);
-            const ingredientList = document.getElementById("ingredient-list");
-            ingredientList.innerHTML = "";
-            let totalCalories = 0;
-            
-            recipes[currentRecipe].ingredients.forEach(ingredient => {
-                const adjustedAmount = (ingredient.amount / recipes[currentRecipe].servings) * servings;
-                totalCalories += adjustedAmount * (ingredient.calories_per_unit || 0);
-                const li = document.createElement("li");
-                li.textContent = `${ingredient.name}: ${adjustedAmount.toFixed(1)} ${ingredient.unit}`;
-                ingredientList.appendChild(li);
-            });
-            
-            document.getElementById("total-calories").textContent = totalCalories.toFixed(1);
-        }
+    function updateIngredients(servings) {
+        localStorage.setItem("servings", servings);
+        const ingredientList = document.getElementById("ingredient-list");
+        ingredientList.innerHTML = "";
+        let totalCalories = 0;
 
-        function renderInstructions() {
-            const instructionsList = document.getElementById("instructions");
-            instructionsList.innerHTML = "";
-            recipes[currentRecipe].instructions.forEach(step => {
-                const li = document.createElement("li");
-                li.textContent = `${step.step}. ${step.description}`;
-                instructionsList.appendChild(li);
-            });
-        }
-
-        document.getElementById("servings").addEventListener("input", function() {
-            updateIngredients(this.value);
+        recipes[currentRecipe].ingredients.forEach(ingredient => {
+            const adjustedAmount = (ingredient.amount / recipes[currentRecipe].servings) * servings;
+            totalCalories += adjustedAmount * (ingredient.calories_per_unit || 0);
+            const li = document.createElement("li");
+            li.textContent = `${ingredient.name}: ${adjustedAmount.toFixed(1)} ${ingredient.unit}`;
+            ingredientList.appendChild(li);
         });
 
-        function startVoiceRecognition() {
-            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.lang = "ko-KR";
-            recognition.continuous = true;
-            recognition.interimResults = false;
-            
-            recognition.onresult = function(event) {
-                const lastResult = event.results[event.results.length - 1][0].transcript.trim();
-                handleVoiceCommand(lastResult);
-            };
-            
-            recognition.start();
-        }
+        document.getElementById("total-calories").textContent = totalCalories.toFixed(1);
+    }
 
-        function handleVoiceCommand(command) {
-            if (command.includes("다음") || command.toLowerCase().includes("next") || command.includes("下一个")) {
-                window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
-            } else if (command.includes("이전") || command.toLowerCase().includes("previous") || command.includes("上一个")) {
-                window.scrollBy({ top: -window.innerHeight * 0.8, behavior: "smooth" });
-            } else if (command.includes("인분")) {
-                const match = command.match(/(\d+)인분/);
-                if (match) {
-                    document.getElementById("servings").value = match[1];
-                    updateIngredients(match[1]);
-                }
-            } else {
-                for (let key in recipes) {
-                    if (command.includes(recipes[key].name)) {
-                        currentRecipe = key;
-                        renderRecipe(localStorage.getItem("servings") || recipes[currentRecipe].servings);
-                        break;
-                    }
+    function renderInstructions() {
+        const instructionsList = document.getElementById("instructions");
+        instructionsList.innerHTML = "";
+        recipes[currentRecipe].instructions.forEach(step => {
+            const li = document.createElement("li");
+            li.textContent = `${step.step}. ${step.description}`;
+            instructionsList.appendChild(li);
+
+            // 이미지 추가
+            const img = document.createElement("img");
+            img.src = `images/${currentRecipe}/${step.step}.png`;
+            img.alt = `Step ${step.step} image`;
+            img.classList.add("instruction-image");
+            img.onerror = () => img.style.display = "none";  // 이미지가 없을 경우 숨김 처리
+            instructionsList.appendChild(img);
+        });
+    }
+
+    document.getElementById("servings").addEventListener("input", function() {
+        updateIngredients(this.value);
+    });
+
+    function startVoiceRecognition() {
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = "ko-KR";
+        recognition.continuous = true;
+        recognition.interimResults = false;
+
+        recognition.onresult = function(event) {
+            const lastResult = event.results[event.results.length - 1][0].transcript.trim();
+            handleVoiceCommand(lastResult);
+        };
+
+        recognition.start();
+    }
+
+    function handleVoiceCommand(command) {
+        if (command.includes("다음") || command.toLowerCase().includes("next") || command.includes("下一个")) {
+            window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
+        } else if (command.includes("이전") || command.toLowerCase().includes("previous") || command.includes("上一个")) {
+            window.scrollBy({ top: -window.innerHeight * 0.8, behavior: "smooth" });
+        } else if (command.includes("인분")) {
+            const match = command.match(/(\d+)인분/);
+            if (match) {
+                document.getElementById("servings").value = match[1];
+                updateIngredients(match[1]);
+            }
+        } else {
+            for (let key in recipes) {
+                if (command.includes(recipes[key].name)) {
+                    currentRecipe = key;
+                    renderRecipe(localStorage.getItem("servings") || recipes[currentRecipe].servings);
+                    break;
                 }
             }
         }
+    }
 
-        window.onload = loadRecipes;
+    window.onload = loadRecipes;
     </script>
 </body>
 </html>
