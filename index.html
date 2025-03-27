@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="말로 하는 레시피, 요리할 때 편리한 웹사이트. 음성 명령으로 조작하는 요리 레시피 제공.">
+    <title>요리 레시피</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.0.23/tailwind.min.css">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; transition: background-color 0.3s ease; }
+        .recipe-container { max-width: 600px; margin: auto; padding: 20px; background: white; }
+        .controls input { width: 60px; text-align: center; }
+        .instructions li { padding: 10px; border-bottom: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="recipe-container p-6 rounded-lg shadow-lg">
+        <h1 id="recipe-title" class="text-2xl font-bold">레시피 로딩 중...</h1>
+        <div class="controls my-4 flex items-center space-x-2">
+            <label class="font-semibold">인분 수:</label>
+            <input type="number" id="servings" value="2" min="1" class="border rounded px-2 py-1">
+        </div>
+        <h2 class="text-xl font-semibold">재료</h2>
+        <ul id="ingredient-list" class="ingredient-list mt-2"></ul>
+        <h2 class="text-xl font-semibold mt-4">조리 방법</h2>
+        <ul id="instructions" class="instructions mt-2"></ul>
+        <h2 class="text-lg font-semibold mt-4">총 칼로리: <span id="total-calories">0</span> kcal</h2>
+    </div>
+
+    <script>
+        let recipes = {};
+        let currentRecipe = "seaweedsoup";
+
+        async function loadRecipes() {
+            const response = await fetch('recipes.json');
+            recipes = await response.json();
+            const savedServings = localStorage.getItem("servings") || recipes[currentRecipe].servings;
+            document.getElementById("servings").value = savedServings;
+            renderRecipe(savedServings);
+        }
+
+        function renderRecipe(servings) {
+            document.getElementById("recipe-title").textContent = recipes[currentRecipe].name;
+            document.body.style.backgroundColor = recipes[currentRecipe].color || "#f8f8f8";
+            updateIngredients(servings);
+            renderInstructions();
+            startVoiceRecognition();
+        }
+
+        function updateIngredients(servings) {
+            localStorage.setItem("servings", servings);
+            const ingredientList = document.getElementById("ingredient-list");
+            ingredientList.innerHTML = "";
+            let totalCalories = 0;
+            
+            recipes[currentRecipe].ingredients.forEach(ingredient => {
+                const adjustedAmount = (ingredient.amount / recipes[currentRecipe].servings) * servings;
+                totalCalories += adjustedAmount * (ingredient.calories_per_unit || 0);
+                const li = document.createElement("li");
+                li.textContent = `${ingredient.name}: ${adjustedAmount.toFixed(1)} ${ingredient.unit}`;
+                ingredientList.appendChild(li);
+            });
+            
+            document.getElementById("total-calories").textContent = totalCalories.toFixed(1);
+        }
+
+        function renderInstructions() {
+            const instructionsList = document.getElementById("instructions");
+            instructionsList.innerHTML = "";
+            recipes[currentRecipe].instructions.forEach(step => {
+                const li = document.createElement("li");
+                li.textContent = `${step.step}. ${step.description}`;
+                instructionsList.appendChild(li);
+            });
+        }
+
+        document.getElementById("servings").addEventListener("input", function() {
+            updateIngredients(this.value);
+        });
+
+        function startVoiceRecognition() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "ko-KR";
+            recognition.continuous = true;
+            recognition.interimResults = false;
+            
+            recognition.onresult = function(event) {
+                const lastResult = event.results[event.results.length - 1][0].transcript.trim();
+                handleVoiceCommand(lastResult);
+            };
+            
+            recognition.start();
+        }
+
+        function handleVoiceCommand(command) {
+            if (command.includes("다음") || command.toLowerCase().includes("next") || command.includes("下一个")) {
+                window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
+            } else if (command.includes("이전") || command.toLowerCase().includes("previous") || command.includes("上一个")) {
+                window.scrollBy({ top: -window.innerHeight * 0.8, behavior: "smooth" });
+            } else if (command.includes("인분")) {
+                const match = command.match(/(\d+)인분/);
+                if (match) {
+                    document.getElementById("servings").value = match[1];
+                    updateIngredients(match[1]);
+                }
+            } else {
+                for (let key in recipes) {
+                    if (command.includes(recipes[key].name)) {
+                        currentRecipe = key;
+                        renderRecipe(localStorage.getItem("servings") || recipes[currentRecipe].servings);
+                        break;
+                    }
+                }
+            }
+        }
+
+        window.onload = loadRecipes;
+    </script>
+</body>
+</html>
