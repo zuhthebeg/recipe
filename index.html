@@ -96,14 +96,17 @@
             const lastResult = event.results[event.results.length - 1][0].transcript.trim();
             handleVoiceCommand(lastResult);
         };
+        recognition.onend = function() {
+            recognition.start();  // 계속 음성 인식이 진행되도록 설정
+        };
 
         recognition.start();
     }
 
     function handleVoiceCommand(command) {
-        if (command.includes("다음") || command.toLowerCase().includes("next") || command.includes("下一个")) {
+        if (command.includes("다음") || command.toLowerCase().includes("next") || command.includes("샤이꺼꺼")) {
             window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
-        } else if (command.includes("이전") || command.toLowerCase().includes("previous") || command.includes("上一个")) {
+        } else if (command.includes("이전") || command.toLowerCase().includes("previous") || command.includes("샹이꺼")) {
             window.scrollBy({ top: -window.innerHeight * 0.8, behavior: "smooth" });
         } else if (command.includes("인분")) {
             const match = command.match(/(\d+)인분/);
