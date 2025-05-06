@@ -31,6 +31,21 @@
     let recipes = {};
     let currentRecipe = "seaweedsoup";
     let waitingForTimerInput = false; // 타이머 시간 입력 대기 상태 변수
+    let ttsAllowed = true;
+
+    // 모바일(터치 지원) 환경이면 터치/클릭 전까지 ttsAllowed = false
+    function isMobileDevice() {
+        return (
+            'ontouchstart' in window ||
+            navigator.maxTouchPoints > 0 ||
+            navigator.msMaxTouchPoints > 0
+        );
+    }
+    if (isMobileDevice()) {
+        ttsAllowed = false;
+        document.body.addEventListener('touchstart', () => { ttsAllowed = true; }, { once: true });
+        document.body.addEventListener('mousedown', () => { ttsAllowed = true; }, { once: true });
+    }
 
     async function loadRecipes() {
         const response = await fetch('recipes.json');
@@ -173,16 +188,18 @@
             }
         }
     }
-    //let ttsAllowed = false;
-    //document.body.addEventListener('touchstart', () => { ttsAllowed = true; }, { once: true });
 
     function speak(text) {
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = "ko-KR";
-        window.speechSynthesis.speak(utter);
+        try {
+            if (!ttsAllowed) return; // 모바일에서 터치/클릭 전에는 TTS 실행 안함
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = "ko-KR";
+            window.speechSynthesis.speak(utter);
+        } catch (e) {
+            // TTS가 안되어도 무시하고 다른 기능은 정상 동작
+            console.warn('TTS 실행 오류:', e);
+        }
     }
-
-
 
     function extractTime(text) {
         // "3분", "30초", "1시간" 등 패턴 추출
