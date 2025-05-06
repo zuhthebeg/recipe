@@ -71,5 +71,35 @@
       { "step": 2, "description": "애호박과 두부를 넣고 끓인다." },
       { "step": 3, "description": "5분간 더 끓여 완성한다." }
     ]
+  },
+  "dakgalbi": {
+    "name": "백종원 닭갈비",
+    "color": "#e25822",
+    "servings": 2,
+    "ingredients": [
+      { "name": "손질된 닭", "amount": 900, "unit": "g", "calories_per_unit": 200 },
+      { "name": "양배추", "amount": 200, "unit": "g", "calories_per_unit": 25 },
+      { "name": "양파", "amount": 100, "unit": "g", "calories_per_unit": 40 },
+      { "name": "대파", "amount": 50, "unit": "g", "calories_per_unit": 30 },
+      { "name": "깻잎", "amount": 10, "unit": "g", "calories_per_unit": 30 },
+      { "name": "감자", "amount": 150, "unit": "g", "calories_per_unit": 77 },
+      { "name": "청양고추", "amount": 20, "unit": "g", "calories_per_unit": 30 },
+      { "name": "간장", "amount": 60, "unit": "ml", "calories_per_unit": 10 },
+      { "name": "고추장", "amount": 60, "unit": "g", "calories_per_unit": 200 },
+      { "name": "설탕", "amount": 60, "unit": "g", "calories_per_unit": 400 },
+      { "name": "청주", "amount": 60, "unit": "ml", "calories_per_unit": 50 },
+      { "name": "다진 마늘", "amount": 60, "unit": "g", "calories_per_unit": 130 },
+      { "name": "고춧가루", "amount": 60, "unit": "g", "calories_per_unit": 300 },
+      { "name": "후춧가루", "amount": 5, "unit": "g", "calories_per_unit": 20 },
+      { "name": "참기름", "amount": 15, "unit": "ml", "calories_per_unit": 90 }
+    ],
+    "instructions": [
+      { "step": 1, "description": "닭고기는 뼈를 발라내고, 기름과 껍질을 정리한 뒤 얇게 썬다." },
+      { "step": 2, "description": "양념 재료(간장, 고추장, 설탕, 청주, 다진 마늘, 고춧가루, 후춧가루, 참기름)를 모두 섞어 양념장을 만든다." },
+      { "step": 3, "description": "손질한 닭고기에 양념장을 넣고 버무린다." },
+      { "step": 4, "description": "감자, 양배추, 양파, 대파, 깻잎, 청양고추 등 채소를 먹기 좋게 썬다." },
+      { "step": 5, "description": "팬에 닭고기와 채소를 모두 넣고 볶는다." },
+      { "step": 6, "description": "닭고기가 익고 채소가 숨이 죽으면 참기름을 두르고 마무리한다." }
+    ]
   }
 }
