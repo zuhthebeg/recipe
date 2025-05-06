@@ -71,15 +71,21 @@
         recipes[currentRecipe].instructions.forEach(step => {
             const li = document.createElement("li");
             li.textContent = `${step.step}. ${step.description}`;
+            // 이미지 추가를 try-catch로 감싼다
+            try {
+                const img = document.createElement("img");
+                img.src = `images/${currentRecipe}/${step.step}.png`;
+                img.alt = `Step ${step.step} image`;
+                img.classList.add("instruction-image");
+                img.onerror = () => {
+                    if (img.parentNode) img.parentNode.removeChild(img);
+                };
+                li.appendChild(img); // li 내부에 이미지 추가
+            } catch (e) {
+                // 이미지 추가 중 오류가 발생해도 무시
+                console.error("이미지 추가 중 오류:", e);
+            }
             instructionsList.appendChild(li);
-
-            // 이미지 추가
-            const img = document.createElement("img");
-            img.src = `images/${currentRecipe}/${step.step}.png`;
-            img.alt = `Step ${step.step} image`;
-            img.classList.add("instruction-image");
-            img.onerror = () => img.style.display = "none";  // 이미지가 없을 경우 숨김 처리
-            instructionsList.appendChild(img);
         });
     }
 
