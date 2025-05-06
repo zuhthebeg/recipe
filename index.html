@@ -50,12 +50,16 @@
     async function loadRecipes() {
         const response = await fetch('recipes.json');
         recipes = await response.json();
+        // 마지막으로 본 레시피를 localStorage에서 불러옴, 없으면 기본값
+        currentRecipe = localStorage.getItem("lastRecipe") || "seaweedsoup";
         const savedServings = localStorage.getItem("servings") || recipes[currentRecipe].servings;
         document.getElementById("servings").value = savedServings;
         renderRecipe(savedServings);
     }
 
     function renderRecipe(servings) {
+        // 레시피 변경 시 localStorage에 저장
+        localStorage.setItem("lastRecipe", currentRecipe);
         document.getElementById("recipe-title").textContent = recipes[currentRecipe].name;
         document.body.style.backgroundColor = recipes[currentRecipe].color || "#f8f8f8";
         updateIngredients(servings);
