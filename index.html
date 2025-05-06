@@ -11,6 +11,19 @@
         .recipe-container { max-width: 600px; margin: auto; padding: 20px; background: white; }
         .controls input { width: 60px; text-align: center; }
         .instructions li { padding: 10px; border-bottom: 1px solid #ddd; }
+        .step-popup {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 20px;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
     </style>
 </head>
 <body>
@@ -130,10 +143,25 @@
         return currentIdx;
     }
 
+    function showStepPopup(stepNumber) {
+        let popup = document.querySelector('.step-popup');
+        if (!popup) {
+            popup = document.createElement('div');
+            popup.className = 'step-popup';
+            document.body.appendChild(popup);
+        }
+        popup.textContent = `Step ${stepNumber}`;
+        popup.style.opacity = '1';
+        setTimeout(() => {
+            popup.style.opacity = '0';
+        }, 1500);
+    }
+
     function scrollToStep(stepIdx) {
         const stepElements = document.querySelectorAll('#instructions li');
         if (stepElements[stepIdx]) {
             stepElements[stepIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            showStepPopup(stepIdx + 1); // 스텝 번호는 1부터 시작하므로 +1
         }
     }
 
@@ -250,7 +278,7 @@
                 updateIngredients(match[1]);
                 speak(`${match[1]}인분으로 변경되었습니다.`);
             }
-        } else if (command.includes("타이머") || command.includes("알림")) {
+        } else if (command.includes("timer") || command.includes("타이머") || command.includes("알림")) {
             // 현재 스텝 찾기 (화면에 보이는 첫 번째 스텝 기준)
             const instructions = recipes[currentRecipe].instructions;
             let currentStep = 0;
@@ -273,6 +301,16 @@
                 waitingForTimerInput = true;
             }
         } else {
+            const timerMatch = command.match(/(?:타이머|알림)\s*(\d+)초|(\d+)초\s*(?:타이머|알림)/);
+            if (timerMatch) {
+                const seconds = timerMatch[1] || timerMatch[2];
+                const ms = parseInt(seconds) * 1000;
+                speak(`${seconds}초 타이머를 시작합니다`);
+                setTimeout(() => {
+                    speak(`${seconds}초가 경과했습니다. 다음 스텝을 진행하세요`);
+                }, ms);
+                return;
+            }
             for (let key in recipes) {
                 if (command.includes(recipes[key].name)) {
                     currentRecipe = key;
