@@ -56,7 +56,11 @@
 
         recipes[currentRecipe].ingredients.forEach(ingredient => {
             const adjustedAmount = (ingredient.amount / recipes[currentRecipe].servings) * servings;
-            totalCalories += adjustedAmount * (ingredient.calories_per_unit || 0);
+            let caloriesPerGram = ingredient.calories_per_unit;
+            if (ingredient.unit === 'g' && caloriesPerGram > 20) { // 100g당 kcal로 추정되는 값
+                caloriesPerGram = caloriesPerGram / 100;
+            }
+            totalCalories += adjustedAmount * (caloriesPerGram || 0);
             const li = document.createElement("li");
             li.textContent = `${ingredient.name}: ${adjustedAmount.toFixed(1)} ${ingredient.unit}`;
             ingredientList.appendChild(li);
