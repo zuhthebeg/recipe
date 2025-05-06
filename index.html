@@ -93,6 +93,7 @@
         instructionsList.innerHTML = "";
         recipes[currentRecipe].instructions.forEach(step => {
             const li = document.createElement("li");
+            li.id = `step-${step.step}`;
             li.textContent = `${step.step}. ${step.description}`;
             // 이미지 추가를 try-catch로 감싼다
             try {
@@ -105,12 +106,65 @@
                 };
                 li.appendChild(img); // li 내부에 이미지 추가
             } catch (e) {
-                // 이미지 추가 중 오류가 발생해도 무시
                 console.error("이미지 추가 중 오류:", e);
             }
             instructionsList.appendChild(li);
         });
+        // 첫 스텝으로 포커스 이동
+        scrollToStep(1);
     }
+
+    function getCurrentStepIndex() {
+        // 화면에서 가장 위에 보이는 스텝의 인덱스 반환
+        const stepElements = document.querySelectorAll('#instructions li');
+        let minDiff = Infinity;
+        let currentIdx = 0;
+        stepElements.forEach((li, idx) => {
+            const rect = li.getBoundingClientRect();
+            const diff = Math.abs(rect.top - 100); // 100px은 상단 여백 보정
+            if (rect.top > 0 && diff < minDiff) {
+                minDiff = diff;
+                currentIdx = idx;
+            }
+        });
+        return currentIdx;
+    }
+
+    function scrollToStep(stepIdx) {
+        const stepElements = document.querySelectorAll('#instructions li');
+        if (stepElements[stepIdx]) {
+            stepElements[stepIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    function getRecipeKeys() {
+        return Object.keys(recipes);
+    }
+
+    function moveRecipe(direction) {
+        const keys = getRecipeKeys();
+        let idx = keys.indexOf(currentRecipe);
+        if (direction === 'prev') idx = (idx - 1 + keys.length) % keys.length;
+        else if (direction === 'next') idx = (idx + 1) % keys.length;
+        currentRecipe = keys[idx];
+        renderRecipe(localStorage.getItem("servings") || recipes[currentRecipe].servings);
+        speak(`${recipes[currentRecipe].name} 레시피로 변경되었습니다.`);
+    }
+
+    // 키보드 이벤트 추가
+    window.addEventListener('keydown', function(e) {
+        const stepElements = document.querySelectorAll('#instructions li');
+        let currentIdx = getCurrentStepIndex();
+        if (e.key === 'ArrowDown') {
+            if (currentIdx < stepElements.length - 1) scrollToStep(currentIdx + 1);
+        } else if (e.key === 'ArrowUp') {
+            if (currentIdx > 0) scrollToStep(currentIdx - 1);
+        } else if (e.key === 'ArrowLeft') {
+            moveRecipe('prev');
+        } else if (e.key === 'ArrowRight') {
+            moveRecipe('next');
+        }
+    });
 
     document.getElementById("servings").addEventListener("input", function() {
         updateIngredients(this.value);
@@ -179,10 +233,16 @@
             }
             return;
         }
+        const stepElements = document.querySelectorAll('#instructions li');
+        let currentIdx = getCurrentStepIndex();
         if (command.includes("다음") || command.toLowerCase().includes("next") || command.includes("샤이꺼꺼")) {
-            window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
+            if (currentIdx < stepElements.length - 1) {
+                scrollToStep(currentIdx + 1);
+            }
         } else if (command.includes("이전") || command.toLowerCase().includes("previous") || command.includes("샹이꺼")) {
-            window.scrollBy({ top: -window.innerHeight * 0.8, behavior: "smooth" });
+            if (currentIdx > 0) {
+                scrollToStep(currentIdx - 1);
+            }
         } else if (command.includes("인분")) {
             const match = command.match(/(\d+)인분/);
             if (match) {
@@ -225,6 +285,8 @@
     }
 
     function speak(text) {
+        showSTTMessage(text); // 레이어 표시
+        console.log('[TTS]', text); // 콘솔 로그
         try {
             if (!ttsAllowed) return; // 모바일에서 터치/클릭 전에는 TTS 실행 안함
             const utter = new SpeechSynthesisUtterance(text);
