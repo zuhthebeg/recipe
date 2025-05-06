@@ -30,6 +30,7 @@
    <script>
     let recipes = {};
     let currentRecipe = "seaweedsoup";
+    let waitingForTimerInput = false; // 타이머 시간 입력 대기 상태 변수
 
     async function loadRecipes() {
         const response = await fetch('recipes.json');
@@ -104,6 +105,20 @@
     }
 
     function handleVoiceCommand(command) {
+        if (waitingForTimerInput) {
+            // 시간 입력만 들어왔을 때 타이머 설정
+            const timeInfo = extractTime(command);
+            if (timeInfo) {
+                speak(`${timeInfo.label} 타이머를 시작합니다`);
+                setTimeout(() => {
+                    speak(`${timeInfo.label}이 경과했습니다. 다음 스탭을 진행하세요`);
+                }, timeInfo.ms);
+                waitingForTimerInput = false;
+            } else {
+                speak("시간을 다시 말씀해 주세요. 예: 3분, 30초, 1시간");
+            }
+            return;
+        }
         if (command.includes("다음") || command.toLowerCase().includes("next") || command.includes("샤이꺼꺼")) {
             window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
         } else if (command.includes("이전") || command.toLowerCase().includes("previous") || command.includes("샹이꺼")) {
@@ -113,16 +128,67 @@
             if (match) {
                 document.getElementById("servings").value = match[1];
                 updateIngredients(match[1]);
+                speak(`${match[1]}인분으로 변경되었습니다.`);
+            }
+        } else if (command.includes("타이머")) {
+            // 현재 스텝 찾기 (화면에 보이는 첫 번째 스텝 기준)
+            const instructions = recipes[currentRecipe].instructions;
+            let currentStep = 0;
+            for (let i = 0; i < instructions.length; i++) {
+                const stepElement = document.querySelectorAll("#instructions li")[i];
+                if (stepElement && stepElement.getBoundingClientRect().top > 0) {
+                    currentStep = i;
+                    break;
+                }
+            }
+            const stepText = instructions[currentStep].description;
+            const timeInfo = extractTime(stepText);
+            if (timeInfo) {
+                speak(`${timeInfo.label} 타이머를 시작합니다`);
+                setTimeout(() => {
+                    speak(`${timeInfo.label}이 경과했습니다. 다음 스탭을 진행하세요`);
+                }, timeInfo.ms);
+            } else {
+                speak("몇 분 타이머를 설정할까요?");
+                waitingForTimerInput = true;
             }
         } else {
             for (let key in recipes) {
                 if (command.includes(recipes[key].name)) {
                     currentRecipe = key;
                     renderRecipe(localStorage.getItem("servings") || recipes[currentRecipe].servings);
+                    speak(`${recipes[key].name} 레시피로 변경되었습니다.`);
                     break;
                 }
             }
         }
+    }
+
+    function speak(text) {
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = "ko-KR";
+        window.speechSynthesis.speak(utter);
+    }
+
+    function extractTime(text) {
+        // "3분", "30초", "1시간" 등 패턴 추출
+        const minuteMatch = text.match(/(\d+)\s*분/);
+        const secondMatch = text.match(/(\d+)\s*초/);
+        const hourMatch = text.match(/(\d+)\s*시간/);
+
+        let ms = 0;
+        if (hourMatch) ms += parseInt(hourMatch[1]) * 60 * 60 * 1000;
+        if (minuteMatch) ms += parseInt(minuteMatch[1]) * 60 * 1000;
+        if (secondMatch) ms += parseInt(secondMatch[1]) * 1000;
+
+        if (ms > 0) {
+            let label = "";
+            if (hourMatch) label += `${hourMatch[1]}시간 `;
+            if (minuteMatch) label += `${minuteMatch[1]}분 `;
+            if (secondMatch) label += `${secondMatch[1]}초`;
+            return { ms, label: label.trim() };
+        }
+        return null;
     }
 
     window.onload = loadRecipes;
