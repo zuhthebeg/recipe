@@ -116,6 +116,35 @@
         updateIngredients(this.value);
     });
 
+    // STT 인식 메시지 레이어 표시 함수 추가
+    function showSTTMessage(message) {
+        let sttLayer = document.getElementById('stt-layer');
+        if (!sttLayer) {
+            sttLayer = document.createElement('div');
+            sttLayer.id = 'stt-layer';
+            sttLayer.style.position = 'fixed';
+            sttLayer.style.top = '30px';
+            sttLayer.style.left = '50%';
+            sttLayer.style.transform = 'translateX(-50%)';
+            sttLayer.style.background = 'rgba(0,0,0,0.8)';
+            sttLayer.style.color = '#fff';
+            sttLayer.style.padding = '16px 32px';
+            sttLayer.style.borderRadius = '24px';
+            sttLayer.style.fontSize = '1.2rem';
+            sttLayer.style.zIndex = '9999';
+            sttLayer.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
+            sttLayer.style.opacity = '0';
+            sttLayer.style.transition = 'opacity 0.3s';
+            document.body.appendChild(sttLayer);
+        }
+        sttLayer.textContent = message;
+        sttLayer.style.opacity = '1';
+        setTimeout(() => {
+            sttLayer.style.opacity = '0';
+        }, 1200);
+    }
+
+    // startVoiceRecognition 함수에서 handleVoiceCommand 호출 전 레이어와 콘솔 로그 추가
     function startVoiceRecognition() {
         const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         recognition.lang = "ko-KR";
@@ -124,6 +153,8 @@
 
         recognition.onresult = function(event) {
             const lastResult = event.results[event.results.length - 1][0].transcript.trim();
+            showSTTMessage(lastResult); // 레이어 표시
+            console.log('[STT]', lastResult); // 콘솔 로그
             handleVoiceCommand(lastResult);
         };
         recognition.onend = function() {
