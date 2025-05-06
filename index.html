@@ -25,12 +25,14 @@
         <h2 class="text-xl font-semibold mt-4">조리 방법</h2>
         <ul id="instructions" class="instructions mt-2"></ul>
         <h2 class="text-lg font-semibold mt-4">총 칼로리: <span id="total-calories">0</span> kcal</h2>
+        <div id="timer-display" class="mt-4 text-center text-lg font-bold text-red-600" style="display:none;"></div>
     </div>
 
    <script>
     let recipes = {};
     let currentRecipe = "seaweedsoup";
     let waitingForTimerInput = false; // 타이머 시간 입력 대기 상태 변수
+    let timerInterval = null;
 
     async function loadRecipes() {
         const response = await fetch('recipes.json');
@@ -109,10 +111,7 @@
             // 시간 입력만 들어왔을 때 타이머 설정
             const timeInfo = extractTime(command);
             if (timeInfo) {
-                speak(`${timeInfo.label} 타이머를 시작합니다`);
-                setTimeout(() => {
-                    speak(`${timeInfo.label}이 경과했습니다. 다음 스탭을 진행하세요`);
-                }, timeInfo.ms);
+                startTimer(timeInfo);
                 waitingForTimerInput = false;
             } else {
                 speak("시간을 다시 말씀해 주세요. 예: 3분, 30초, 1시간");
@@ -130,27 +129,30 @@
                 updateIngredients(match[1]);
                 speak(`${match[1]}인분으로 변경되었습니다.`);
             }
-        } else if (command.includes("타이머")) {
-            // 현재 스텝 찾기 (화면에 보이는 첫 번째 스텝 기준)
-            const instructions = recipes[currentRecipe].instructions;
-            let currentStep = 0;
-            for (let i = 0; i < instructions.length; i++) {
-                const stepElement = document.querySelectorAll("#instructions li")[i];
-                if (stepElement && stepElement.getBoundingClientRect().top > 0) {
-                    currentStep = i;
-                    break;
-                }
-            }
-            const stepText = instructions[currentStep].description;
-            const timeInfo = extractTime(stepText);
+        } else if (command.includes("타이머") || command.includes("알림")) {
+            // 시간 명령(예: '10초 알림', '3분 알림')이 들어오면 해당 시간만 추출해 타이머 동작
+            const timeInfo = extractTime(command);
             if (timeInfo) {
-                speak(`${timeInfo.label} 타이머를 시작합니다`);
-                setTimeout(() => {
-                    speak(`${timeInfo.label}이 경과했습니다. 다음 스탭을 진행하세요`);
-                }, timeInfo.ms);
+                startTimer(timeInfo);
             } else {
-                speak("몇 분 타이머를 설정할까요?");
-                waitingForTimerInput = true;
+                // 현재 스텝 찾기 (화면에 보이는 첫 번째 스텝 기준)
+                const instructions = recipes[currentRecipe].instructions;
+                let currentStep = 0;
+                for (let i = 0; i < instructions.length; i++) {
+                    const stepElement = document.querySelectorAll("#instructions li")[i];
+                    if (stepElement && stepElement.getBoundingClientRect().top > 0) {
+                        currentStep = i;
+                        break;
+                    }
+                }
+                const stepText = instructions[currentStep].description;
+                const stepTimeInfo = extractTime(stepText);
+                if (stepTimeInfo) {
+                    startTimer(stepTimeInfo);
+                } else {
+                    speak("몇 분 타이머를 설정할까요?");
+                    waitingForTimerInput = true;
+                }
             }
         } else {
             for (let key in recipes) {
@@ -164,9 +166,43 @@
         }
     }
 
+    function startTimer(timeInfo) {
+        speak(`${timeInfo.label} 타이머를 시작합니다`);
+        const timerDisplay = document.getElementById("timer-display");
+        let remaining = timeInfo.ms / 1000; // 초 단위
+        timerDisplay.style.display = "block";
+        updateTimerDisplay(remaining);
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            remaining--;
+            updateTimerDisplay(remaining);
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                timerDisplay.style.display = "none";
+                speak(`${timeInfo.label}이 경과했습니다. 다음 스탭을 진행하세요`);
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay(remaining) {
+        const timerDisplay = document.getElementById("timer-display");
+        if (remaining < 0) remaining = 0;
+        const min = Math.floor(remaining / 60);
+        const sec = Math.floor(remaining % 60);
+        timerDisplay.textContent = min > 0 ? `${min}분 ${sec}초 남음` : `${sec}초 남음`;
+    }
+
+    let ttsAllowed = false;
+    document.body.addEventListener('touchstart', () => { ttsAllowed = true; }, { once: true });
+
     function speak(text) {
+        if (!ttsAllowed) return;
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = "ko-KR";
+        // 한국어 음성 강제 지정
+        const voices = window.speechSynthesis.getVoices();
+        const koVoice = voices.find(v => v.lang === 'ko-KR');
+        if (koVoice) utter.voice = koVoice;
         window.speechSynthesis.speak(utter);
     }
 
