@@ -24,6 +24,14 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
+        .time-text {
+            cursor: pointer;
+            color: #0066cc;
+            text-decoration: underline;
+        }
+        .time-text:hover {
+            color: #004499;
+        }
     </style>
 </head>
 <body>
@@ -107,7 +115,32 @@
         recipes[currentRecipe].instructions.forEach(step => {
             const li = document.createElement("li");
             li.id = `step-${step.step}`;
-            li.textContent = `${step.step}. ${step.description}`;
+            
+            // Parse description and wrap time expressions with clickable spans
+            const description = step.description;
+            const timeInfo = extractTime(description);
+            if (timeInfo) {
+                // Replace time expressions with clickable spans
+                const timeRegex = /(\d+\s*(?:시간|분|초))/g;
+                let htmlContent = description.replace(timeRegex, '<span class="time-text">$1</span>');
+                li.innerHTML = `${step.step}. ${htmlContent}`;
+                
+                // Add click event listeners to time spans
+                li.querySelectorAll('.time-text').forEach(span => {
+                    span.addEventListener('click', () => {
+                        const clickedTimeInfo = extractTime(span.textContent);
+                        if (clickedTimeInfo) {
+                            speak(`${clickedTimeInfo.label} 타이머를 시작합니다`);
+                            setTimeout(() => {
+                                speak(`${clickedTimeInfo.label}이 경과했습니다. 다음 스텝을 진행하세요`);
+                            }, clickedTimeInfo.ms);
+                        }
+                    });
+                });
+            } else {
+                li.textContent = `${step.step}. ${description}`;
+            }
+
             // 이미지 추가를 try-catch로 감싼다
             try {
                 const img = document.createElement("img");
@@ -294,7 +327,7 @@
             if (timeInfo) {
                 speak(`${timeInfo.label} 타이머를 시작합니다`);
                 setTimeout(() => {
-                    speak(`${timeInfo.label}이 경과했습니다. 다음 스탭을 진행하세요`);
+                    speak(`${timeInfo.label}이 경과했습니다. 다음 스텝을 진행하세요`);
                 }, timeInfo.ms);
             } else {
                 speak("몇 분 타이머를 설정할까요?");
