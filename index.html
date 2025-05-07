@@ -32,6 +32,17 @@
         .time-text:hover {
             color: #004499;
         }
+        .instruction-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 8px;
+            display: block;
+            max-height: 300px;
+            object-fit: cover;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
@@ -96,18 +107,29 @@
 
         recipes[currentRecipe].ingredients.forEach(ingredient => {
             const adjustedAmount = (ingredient.amount / recipes[currentRecipe].servings) * servings;
-            let caloriesPerGram = ingredient.calories_per_unit;
-            if (ingredient.unit === 'g' && caloriesPerGram > 20) { // 100g당 kcal로 추정되는 값
-                caloriesPerGram = caloriesPerGram / 100;
+            let calories = 0;
+            
+            // 칼로리 계산 로직 수정
+            if (ingredient.unit === 'g') {
+                // 100g 당 칼로리로 가정하고 계산
+                calories = (adjustedAmount * ingredient.calories_per_unit) / 100;
+            } else if (ingredient.unit === 'ml') {
+                // ml의 경우 100ml 당 칼로리로 가정
+                calories = (adjustedAmount * ingredient.calories_per_unit) / 100;
+            } else {
+                // 기타 단위는 그대로 계산
+                calories = adjustedAmount * ingredient.calories_per_unit;
             }
-            totalCalories += adjustedAmount * (caloriesPerGram || 0);
+            
+            totalCalories += calories;
             const li = document.createElement("li");
             li.textContent = `${ingredient.name}: ${adjustedAmount.toFixed(1)} ${ingredient.unit}`;
             ingredientList.appendChild(li);
         });
 
-        document.getElementById("total-calories").textContent = totalCalories.toFixed(1);
+        document.getElementById("total-calories").textContent = Math.round(totalCalories);
     }
+
     function playBeep() {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = ctx.createOscillator(); // 파형 생성기
@@ -160,7 +182,8 @@
                 const img = document.createElement("img");
                 img.src = `images/${currentRecipe}/${step.step}.png`;
                 img.alt = `Step ${step.step} image`;
-                img.classList.add("instruction-image");
+                img.className = 'instruction-image';
+                img.loading = 'lazy'; // 이미지 지연 로딩 추가
                 img.onerror = () => {
                     if (img.parentNode) img.parentNode.removeChild(img);
                 };
@@ -408,3 +431,4 @@
     </script>
 </body>
 </html>
+
