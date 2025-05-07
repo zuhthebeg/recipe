@@ -102,8 +102,8 @@
       { "step": 6, "description": "닭고기가 익고 채소가 숨이 죽으면 참기름을 두르고 마무리한다." }
     ]
   },
-  "milktea": {
-    "name": "밀크티1",
+  "blacktea": {
+    "name": "홍차",
     "color": "#D8CAB8",
     "servings": 4,
     "ingredients": [
@@ -113,15 +113,15 @@
       { "name": "설탕", "amount": 90, "unit": "g", "calories_per_unit": 270 }
     ],
     "instructions": [
-      { "step": 1, "description": "물을 끓이되, 큰불로 끓이면 기포가 발생하는데 이때 끓이면 쓴맛이나기때문에 불을 줄임(작은불로 끓여야함)" },
+      { "step": 1, "description": "우유를 나중에 넣기위해 끓이는 홍차. 물을 끓이되, 큰불로 끓이면 기포가 발생하는데 이때 끓이면 쓴맛이나기때문에 불을 줄임(작은불로 끓여야함)" },
       { "step": 2, "description": "불을 줄인뒤 끓는 물에 홍차투입후 45초 후에 불끄기, 홍차를 짖이기면 쓴맛남" },
       { "step": 3, "description": "8분정도 그대로 두었다가 찻잎을 조심히 꺼낸뒤, 꺼낼때도 짓이기면 쓴맛남" },
       { "step": 4, "description": "홍차에 설탕을 넣고 녹을때까지 저어줌" },
       { "step": 5, "description": "우유를 기호에 맞게 반반비율에서 조절하면서 투입" }
     ]
   },
-  "roasted_milktea": {
-    "name": "밀크티2",
+  "milktea": {
+    "name": "밀크티",
     "color": "#C2A77C",
     "servings": 2,
     "ingredients": [
