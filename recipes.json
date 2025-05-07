@@ -101,5 +101,41 @@
       { "step": 5, "description": "팬에 닭고기와 채소를 모두 넣고 볶는다." },
       { "step": 6, "description": "닭고기가 익고 채소가 숨이 죽으면 참기름을 두르고 마무리한다." }
     ]
+  },
+  "milktea": {
+    "name": "일반밀크티",
+    "color": "#D8CAB8",
+    "servings": 4,
+    "ingredients": [
+      { "name": "홍차", "amount": 25, "unit": "g", "calories_per_unit": 0 },
+      { "name": "물", "amount": 800, "unit": "g", "calories_per_unit": 0 },
+      { "name": "우유", "amount": 400, "unit": "g", "calories_per_unit": 260 },
+      { "name": "설탕", "amount": 90, "unit": "ml", "calories_per_unit": 270 }
+    ],
+    "instructions": [
+      { "step": 1, "description": "물을 끓이되, 큰불로 끓이면 기포가 발생하는데 이때 끓이면 쓴맛이나기때문에 불을 줄임(작은불로 끓여야함)" },
+      { "step": 2, "description": "불을 줄인뒤 끓는 물에 홍차투입후 45초 후에 불끄기, 홍차를 짖이기면 쓴맛남" },
+      { "step": 3, "description": "8분정도 그대로 두었다가 찻잎을 조심히 꺼낸뒤, 꺼낼때도 짓이기면 쓴맛남" },
+      { "step": 4, "description": "홍차에 설탕을 넣고 녹을때까지 저어줌" },
+      { "step": 5, "description": "우유를 기호에 맞게 반반비율에서 조절하면서 투입" }
+    ]
+  },
+  "roasted_milktea": {
+    "name": "진한밀크티",
+    "color": "#C2A77C",
+    "servings": 2,
+    "ingredients": [
+      { "name": "홍차", "amount": 12, "unit": "g", "calories_per_unit": 0 },
+      { "name": "물", "amount": 450, "unit": "g", "calories_per_unit": 0 },
+      { "name": "우유", "amount": 120, "unit": "g", "calories_per_unit": 70 },
+      { "name": "설탕", "amount": 30, "unit": "ml", "calories_per_unit": 90 }
+    ],
+    "instructions": [
+      { "step": 1, "description": "보통은 차와 물을 1:50 비율로 끓이는데 연한편이라 진하게 끓이는 방법으로, 홍차를 마른 냄비에 넣고 불위에서 냄비를 살짝들고 45초간 볶은뒤" },
+      { "step": 2, "description": "생수를 냄비에 투입후 팔팔끓기 시작하면 불을 줄이고 2분더 끓임" },
+      { "step": 3, "description": "홍차가 들어있는 냄비에 그대로 우유를  투입하면서 한방향으로 살살 저어줌" },
+      { "step": 4, "description": "우유가 끓으면 안되기때문에 우유가 끓기 직전에 불을 끔" },
+      { "step": 5, "description": "뚜껑을 닫고 2분가량 기다린뒤에 찻잎을 제거" }
+    ]
   }
 }
