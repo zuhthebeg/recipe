@@ -108,7 +108,20 @@
 
         document.getElementById("total-calories").textContent = totalCalories.toFixed(1);
     }
+    function playBeep() {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = ctx.createOscillator(); // 파형 생성기
+        const gainNode = ctx.createGain();         // 음량 조절기
 
+        oscillator.type = 'sine'; // 파형 타입 ('sine', 'square', 'triangle', 'sawtooth')
+        oscillator.frequency.value = 880; // 주파수(Hz) — 880Hz는 날카로운 비프음
+
+        oscillator.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        oscillator.start();
+        setTimeout(() => oscillator.stop(), 200); // 200ms 후 정지
+    }
     function renderInstructions() {
         const instructionsList = document.getElementById("instructions");
         instructionsList.innerHTML = "";
@@ -132,6 +145,7 @@
                         if (clickedTimeInfo) {
                             speak(`${clickedTimeInfo.label} 타이머를 시작합니다`);
                             setTimeout(() => {
+                                playBeep();
                                 speak(`${clickedTimeInfo.label}이 경과했습니다. 다음 스텝을 진행하세요`);
                             }, clickedTimeInfo.ms);
                         }
