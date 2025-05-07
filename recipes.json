@@ -108,9 +108,9 @@
     "servings": 4,
     "ingredients": [
       { "name": "홍차", "amount": 25, "unit": "g", "calories_per_unit": 0 },
-      { "name": "물", "amount": 800, "unit": "g", "calories_per_unit": 0 },
-      { "name": "우유", "amount": 400, "unit": "g", "calories_per_unit": 260 },
-      { "name": "설탕", "amount": 90, "unit": "ml", "calories_per_unit": 270 }
+      { "name": "물", "amount": 800, "unit": "ml", "calories_per_unit": 0 },
+      { "name": "우유", "amount": 400, "unit": "ml", "calories_per_unit": 260 },
+      { "name": "설탕", "amount": 90, "unit": "g", "calories_per_unit": 270 }
     ],
     "instructions": [
       { "step": 1, "description": "물을 끓이되, 큰불로 끓이면 기포가 발생하는데 이때 끓이면 쓴맛이나기때문에 불을 줄임(작은불로 끓여야함)" },
@@ -126,9 +126,9 @@
     "servings": 2,
     "ingredients": [
       { "name": "홍차", "amount": 12, "unit": "g", "calories_per_unit": 0 },
-      { "name": "물", "amount": 450, "unit": "g", "calories_per_unit": 0 },
-      { "name": "우유", "amount": 120, "unit": "g", "calories_per_unit": 70 },
-      { "name": "설탕", "amount": 30, "unit": "ml", "calories_per_unit": 90 }
+      { "name": "물", "amount": 450, "unit": "ml", "calories_per_unit": 0 },
+      { "name": "우유", "amount": 120, "unit": "ml", "calories_per_unit": 70 },
+      { "name": "설탕", "amount": 30, "unit": "g", "calories_per_unit": 90 }
     ],
     "instructions": [
       { "step": 1, "description": "보통은 차와 물을 1:50 비율로 끓이는데 연한편이라 진하게 끓이는 방법으로, 홍차를 마른 냄비에 넣고 불위에서 냄비를 살짝들고 45초간 볶은뒤" },
