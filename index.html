@@ -82,25 +82,28 @@
     async function loadRecipes() {
         const response = await fetch('recipes.json');
         recipes = await response.json();
-        // 마지막으로 본 레시피를 localStorage에서 불러옴, 없으면 기본값
+        // 마지막으로 본 레시피만 localStorage에서 불러옴
         currentRecipe = localStorage.getItem("lastRecipe") || "seaweedsoup";
-        const savedServings = localStorage.getItem("servings") || recipes[currentRecipe].servings;
-        document.getElementById("servings").value = savedServings;
-        renderRecipe(savedServings);
+        // 각 레시피의 기본 servings 사용
+        document.getElementById("servings").value = recipes[currentRecipe].servings;
+        renderRecipe(recipes[currentRecipe].servings);
     }
 
     function renderRecipe(servings) {
-        // 레시피 변경 시 localStorage에 저장
         localStorage.setItem("lastRecipe", currentRecipe);
         document.getElementById("recipe-title").textContent = recipes[currentRecipe].name;
         document.body.style.backgroundColor = recipes[currentRecipe].color || "#f8f8f8";
-        updateIngredients(servings);
+        // 항상 레시피의 기본 servings로 초기화
+        document.getElementById("servings").value = recipes[currentRecipe].servings;
+        updateIngredients(recipes[currentRecipe].servings);
         renderInstructions();
+        // 스크롤을 항상 첫 스텝으로 이동
+        setTimeout(() => scrollToStep(0), 100);
         startVoiceRecognition();
     }
 
     function updateIngredients(servings) {
-        localStorage.setItem("servings", servings);
+        // localStorage 저장 제거
         const ingredientList = document.getElementById("ingredient-list");
         ingredientList.innerHTML = "";
         let totalCalories = 0;
@@ -245,7 +248,8 @@
         if (direction === 'prev') idx = (idx - 1 + keys.length) % keys.length;
         else if (direction === 'next') idx = (idx + 1) % keys.length;
         currentRecipe = keys[idx];
-        renderRecipe(localStorage.getItem("servings") || recipes[currentRecipe].servings);
+        // 레시피의 기본 servings 사용
+        renderRecipe(recipes[currentRecipe].servings);
         speak(`${recipes[currentRecipe].name} 레시피로 변경되었습니다.`);
     }
 
@@ -431,4 +435,5 @@
     </script>
 </body>
 </html>
+ 
 
