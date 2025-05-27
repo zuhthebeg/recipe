@@ -43,9 +43,114 @@
             margin-left: auto;
             margin-right: auto;
         }
+        .main-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .recipe-card {
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .recipe-card:hover {
+            transform: translateY(-2px);
+        }
+        .recipe-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .recipe-info {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            z-index: 1001;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .main-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
+            margin-right: 15px;
+            transition: transform 0.2s;
+        }
+        
+        .main-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .menu-marquee {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .menu-marquee span {
+            display: inline-block;
+            padding: 0 15px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .recipe-container {
+            margin-top: 50px; /* 상단바 높이만큼 여백 추가 */
+        }
+        
+        .marquee-item {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .marquee-item:hover {
+            color: #000;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <div class="top-bar">
+        <div class="main-icon" onclick="toggleMainMenu()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12h18M3 6h18M3 18h18"/>
+            </svg>
+        </div>
+        <div class="menu-marquee">
+            <div id="marquee-content"></div>
+        </div>
+    </div>
+    
+    <div id="main-menu" class="main-menu p-6">
+        <h1 class="text-2xl font-bold mb-4">레시피 목록</h1>
+        <div id="recipe-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+    
     <div class="recipe-container p-6 rounded-lg shadow-lg">
         <h1 id="recipe-title" class="text-2xl font-bold">레시피 로딩 중...</h1>
         <div class="controls my-4 flex items-center space-x-2">
@@ -80,13 +185,14 @@
     }
 
     async function loadRecipes() {
-        const response = await fetch('recipes.json');
+        const timestamp = new Date().getTime();
+        const response = await fetch(`recipes.json?t=${timestamp}`);
         recipes = await response.json();
-        // 마지막으로 본 레시피만 localStorage에서 불러옴
         currentRecipe = localStorage.getItem("lastRecipe") || "seaweedsoup";
-        // 각 레시피의 기본 servings 사용
         document.getElementById("servings").value = recipes[currentRecipe].servings;
         renderRecipe(recipes[currentRecipe].servings);
+        renderMainMenu();
+        updateMarquee(); // 마퀴 업데이트 추가
     }
 
     function renderRecipe(servings) {
@@ -255,6 +361,10 @@
 
     // 키보드 이벤트 추가
     window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            toggleMainMenu();
+            return;
+        }
         const stepElements = document.querySelectorAll('#instructions li');
         let currentIdx = getCurrentStepIndex();
         if (e.key === 'ArrowDown') {
@@ -321,6 +431,25 @@
     }
 
     function handleVoiceCommand(command) {
+        if (command.includes("메인") || command.includes("메뉴")) {
+            toggleMainMenu();
+            speak("메인 메뉴를 열었습니다. 원하는 레시피를 말씀해주세요.");
+            return;
+        }
+
+        // 메인 메뉴가 열려있을 때 레시피 선택 처리
+        if (document.getElementById("main-menu").style.display === "block") {
+            for (let key in recipes) {
+                if (command.includes(recipes[key].name)) {
+                    currentRecipe = key;
+                    toggleMainMenu();
+                    renderRecipe(recipes[currentRecipe].servings);
+                    speak(`${recipes[key].name} 레시피로 이동했습니다.`);
+                    return;
+                }
+            }
+        }
+
         if (waitingForTimerInput) {
             // 시간 입력만 들어왔을 때 타이머 설정
             const timeInfo = extractTime(command);
@@ -431,7 +560,87 @@
         return null;
     }
 
-    window.onload = loadRecipes;
+    // 메인 메뉴 렌더링 함수
+    function renderMainMenu() {
+        const recipeList = document.getElementById("recipe-list");
+        recipeList.innerHTML = "";
+        
+        Object.entries(recipes).forEach(([key, recipe]) => {
+            const card = document.createElement("div");
+            card.className = "recipe-card";
+            card.style.backgroundColor = recipe.color || "#ffffff";
+            card.onclick = () => {
+                currentRecipe = key;
+                toggleMainMenu();
+                renderRecipe(recipes[currentRecipe].servings);
+            };
+            
+            card.innerHTML = `
+                <div class="recipe-title">${recipe.name}</div>
+                <div class="recipe-info">${recipe.servings}인분</div>
+            `;
+            
+            recipeList.appendChild(card);
+        });
+    }
+
+    // 메인 메뉴 토글 함수
+    function toggleMainMenu() {
+        const mainMenu = document.getElementById("main-menu");
+        mainMenu.style.display = mainMenu.style.display === "none" ? "block" : "none";
+    }
+
+    // 마퀴 내용 업데이트 함수 추가
+    function updateMarquee() {
+        const marqueeContent = document.getElementById('marquee-content');
+        const recipeNames = Object.entries(recipes).map(([key, recipe]) => ({
+            name: recipe.name,
+            key: key
+        }));
+        
+        marqueeContent.innerHTML = recipeNames.map(recipe => 
+            `<span class="marquee-item" data-recipe="${recipe.key}">${recipe.name}</span>`
+        ).join(' • ');
+
+        // 클릭 이벤트 리스너 추가
+        marqueeContent.querySelectorAll('.marquee-item').forEach(span => {
+            span.style.cursor = 'pointer';
+            span.addEventListener('click', () => {
+                currentRecipe = span.dataset.recipe;
+                renderRecipe(recipes[currentRecipe].servings);
+                speak(`${recipes[currentRecipe].name} 레시피로 이동했습니다.`);
+            });
+        });
+    }
+
+    // 마퀴 애니메이션 추가
+    function startMarquee() {
+        const marquee = document.querySelector('.menu-marquee');
+        const content = document.getElementById('marquee-content');
+        
+        function animate() {
+            if (content.offsetWidth > marquee.offsetWidth) {
+                const firstSpan = content.firstElementChild;
+                content.style.transition = 'transform 20s linear';
+                content.style.transform = `translateX(-${firstSpan.offsetWidth + 30}px)`;
+                
+                setTimeout(() => {
+                    content.style.transition = 'none';
+                    content.style.transform = 'translateX(0)';
+                    content.appendChild(firstSpan);
+                    animate();
+                }, 20000);
+            }
+        }
+        
+        animate();
+    }
+
+    // window.onload 수정
+    window.onload = function() {
+        loadRecipes();
+        startMarquee();
+    };
     </script>
 </body>
 </html>
