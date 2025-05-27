@@ -137,5 +137,32 @@
       { "step": 4, "description": "우유가 끓으면 안되기때문에 우유가 끓기 직전에 불을 끄고 뚜껑을 닫음" },
       { "step": 5, "description": "2분가량 기다린뒤에 찻잎을 제거후 기호에 따라 설탕을 넣어 마심" }
     ]
+  },
+  "porkribs": {
+    "name": "등갈비찜",
+    "color": "#8B4513",
+    "servings": 2,
+    "ingredients": [
+      { "name": "등갈비", "amount": 1000, "unit": "g", "calories_per_unit": 250 },
+      { "name": "물", "amount": 700, "unit": "ml", "calories_per_unit": 0 },
+      { "name": "된장", "amount": 15, "unit": "g", "calories_per_unit": 150 },
+      { "name": "파채", "amount": 30, "unit": "g", "calories_per_unit": 30 },
+      { "name": "통마늘", "amount": 5, "unit": "개", "calories_per_unit": 130 },
+      { "name": "간장", "amount": 120, "unit": "ml", "calories_per_unit": 10 },
+      { "name": "설탕", "amount": 60, "unit": "g", "calories_per_unit": 400 },
+      { "name": "물엿", "amount": 60, "unit": "g", "calories_per_unit": 300 },
+      { "name": "매실액", "amount": 30, "unit": "ml", "calories_per_unit": 50 },
+      { "name": "맛술", "amount": 60, "unit": "ml", "calories_per_unit": 50 },
+      { "name": "다진 마늘", "amount": 30, "unit": "g", "calories_per_unit": 130 },
+      { "name": "참기름", "amount": 15, "unit": "ml", "calories_per_unit": 90 },
+      { "name": "깨", "amount": 5, "unit": "g", "calories_per_unit": 50 }
+    ],
+    "instructions": [
+      { "step": 1, "description": "등갈비는 찬물에 1시간 정도 담가 핏물을 뺀다." },
+      { "step": 2, "description": "볼에 양념 재료를 넣고 섞어 양념장을 만든다." },
+      { "step": 3, "description": "냄비에 핏물을 뺀 등갈비와 물, 된장을 넣고 데친 후 찬물에 헹궈 준비한다." },
+      { "step": 4, "description": "삶은 등갈비와 통마늘을 냄비에 넣은 후 양념장을 붓고 조린다." },
+      { "step": 5, "description": "완성된 등갈비 위에 파채를 올리고 통깨를 뿌려 마무리한다." }
+    ]
   }
 }
