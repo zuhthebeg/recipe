@@ -41,35 +41,63 @@
     ]
   },
   "kimchistew": {
-    "name": "김치찌개",
+    "name": "백종원 돼지고기 김치찌개",
     "color": "#ff4500",
-    "servings": 2,
+    "servings": 4,
     "ingredients": [
-      { "name": "김치", "amount": 150, "unit": "g", "calories_per_unit": 30 },
-      { "name": "돼지고기", "amount": 100, "unit": "g", "calories_per_unit": 250 },
-      { "name": "두부", "amount": 100, "unit": "g", "calories_per_unit": 80 },
-      { "name": "물", "amount": 500, "unit": "ml", "calories_per_unit": 0 }
+      { "name": "돼지고기", "amount": 300, "unit": "g", "calories_per_unit": 250 },
+      { "name": "김치", "amount": 1, "unit": "포기", "calories_per_unit": 30 },
+      { "name": "설탕", "amount": 1, "unit": "스푼", "calories_per_unit": 400 },
+      { "name": "고춧가루", "amount": 2.5, "unit": "스푼", "calories_per_unit": 300 },
+      { "name": "간장", "amount": 2.5, "unit": "스푼", "calories_per_unit": 10 },
+      { "name": "양파", "amount": 0.5, "unit": "개", "calories_per_unit": 40 },
+      { "name": "대파", "amount": 1, "unit": "대", "calories_per_unit": 30 },
+      { "name": "다진마늘", "amount": 1, "unit": "스푼", "calories_per_unit": 130 },
+      { "name": "청양고추", "amount": 1, "unit": "개", "calories_per_unit": 30 },
+      { "name": "들기름", "amount": 15, "unit": "ml", "calories_per_unit": 120 },
+      { "name": "물", "amount": 8, "unit": "종이컵", "calories_per_unit": 0 },
+      { "name": "된장", "amount": 0.5, "unit": "스푼", "calories_per_unit": 150 },
+      { "name": "새우젓", "amount": 2, "unit": "스푼", "calories_per_unit": 20 }
     ],
     "instructions": [
-      { "step": 1, "description": "김치를 냄비에 넣고 볶는다." },
-      { "step": 2, "description": "돼지고기를 넣고 익힌다." },
-      { "step": 3, "description": "물을 넣고 끓이다가 두부를 넣는다." }
+      { "step": 1, "description": "돼지고기는 핏물을 빼줍니다." },
+      { "step": 2, "description": "잘익은 김치 한포기를 꺼내서 잘라줍니다." },
+      { "step": 3, "description": "냄비에 들기름 적당히 두르고 김치를 넣고 볶아줍니다." },
+      { "step": 4, "description": "다진마늘 한스푼, 설탕 한스푼 넣어줍니다." },
+      { "step": 5, "description": "종이컵으로 물 8컵 부어서 센불에 끓여줍니다." },
+      { "step": 6, "description": "핏물 뺀 돼지고기를 넣어줍니다." },
+      { "step": 7, "description": "된장 반스푼 넣어줍니다." },
+      { "step": 8, "description": "양파 반개, 청양고추 한개를 썰어서 넣어줍니다." },
+      { "step": 9, "description": "간장 두스푼반, 새우젓 두스푼, 고춧가루 두스푼반 넣어줍니다." },
+      { "step": 10, "description": "중불로 줄여서 오래 끓여줍니다." },
+      { "step": 11, "description": "마지막에 파 쏭쏭 썰어서 마무리합니다." }
     ]
   },
   "doenjangstew": {
-    "name": "된장찌개",
+    "name": "고깃집 된장찌개",
     "color": "#d2691e",
     "servings": 2,
     "ingredients": [
-      { "name": "된장", "amount": 30, "unit": "g", "calories_per_unit": 150 },
-      { "name": "애호박", "amount": 50, "unit": "g", "calories_per_unit": 15 },
-      { "name": "두부", "amount": 100, "unit": "g", "calories_per_unit": 80 },
-      { "name": "물", "amount": 500, "unit": "ml", "calories_per_unit": 0 }
+      { "name": "된장", "amount": 2, "unit": "스푼", "calories_per_unit": 150 },
+      { "name": "쌈장", "amount": 2, "unit": "스푼", "calories_per_unit": 100 },
+      { "name": "두부", "amount": 0.5, "unit": "모", "calories_per_unit": 80 },
+      { "name": "양파", "amount": 0.33, "unit": "개", "calories_per_unit": 40 },
+      { "name": "대파", "amount": 1, "unit": "줌", "calories_per_unit": 30 },
+      { "name": "청양고추", "amount": 4, "unit": "개", "calories_per_unit": 30 },
+      { "name": "애호박", "amount": 0.5, "unit": "줌", "calories_per_unit": 15 },
+      { "name": "다진마늘", "amount": 1, "unit": "스푼", "calories_per_unit": 130 },
+      { "name": "고춧가루", "amount": 1, "unit": "스푼", "calories_per_unit": 300 },
+      { "name": "대패삼겹살", "amount": 9, "unit": "장", "calories_per_unit": 250 }
     ],
     "instructions": [
-      { "step": 1, "description": "물을 끓인 후 된장을 풀어준다." },
-      { "step": 2, "description": "애호박과 두부를 넣고 끓인다." },
-      { "step": 3, "description": "5분간 더 끓여 완성한다." }
+      { "step": 1, "description": "양파 1/3개, 호박소량, 두부반모, 청양고추 4개, 대파한줌, 대패삼겹살 9개를 썰어 준비합니다." },
+      { "step": 2, "description": "된장과 쌈장을 1:1 비율로 넣어줍니다. (시판된장의 경우 쌈장 비율을 줄여주세요)" },
+      { "step": 3, "description": "뚝배기에 물을 반만 넣고 고춧가루 한스푼을 넣어줍니다." },
+      { "step": 4, "description": "두부를 넣고 끓어오르면 대패삼겹살을 넣어줍니다." },
+      { "step": 5, "description": "다진마늘 한스푼을 넣어줍니다." },
+      { "step": 6, "description": "양파와 호박을 넣어줍니다." },
+      { "step": 7, "description": "청양고추 4개를 넣어줍니다." },
+      { "step": 8, "description": "마지막으로 대파 한줌을 넣고 뽀글뽀글 끓여 완성합니다." }
     ]
   },
   "dakgalbi": {
@@ -103,7 +131,7 @@
     ]
   },
   "blacktea": {
-    "name": "홍차",
+    "name": "일반 홍차 밀크티",
     "color": "#D8CAB8",
     "servings": 4,
     "ingredients": [
@@ -121,7 +149,7 @@
     ]
   },
   "milktea": {
-    "name": "밀크티",
+    "name": "진한 밀크티",
     "color": "#C2A77C",
     "servings": 2,
     "ingredients": [
@@ -163,6 +191,26 @@
       { "step": 3, "description": "냄비에 핏물을 뺀 등갈비와 물, 된장을 넣고 데친 후 찬물에 헹궈 준비한다." },
       { "step": 4, "description": "삶은 등갈비와 통마늘을 냄비에 넣은 후 양념장을 붓고 조린다." },
       { "step": 5, "description": "완성된 등갈비 위에 파채를 올리고 통깨를 뿌려 마무리한다." }
+    ]
+  },
+  "buldakramen": {
+    "name": "지락실 불닭볶음면",
+    "color": "#FF4500",
+    "servings": 1,
+    "ingredients": [
+      { "name": "불닭볶음면", "amount": 1, "unit": "개", "calories_per_unit": 500 },
+      { "name": "양파", "amount": 0.5, "unit": "개", "calories_per_unit": 40 },
+      { "name": "체다치즈", "amount": 1, "unit": "장", "calories_per_unit": 100 },
+      { "name": "계란 노른자", "amount": 1, "unit": "개", "calories_per_unit": 55 },
+      { "name": "마요네즈", "amount": 15, "unit": "g", "calories_per_unit": 100 },
+      { "name": "물", "amount": 400, "unit": "ml", "calories_per_unit": 0 },
+      { "name": "식용유", "amount": 15, "unit": "ml", "calories_per_unit": 120 }
+    ],
+    "instructions": [
+      { "step": 1, "description": "얇게 썬 양파 반 개를 식용유에 살짝 갈색이 될 때까지 볶기" },
+      { "step": 2, "description": "물 400ml 넣고 끓인다음 면 익히기" },
+      { "step": 3, "description": "면이 2/3쯤 익었을 때 액상스프와 체다치즈 1장 넣고 잘 섞으며 졸이기" },
+      { "step": 4, "description": "물이 자작하게 남은 상태에서 그릇에 옮겨 담고 계란노른자와 마요네즈를 뿌리면 완성" }
     ]
   }
 }

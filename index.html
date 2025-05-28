@@ -515,7 +515,7 @@
                 return;
             }
             for (let key in recipes) {
-                if (command.includes(recipes[key].name)) {
+                if (recipes[key].name.includes(command) || command.includes(recipes[key].name)) {
                     currentRecipe = key;
                     renderRecipe(localStorage.getItem("servings") || recipes[currentRecipe].servings);
                     speak(`${recipes[key].name} 레시피로 변경되었습니다.`);
