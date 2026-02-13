@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="요리 레시피 검색, 인분 계산, 단계별 타이머, 음성 이동을 지원하는 실전용 레시피 앱">
-  <meta name="build-id" content="2026-02-13-recipe-v2">
+  <meta name="build-id" content="2026-02-14-recipe-v3-product">
+  <meta name="theme-color" content="#0f766e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Recipe Cocy">
+  <link rel="manifest" href="manifest.webmanifest">
   <title>Recipe Cocy</title>
   <style>
     :root {
@@ -62,7 +66,7 @@
     }
     .controls {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr auto auto;
+      grid-template-columns: 1.2fr 0.7fr 0.7fr auto auto auto;
       gap: 8px;
     }
     input, select, button {
@@ -270,6 +274,39 @@
       font-size: 0.8rem;
       padding-top: 6px;
     }
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      background: #fff;
+    }
+    .favorite-mark {
+      color: #ca8a04;
+      font-size: 0.85rem;
+      margin-left: 6px;
+    }
+    .ghost {
+      background: #fff;
+      border-color: var(--line);
+      color: #374151;
+    }
+    .ghost.active {
+      border-color: #f59e0b;
+      background: #fffbeb;
+      color: #92400e;
+    }
     .toast {
       position: fixed;
       top: 14px;
@@ -309,8 +346,19 @@
         <select id="category-select">
           <option value="all">전체 카테고리</option>
         </select>
+        <select id="difficulty-select">
+          <option value="all">전체 난이도</option>
+          <option value="easy">쉬움</option>
+          <option value="medium">보통</option>
+          <option value="hard">어려움</option>
+        </select>
         <button id="sort-btn" class="btn-sub" type="button">이름순</button>
+        <button id="favorites-only-btn" class="btn-sub ghost" type="button">즐겨찾기만</button>
         <button id="random-btn" class="btn-main" type="button">랜덤 추천</button>
+      </div>
+      <div class="status-bar">
+        <span class="pill" id="network-pill">온라인</span>
+        <span class="pill" id="recent-pill">최근 본 없음</span>
       </div>
     </header>
 
@@ -323,7 +371,10 @@
       <section class="panel detail">
         <div class="detail-head">
           <h2 id="recipe-title" class="detail-title">레시피 로딩 중...</h2>
-          <div id="chips" class="chips"></div>
+          <div class="chips">
+            <div id="chips" class="chips"></div>
+            <button id="favorite-toggle-btn" class="btn-sub ghost" type="button">☆ 즐겨찾기</button>
+          </div>
         </div>
         <div class="serving-row">
           <label for="servings-input">인분</label>
@@ -341,7 +392,7 @@
             <h2>조리 순서</h2>
             <ol id="instruction-list" class="instructions"></ol>
           </section>
-          <div class="footer">Build: <span id="build-id">2026-02-13-recipe-v2</span></div>
+          <div class="footer">Build: <span id="build-id">2026-02-14-recipe-v3-product</span></div>
         </div>
       </section>
     </main>
@@ -357,17 +408,26 @@
       currentKey: null,
       currentServings: 2,
       sortMode: "name",
+      difficultyFilter: "all",
+      favoritesOnly: false,
       voiceOn: false,
       recognition: null,
-      ttsAllowed: true
+      ttsAllowed: true,
+      favorites: new Set(),
+      recent: []
     };
 
     const els = {
       searchInput: document.getElementById("search-input"),
       categorySelect: document.getElementById("category-select"),
+      difficultySelect: document.getElementById("difficulty-select"),
       sortBtn: document.getElementById("sort-btn"),
+      favoritesOnlyBtn: document.getElementById("favorites-only-btn"),
       randomBtn: document.getElementById("random-btn"),
       voiceToggle: document.getElementById("voice-toggle"),
+      favoriteToggleBtn: document.getElementById("favorite-toggle-btn"),
+      networkPill: document.getElementById("network-pill"),
+      recentPill: document.getElementById("recent-pill"),
       listHead: document.getElementById("list-head"),
       recipeList: document.getElementById("recipe-list"),
       recipeTitle: document.getElementById("recipe-title"),
@@ -385,6 +445,60 @@
       els.toast.textContent = message;
       els.toast.classList.add("show");
       setTimeout(() => els.toast.classList.remove("show"), 1400);
+    }
+
+    function saveFavorites() {
+      localStorage.setItem("favorites", JSON.stringify([...state.favorites]));
+    }
+
+    function loadFavorites() {
+      try {
+        const raw = localStorage.getItem("favorites");
+        const arr = raw ? JSON.parse(raw) : [];
+        if (Array.isArray(arr)) {
+          state.favorites = new Set(arr);
+        }
+      } catch (_) {}
+    }
+
+    function saveRecent() {
+      localStorage.setItem("recentRecipes", JSON.stringify(state.recent));
+    }
+
+    function loadRecent() {
+      try {
+        const raw = localStorage.getItem("recentRecipes");
+        const arr = raw ? JSON.parse(raw) : [];
+        if (Array.isArray(arr)) {
+          state.recent = arr.slice(0, 5);
+        }
+      } catch (_) {}
+    }
+
+    function pushRecent(key) {
+      state.recent = [key, ...state.recent.filter((k) => k !== key)].slice(0, 5);
+      saveRecent();
+      renderRecentPill();
+    }
+
+    function renderRecentPill() {
+      if (state.recent.length === 0) {
+        els.recentPill.textContent = "최근 본 없음";
+        return;
+      }
+      const names = state.recent
+        .map((k) => state.recipes[k]?.name)
+        .filter(Boolean)
+        .slice(0, 3);
+      els.recentPill.textContent = `최근 본: ${names.join(", ")}`;
+    }
+
+    function updateNetworkPill() {
+      const online = navigator.onLine;
+      els.networkPill.textContent = online ? "온라인" : "오프라인";
+      els.networkPill.style.borderColor = online ? "#86efac" : "#fca5a5";
+      els.networkPill.style.background = online ? "#f0fdf4" : "#fef2f2";
+      els.networkPill.style.color = online ? "#166534" : "#991b1b";
     }
 
     function sanitizeText(value) {
@@ -468,7 +582,7 @@
         item.className = `recipe-item${key === state.currentKey ? " active" : ""}`;
         item.dataset.key = key;
         item.innerHTML = `
-          <p class="recipe-name">${recipe.name}</p>
+          <p class="recipe-name">${recipe.name}${state.favorites.has(key) ? '<span class="favorite-mark">★</span>' : ''}</p>
           <p class="recipe-meta">
             <span>${recipe.category || "기타"}</span>
             <span>${recipe.servings}인분 기준</span>
@@ -503,6 +617,10 @@
         chip.textContent = text;
         els.chips.appendChild(chip);
       });
+
+      const isFavorite = state.favorites.has(state.currentKey);
+      els.favoriteToggleBtn.textContent = isFavorite ? "★ 즐겨찾기됨" : "☆ 즐겨찾기";
+      els.favoriteToggleBtn.classList.toggle("active", isFavorite);
 
       let totalCalories = 0;
       els.ingredientList.innerHTML = "";
@@ -559,6 +677,7 @@
         state.currentServings = state.recipes[key].servings || 2;
       }
       localStorage.setItem("lastRecipe", key);
+      pushRecent(key);
       renderRecipeList();
       renderRecipeDetail();
     }
@@ -566,6 +685,7 @@
     function applyFilters() {
       const q = sanitizeText(els.searchInput.value).toLowerCase();
       const category = els.categorySelect.value;
+      const difficulty = els.difficultySelect.value;
       let keys = [...state.keys];
 
       if (q) {
@@ -573,6 +693,12 @@
       }
       if (category !== "all") {
         keys = keys.filter((key) => (state.recipes[key].category || "기타") === category);
+      }
+      if (difficulty !== "all") {
+        keys = keys.filter((key) => (state.recipes[key].difficulty || "medium") === difficulty);
+      }
+      if (state.favoritesOnly) {
+        keys = keys.filter((key) => state.favorites.has(key));
       }
       if (state.sortMode === "name") {
         keys.sort((a, b) => state.recipes[a].name.localeCompare(state.recipes[b].name, "ko"));
@@ -614,8 +740,13 @@
     }
 
     function bindEvents() {
-      els.searchInput.addEventListener("input", applyFilters);
+      let searchDebounce = null;
+      els.searchInput.addEventListener("input", () => {
+        clearTimeout(searchDebounce);
+        searchDebounce = setTimeout(applyFilters, 120);
+      });
       els.categorySelect.addEventListener("change", applyFilters);
+      els.difficultySelect.addEventListener("change", applyFilters);
       els.sortBtn.addEventListener("click", () => {
         state.sortMode = state.sortMode === "name" ? "time" : "name";
         els.sortBtn.textContent = state.sortMode === "name" ? "이름순" : "조리시간순";
@@ -626,6 +757,24 @@
         const key = state.filteredKeys[Math.floor(Math.random() * state.filteredKeys.length)];
         selectRecipe(key);
         showToast(`${state.recipes[key].name} 추천`);
+      });
+      els.favoritesOnlyBtn.addEventListener("click", () => {
+        state.favoritesOnly = !state.favoritesOnly;
+        els.favoritesOnlyBtn.classList.toggle("active", state.favoritesOnly);
+        applyFilters();
+      });
+      els.favoriteToggleBtn.addEventListener("click", () => {
+        if (!state.currentKey) return;
+        if (state.favorites.has(state.currentKey)) {
+          state.favorites.delete(state.currentKey);
+          showToast("즐겨찾기 해제");
+        } else {
+          state.favorites.add(state.currentKey);
+          showToast("즐겨찾기에 추가");
+        }
+        saveFavorites();
+        renderRecipeList();
+        renderRecipeDetail();
       });
 
       els.servingMinus.addEventListener("click", () => {
@@ -748,8 +897,24 @@
 
     async function init() {
       bindEvents();
-      const response = await fetch(`recipes.json?t=${Date.now()}`);
-      const payload = await response.json();
+      updateNetworkPill();
+      loadFavorites();
+      loadRecent();
+      let payload;
+      try {
+        const response = await fetch(`recipes.json?t=${Date.now()}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        payload = await response.json();
+        localStorage.setItem("recipesCache", JSON.stringify(payload));
+      } catch (err) {
+        const cached = localStorage.getItem("recipesCache");
+        if (cached) {
+          payload = JSON.parse(cached);
+          showToast("오프라인 캐시로 로드됨");
+        } else {
+          throw err;
+        }
+      }
       const normalized = {};
       Object.entries(payload).forEach(([key, value]) => {
         normalized[key] = normalizeRecipe(key, value);
@@ -764,15 +929,26 @@
 
       const savedKey = localStorage.getItem("lastRecipe");
       state.currentKey = state.recipes[savedKey] ? savedKey : state.keys[0];
+      renderRecentPill();
       applyFilters();
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      }
     }
 
     window.addEventListener("beforeunload", () => {
       stopVoiceRecognition();
     });
+    window.addEventListener("online", updateNetworkPill);
+    window.addEventListener("offline", updateNetworkPill);
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowDown") moveStep(1);
       if (e.key === "ArrowUp") moveStep(-1);
+      if (e.key === "/" && document.activeElement !== els.searchInput) {
+        e.preventDefault();
+        els.searchInput.focus();
+      }
     });
 
     init().catch((err) => {

@@ -1,0 +1,10 @@
+{
+  "name": "Recipe Cocy",
+  "short_name": "Recipe",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#0f766e",
+  "lang": "ko",
+  "description": "검색, 인분 계산, 타이머, 음성 이동을 제공하는 레시피 앱"
+}
