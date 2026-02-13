@@ -1,648 +1,784 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="말로 하는 레시피, 요리할 때 편리한 웹사이트. 음성 명령으로 조작하는 요리 레시피 제공.">
-    <title>요리 레시피</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.0.23/tailwind.min.css">
-    <style>
-        body { font-family: 'Noto Sans KR', sans-serif; transition: background-color 0.3s ease; }
-        .recipe-container { max-width: 600px; margin: auto; padding: 20px; background: white; }
-        .controls input { width: 60px; text-align: center; }
-        .instructions li { padding: 10px; border-bottom: 1px solid #ddd; }
-        .step-popup {
-            position: fixed;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 20px;
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .time-text {
-            cursor: pointer;
-            color: #0066cc;
-            text-decoration: underline;
-        }
-        .time-text:hover {
-            color: #004499;
-        }
-        .instruction-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-top: 8px;
-            display: block;
-            max-height: 300px;
-            object-fit: cover;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .main-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        .recipe-card {
-            padding: 15px;
-            margin: 10px;
-            border-radius: 8px;
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .recipe-card:hover {
-            transform: translateY(-2px);
-        }
-        .recipe-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .recipe-info {
-            color: #666;
-            font-size: 0.9em;
-        }
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
-            align-items: center;
-            padding: 0 15px;
-            z-index: 1001;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .main-icon {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #f0f0f0;
-            margin-right: 15px;
-            transition: transform 0.2s;
-        }
-        
-        .main-icon:hover {
-            transform: scale(1.1);
-        }
-        
-        .menu-marquee {
-            flex: 1;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        
-        .menu-marquee span {
-            display: inline-block;
-            padding: 0 15px;
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .recipe-container {
-            margin-top: 50px; /* 상단바 높이만큼 여백 추가 */
-        }
-        
-        .marquee-item {
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        
-        .marquee-item:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="요리 레시피 검색, 인분 계산, 단계별 타이머, 음성 이동을 지원하는 실전용 레시피 앱">
+  <meta name="build-id" content="2026-02-13-recipe-v2">
+  <title>Recipe Cocy</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top right, #e6fffa 0%, var(--bg) 45%);
+    }
+    .app {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 14px;
+      min-height: 100vh;
+    }
+    .top {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      display: grid;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .title {
+      margin: 0;
+      font-size: 1.45rem;
+      letter-spacing: -0.01em;
+    }
+    .subtitle {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr auto auto;
+      gap: 8px;
+    }
+    input, select, button {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      background: #fff;
+      color: var(--text);
+    }
+    button {
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+    button:hover { transform: translateY(-1px); }
+    .btn-main {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    .btn-sub {
+      background: #fff;
+      color: var(--text);
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 14px;
+      min-height: 0;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      min-height: 0;
+    }
+    .list-panel {
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+    .list-head {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .recipe-list {
+      overflow: auto;
+      padding: 8px;
+      display: grid;
+      gap: 8px;
+    }
+    .recipe-item {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+      background: #fff;
+    }
+    .recipe-item:hover {
+      border-color: #9ca3af;
+      background: #fcfcfd;
+    }
+    .recipe-item.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .recipe-name {
+      font-weight: 700;
+      margin: 0 0 6px;
+      font-size: 0.98rem;
+    }
+    .recipe-meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.83rem;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .detail {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      min-height: 0;
+    }
+    .detail-head {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      gap: 8px;
+    }
+    .detail-title {
+      margin: 0;
+      font-size: 1.4rem;
+      letter-spacing: -0.01em;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #e5e7eb;
+    }
+    .serving-row {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .serving-row label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-right: 4px;
+    }
+    .num-box {
+      width: 72px;
+      text-align: center;
+      font-weight: 700;
+    }
+    .detail-body {
+      overflow: auto;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-content: start;
+    }
+    .section {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fff;
+    }
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+    }
+    .ingredients {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .ingredients li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.92rem;
+      border-bottom: 1px dashed #e5e7eb;
+      padding-bottom: 6px;
+    }
+    .instructions {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+    .instructions li {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      display: grid;
+      gap: 8px;
+      background: #fff;
+    }
+    .step-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+    .step-no { font-weight: 700; }
+    .timer-btn {
+      border: 1px solid #86efac;
+      background: #f0fdf4;
+      color: #166534;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .step-image {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+    .footer {
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding-top: 6px;
+    }
+    .toast {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(17, 24, 39, 0.92);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 9999;
+      font-size: 0.9rem;
+    }
+    .toast.show { opacity: 1; }
+    @media (max-width: 1024px) {
+      .controls { grid-template-columns: 1fr 1fr; }
+      .content { grid-template-columns: 1fr; }
+      .detail-body { grid-template-columns: 1fr; }
+      .list-panel { max-height: 38vh; }
+    }
+  </style>
 </head>
 <body>
-    <div class="top-bar">
-        <div class="main-icon" onclick="toggleMainMenu()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 12h18M3 6h18M3 18h18"/>
-            </svg>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <div>
+          <h1 class="title">Recipe Cocy</h1>
+          <p class="subtitle">118개 레시피, 인분 자동 계산, 단계별 타이머, 음성 이동</p>
         </div>
-        <div class="menu-marquee">
-            <div id="marquee-content"></div>
+        <button id="voice-toggle" class="btn-sub" type="button">음성 시작</button>
+      </div>
+      <div class="controls">
+        <input id="search-input" type="search" placeholder="레시피 이름 검색 (예: 김치, 파스타)">
+        <select id="category-select">
+          <option value="all">전체 카테고리</option>
+        </select>
+        <button id="sort-btn" class="btn-sub" type="button">이름순</button>
+        <button id="random-btn" class="btn-main" type="button">랜덤 추천</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="panel list-panel">
+        <div class="list-head" id="list-head">로딩 중...</div>
+        <div id="recipe-list" class="recipe-list"></div>
+      </section>
+
+      <section class="panel detail">
+        <div class="detail-head">
+          <h2 id="recipe-title" class="detail-title">레시피 로딩 중...</h2>
+          <div id="chips" class="chips"></div>
         </div>
-    </div>
-    
-    <div id="main-menu" class="main-menu p-6">
-        <h1 class="text-2xl font-bold mb-4">레시피 목록</h1>
-        <div id="recipe-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-    </div>
-    
-    <div class="recipe-container p-6 rounded-lg shadow-lg">
-        <h1 id="recipe-title" class="text-2xl font-bold">레시피 로딩 중...</h1>
-        <div class="controls my-4 flex items-center space-x-2">
-            <label class="font-semibold">인분 수:</label>
-            <input type="number" id="servings" value="2" min="1" class="border rounded px-2 py-1">
+        <div class="serving-row">
+          <label for="servings-input">인분</label>
+          <button id="serving-minus" class="btn-sub" type="button">-</button>
+          <input id="servings-input" class="num-box" type="number" min="1" value="2">
+          <button id="serving-plus" class="btn-sub" type="button">+</button>
+          <span id="calories-text" style="margin-left:auto;color:#374151;font-weight:700;">총 0 kcal</span>
         </div>
-        <h2 class="text-xl font-semibold">재료</h2>
-        <ul id="ingredient-list" class="ingredient-list mt-2"></ul>
-        <h2 class="text-xl font-semibold mt-4">조리 방법</h2>
-        <ul id="instructions" class="instructions mt-2"></ul>
-        <h2 class="text-lg font-semibold mt-4">총 칼로리: <span id="total-calories">0</span> kcal</h2>
-    </div>
+        <div class="detail-body">
+          <section class="section">
+            <h2>재료</h2>
+            <ul id="ingredient-list" class="ingredients"></ul>
+          </section>
+          <section class="section">
+            <h2>조리 순서</h2>
+            <ol id="instruction-list" class="instructions"></ol>
+          </section>
+          <div class="footer">Build: <span id="build-id">2026-02-13-recipe-v2</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
 
-   <script>
-    let recipes = {};
-    let currentRecipe = "seaweedsoup";
-    let waitingForTimerInput = false; // 타이머 시간 입력 대기 상태 변수
-    let ttsAllowed = true;
+  <div id="toast" class="toast"></div>
 
-    // 모바일(터치 지원) 환경이면 터치/클릭 전까지 ttsAllowed = false
-    function isMobileDevice() {
-        return (
-            'ontouchstart' in window ||
-            navigator.maxTouchPoints > 0 ||
-            navigator.msMaxTouchPoints > 0
-        );
-    }
-    if (isMobileDevice()) {
-        ttsAllowed = false;
-        document.body.addEventListener('touchstart', () => { ttsAllowed = true; }, { once: true });
-        document.body.addEventListener('mousedown', () => { ttsAllowed = true; }, { once: true });
-    }
+  <script>
+    const state = {
+      recipes: {},
+      keys: [],
+      filteredKeys: [],
+      currentKey: null,
+      currentServings: 2,
+      sortMode: "name",
+      voiceOn: false,
+      recognition: null,
+      ttsAllowed: true
+    };
 
-    async function loadRecipes() {
-        const timestamp = new Date().getTime();
-        const response = await fetch(`recipes.json?t=${timestamp}`);
-        recipes = await response.json();
-        currentRecipe = localStorage.getItem("lastRecipe") || "seaweedsoup";
-        document.getElementById("servings").value = recipes[currentRecipe].servings;
-        renderRecipe(recipes[currentRecipe].servings);
-        renderMainMenu();
-        updateMarquee(); // 마퀴 업데이트 추가
-    }
+    const els = {
+      searchInput: document.getElementById("search-input"),
+      categorySelect: document.getElementById("category-select"),
+      sortBtn: document.getElementById("sort-btn"),
+      randomBtn: document.getElementById("random-btn"),
+      voiceToggle: document.getElementById("voice-toggle"),
+      listHead: document.getElementById("list-head"),
+      recipeList: document.getElementById("recipe-list"),
+      recipeTitle: document.getElementById("recipe-title"),
+      chips: document.getElementById("chips"),
+      servingsInput: document.getElementById("servings-input"),
+      servingMinus: document.getElementById("serving-minus"),
+      servingPlus: document.getElementById("serving-plus"),
+      caloriesText: document.getElementById("calories-text"),
+      ingredientList: document.getElementById("ingredient-list"),
+      instructionList: document.getElementById("instruction-list"),
+      toast: document.getElementById("toast")
+    };
 
-    function renderRecipe(servings) {
-        localStorage.setItem("lastRecipe", currentRecipe);
-        document.getElementById("recipe-title").textContent = recipes[currentRecipe].name;
-        document.body.style.backgroundColor = recipes[currentRecipe].color || "#f8f8f8";
-        // 항상 레시피의 기본 servings로 초기화
-        document.getElementById("servings").value = recipes[currentRecipe].servings;
-        updateIngredients(recipes[currentRecipe].servings);
-        renderInstructions();
-        // 스크롤을 항상 첫 스텝으로 이동
-        setTimeout(() => scrollToStep(0), 100);
-        startVoiceRecognition();
-    }
-
-    function updateIngredients(servings) {
-        // localStorage 저장 제거
-        const ingredientList = document.getElementById("ingredient-list");
-        ingredientList.innerHTML = "";
-        let totalCalories = 0;
-
-        recipes[currentRecipe].ingredients.forEach(ingredient => {
-            const adjustedAmount = (ingredient.amount / recipes[currentRecipe].servings) * servings;
-            let calories = 0;
-            
-            // 칼로리 계산 로직 수정
-            if (ingredient.unit === 'g') {
-                // 100g 당 칼로리로 가정하고 계산
-                calories = (adjustedAmount * ingredient.calories_per_unit) / 100;
-            } else if (ingredient.unit === 'ml') {
-                // ml의 경우 100ml 당 칼로리로 가정
-                calories = (adjustedAmount * ingredient.calories_per_unit) / 100;
-            } else {
-                // 기타 단위는 그대로 계산
-                calories = adjustedAmount * ingredient.calories_per_unit;
-            }
-            
-            totalCalories += calories;
-            const li = document.createElement("li");
-            li.textContent = `${ingredient.name}: ${adjustedAmount.toFixed(1)} ${ingredient.unit}`;
-            ingredientList.appendChild(li);
-        });
-
-        document.getElementById("total-calories").textContent = Math.round(totalCalories);
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add("show");
+      setTimeout(() => els.toast.classList.remove("show"), 1400);
     }
 
-    function playBeep() {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = ctx.createOscillator(); // 파형 생성기
-        const gainNode = ctx.createGain();         // 음량 조절기
-
-        oscillator.type = 'sine'; // 파형 타입 ('sine', 'square', 'triangle', 'sawtooth')
-        oscillator.frequency.value = 880; // 주파수(Hz) — 880Hz는 날카로운 비프음
-
-        oscillator.connect(gainNode);
-        gainNode.connect(ctx.destination);
-
-        oscillator.start();
-        setTimeout(() => oscillator.stop(), 200); // 200ms 후 정지
-    }
-    function renderInstructions() {
-        const instructionsList = document.getElementById("instructions");
-        instructionsList.innerHTML = "";
-        recipes[currentRecipe].instructions.forEach(step => {
-            const li = document.createElement("li");
-            li.id = `step-${step.step}`;
-            
-            // Parse description and wrap time expressions with clickable spans
-            const description = step.description;
-            const timeInfo = extractTime(description);
-            if (timeInfo) {
-                // Replace time expressions with clickable spans
-                const timeRegex = /(\d+\s*(?:시간|분|초))/g;
-                let htmlContent = description.replace(timeRegex, '<span class="time-text">$1</span>');
-                li.innerHTML = `${step.step}. ${htmlContent}`;
-                
-                // Add click event listeners to time spans
-                li.querySelectorAll('.time-text').forEach(span => {
-                    span.addEventListener('click', () => {
-                        const clickedTimeInfo = extractTime(span.textContent);
-                        if (clickedTimeInfo) {
-                            speak(`${clickedTimeInfo.label} 타이머를 시작합니다`);
-                            setTimeout(() => {
-                                playBeep();
-                                speak(`${clickedTimeInfo.label}이 경과했습니다. 다음 스텝을 진행하세요`);
-                            }, clickedTimeInfo.ms);
-                        }
-                    });
-                });
-            } else {
-                li.textContent = `${step.step}. ${description}`;
-            }
-
-            // 이미지 추가를 try-catch로 감싼다
-            try {
-                const img = document.createElement("img");
-                img.src = `images/${currentRecipe}/${step.step}.png`;
-                img.alt = `Step ${step.step} image`;
-                img.className = 'instruction-image';
-                img.loading = 'lazy'; // 이미지 지연 로딩 추가
-                img.onerror = () => {
-                    if (img.parentNode) img.parentNode.removeChild(img);
-                };
-                li.appendChild(img); // li 내부에 이미지 추가
-            } catch (e) {
-                console.error("이미지 추가 중 오류:", e);
-            }
-            instructionsList.appendChild(li);
-        });
-        // 첫 스텝으로 포커스 이동
-        scrollToStep(1);
-    }
-
-    function getCurrentStepIndex() {
-        // 화면에서 가장 위에 보이는 스텝의 인덱스 반환
-        const stepElements = document.querySelectorAll('#instructions li');
-        let minDiff = Infinity;
-        let currentIdx = 0;
-        stepElements.forEach((li, idx) => {
-            const rect = li.getBoundingClientRect();
-            const diff = Math.abs(rect.top - 100); // 100px은 상단 여백 보정
-            if (rect.top > 0 && diff < minDiff) {
-                minDiff = diff;
-                currentIdx = idx;
-            }
-        });
-        return currentIdx;
-    }
-
-    function showStepPopup(stepNumber) {
-        let popup = document.querySelector('.step-popup');
-        if (!popup) {
-            popup = document.createElement('div');
-            popup.className = 'step-popup';
-            document.body.appendChild(popup);
-        }
-        popup.textContent = `Step ${stepNumber}`;
-        popup.style.opacity = '1';
-        setTimeout(() => {
-            popup.style.opacity = '0';
-        }, 1500);
-    }
-
-    function scrollToStep(stepIdx) {
-        const stepElements = document.querySelectorAll('#instructions li');
-        if (stepElements[stepIdx]) {
-            stepElements[stepIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
-            showStepPopup(stepIdx + 1); // 스텝 번호는 1부터 시작하므로 +1
-        }
-    }
-
-    function getRecipeKeys() {
-        return Object.keys(recipes);
-    }
-
-    function moveRecipe(direction) {
-        const keys = getRecipeKeys();
-        let idx = keys.indexOf(currentRecipe);
-        if (direction === 'prev') idx = (idx - 1 + keys.length) % keys.length;
-        else if (direction === 'next') idx = (idx + 1) % keys.length;
-        currentRecipe = keys[idx];
-        // 레시피의 기본 servings 사용
-        renderRecipe(recipes[currentRecipe].servings);
-        speak(`${recipes[currentRecipe].name} 레시피로 변경되었습니다.`);
-    }
-
-    // 키보드 이벤트 추가
-    window.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            toggleMainMenu();
-            return;
-        }
-        const stepElements = document.querySelectorAll('#instructions li');
-        let currentIdx = getCurrentStepIndex();
-        if (e.key === 'ArrowDown') {
-            if (currentIdx < stepElements.length - 1) scrollToStep(currentIdx + 1);
-        } else if (e.key === 'ArrowUp') {
-            if (currentIdx > 0) scrollToStep(currentIdx - 1);
-        } else if (e.key === 'ArrowLeft') {
-            moveRecipe('prev');
-        } else if (e.key === 'ArrowRight') {
-            moveRecipe('next');
-        }
-    });
-
-    document.getElementById("servings").addEventListener("input", function() {
-        updateIngredients(this.value);
-    });
-
-    // STT 인식 메시지 레이어 표시 함수 추가
-    function showSTTMessage(message) {
-        let sttLayer = document.getElementById('stt-layer');
-        if (!sttLayer) {
-            sttLayer = document.createElement('div');
-            sttLayer.id = 'stt-layer';
-            sttLayer.style.position = 'fixed';
-            sttLayer.style.top = '30px';
-            sttLayer.style.left = '50%';
-            sttLayer.style.transform = 'translateX(-50%)';
-            sttLayer.style.background = 'rgba(0,0,0,0.8)';
-            sttLayer.style.color = '#fff';
-            sttLayer.style.padding = '16px 32px';
-            sttLayer.style.borderRadius = '24px';
-            sttLayer.style.fontSize = '1.2rem';
-            sttLayer.style.zIndex = '9999';
-            sttLayer.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
-            sttLayer.style.opacity = '0';
-            sttLayer.style.transition = 'opacity 0.3s';
-            document.body.appendChild(sttLayer);
-        }
-        sttLayer.textContent = message;
-        sttLayer.style.opacity = '1';
-        setTimeout(() => {
-            sttLayer.style.opacity = '0';
-        }, 1200);
-    }
-
-    // startVoiceRecognition 함수에서 handleVoiceCommand 호출 전 레이어와 콘솔 로그 추가
-    function startVoiceRecognition() {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = "ko-KR";
-        recognition.continuous = true;
-        recognition.interimResults = false;
-
-        recognition.onresult = function(event) {
-            const lastResult = event.results[event.results.length - 1][0].transcript.trim();
-            showSTTMessage(lastResult); // 레이어 표시
-            console.log('[STT]', lastResult); // 콘솔 로그
-            handleVoiceCommand(lastResult);
-        };
-        recognition.onend = function() {
-            recognition.start();  // 계속 음성 인식이 진행되도록 설정
-        };
-
-        recognition.start();
-    }
-
-    function handleVoiceCommand(command) {
-        if (command.includes("메인") || command.includes("메뉴")) {
-            toggleMainMenu();
-            speak("메인 메뉴를 열었습니다. 원하는 레시피를 말씀해주세요.");
-            return;
-        }
-
-        // 메인 메뉴가 열려있을 때 레시피 선택 처리
-        if (document.getElementById("main-menu").style.display === "block") {
-            for (let key in recipes) {
-                if (command.includes(recipes[key].name)) {
-                    currentRecipe = key;
-                    toggleMainMenu();
-                    renderRecipe(recipes[currentRecipe].servings);
-                    speak(`${recipes[key].name} 레시피로 이동했습니다.`);
-                    return;
-                }
-            }
-        }
-
-        if (waitingForTimerInput) {
-            // 시간 입력만 들어왔을 때 타이머 설정
-            const timeInfo = extractTime(command);
-            if (timeInfo) {
-                speak(`${timeInfo.label} 타이머를 시작합니다`);
-                setTimeout(() => {
-                    speak(`${timeInfo.label}이 경과했습니다. 다음 스탭을 진행하세요`);
-                }, timeInfo.ms);
-                waitingForTimerInput = false;
-            } else {
-                speak("시간을 다시 말씀해 주세요. 예: 3분, 30초, 1시간");
-            }
-            return;
-        }
-        const stepElements = document.querySelectorAll('#instructions li');
-        let currentIdx = getCurrentStepIndex();
-        if (command.includes("다음") || command.toLowerCase().includes("next") || command.includes("샤이꺼꺼")) {
-            if (currentIdx < stepElements.length - 1) {
-                scrollToStep(currentIdx + 1);
-            }
-        } else if (command.includes("이전") || command.toLowerCase().includes("previous") || command.includes("샹이꺼")) {
-            if (currentIdx > 0) {
-                scrollToStep(currentIdx - 1);
-            }
-        } else if (command.includes("인분")) {
-            const match = command.match(/(\d+)인분/);
-            if (match) {
-                document.getElementById("servings").value = match[1];
-                updateIngredients(match[1]);
-                speak(`${match[1]}인분으로 변경되었습니다.`);
-            }
-        } else if (command.includes("timer") || command.includes("타이머") || command.includes("알림")) {
-            // 현재 스텝 찾기 (화면에 보이는 첫 번째 스텝 기준)
-            const instructions = recipes[currentRecipe].instructions;
-            let currentStep = 0;
-            for (let i = 0; i < instructions.length; i++) {
-                const stepElement = document.querySelectorAll("#instructions li")[i];
-                if (stepElement && stepElement.getBoundingClientRect().top > 0) {
-                    currentStep = i;
-                    break;
-                }
-            }
-            const stepText = instructions[currentStep].description;
-            const timeInfo = extractTime(stepText);
-            if (timeInfo) {
-                speak(`${timeInfo.label} 타이머를 시작합니다`);
-                setTimeout(() => {
-                    speak(`${timeInfo.label}이 경과했습니다. 다음 스텝을 진행하세요`);
-                }, timeInfo.ms);
-            } else {
-                speak("몇 분 타이머를 설정할까요?");
-                waitingForTimerInput = true;
-            }
-        } else {
-            const timerMatch = command.match(/(?:타이머|알림)\s*(\d+)초|(\d+)초\s*(?:타이머|알림)/);
-            if (timerMatch) {
-                const seconds = timerMatch[1] || timerMatch[2];
-                const ms = parseInt(seconds) * 1000;
-                speak(`${seconds}초 타이머를 시작합니다`);
-                setTimeout(() => {
-                    speak(`${seconds}초가 경과했습니다. 다음 스텝을 진행하세요`);
-                }, ms);
-                return;
-            }
-            for (let key in recipes) {
-                if (recipes[key].name.includes(command) || command.includes(recipes[key].name)) {
-                    currentRecipe = key;
-                    renderRecipe(localStorage.getItem("servings") || recipes[currentRecipe].servings);
-                    speak(`${recipes[key].name} 레시피로 변경되었습니다.`);
-                    break;
-                }
-            }
-        }
-    }
-
-    function speak(text) {
-        showSTTMessage(text); // 레이어 표시
-        console.log('[TTS]', text); // 콘솔 로그
-        try {
-            if (!ttsAllowed) return; // 모바일에서 터치/클릭 전에는 TTS 실행 안함
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.lang = "ko-KR";
-            window.speechSynthesis.speak(utter);
-        } catch (e) {
-            // TTS가 안되어도 무시하고 다른 기능은 정상 동작
-            console.warn('TTS 실행 오류:', e);
-        }
+    function sanitizeText(value) {
+      return String(value ?? "").trim();
     }
 
     function extractTime(text) {
-        // "3분", "30초", "1시간" 등 패턴 추출
-        const minuteMatch = text.match(/(\d+)\s*분/);
-        const secondMatch = text.match(/(\d+)\s*초/);
-        const hourMatch = text.match(/(\d+)\s*시간/);
-
-        let ms = 0;
-        if (hourMatch) ms += parseInt(hourMatch[1]) * 60 * 60 * 1000;
-        if (minuteMatch) ms += parseInt(minuteMatch[1]) * 60 * 1000;
-        if (secondMatch) ms += parseInt(secondMatch[1]) * 1000;
-
-        if (ms > 0) {
-            let label = "";
-            if (hourMatch) label += `${hourMatch[1]}시간 `;
-            if (minuteMatch) label += `${minuteMatch[1]}분 `;
-            if (secondMatch) label += `${secondMatch[1]}초`;
-            return { ms, label: label.trim() };
-        }
-        return null;
+      const tokens = [...text.matchAll(/(\d+)\s*(시간|분|초)/g)];
+      if (tokens.length === 0) return null;
+      let ms = 0;
+      const labelParts = [];
+      tokens.forEach((m) => {
+        const n = parseInt(m[1], 10);
+        const unit = m[2];
+        if (unit === "시간") ms += n * 3600000;
+        if (unit === "분") ms += n * 60000;
+        if (unit === "초") ms += n * 1000;
+        labelParts.push(`${n}${unit}`);
+      });
+      if (ms <= 0) return null;
+      return { ms, label: labelParts.join(" ") };
     }
 
-    // 메인 메뉴 렌더링 함수
-    function renderMainMenu() {
-        const recipeList = document.getElementById("recipe-list");
-        recipeList.innerHTML = "";
-        
-        Object.entries(recipes).forEach(([key, recipe]) => {
-            const card = document.createElement("div");
-            card.className = "recipe-card";
-            card.style.backgroundColor = recipe.color || "#ffffff";
-            card.onclick = () => {
-                currentRecipe = key;
-                toggleMainMenu();
-                renderRecipe(recipes[currentRecipe].servings);
-            };
-            
-            card.innerHTML = `
-                <div class="recipe-title">${recipe.name}</div>
-                <div class="recipe-info">${recipe.servings}인분</div>
-            `;
-            
-            recipeList.appendChild(card);
+    function beep() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.frequency.value = 880;
+        osc.type = "sine";
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        setTimeout(() => osc.stop(), 180);
+      } catch (_) {}
+    }
+
+    function speak(text) {
+      if (!state.ttsAllowed) return;
+      if (!("speechSynthesis" in window)) return;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "ko-KR";
+      window.speechSynthesis.speak(utter);
+    }
+
+    function startStepTimer(timeInfo) {
+      showToast(`${timeInfo.label} 타이머 시작`);
+      speak(`${timeInfo.label} 타이머를 시작합니다.`);
+      setTimeout(() => {
+        beep();
+        showToast(`${timeInfo.label} 종료`);
+        speak(`${timeInfo.label}이 경과했습니다.`);
+      }, timeInfo.ms);
+    }
+
+    function toDifficultyLabel(level) {
+      if (level === "easy") return "난이도 쉬움";
+      if (level === "hard") return "난이도 어려움";
+      return "난이도 보통";
+    }
+
+    function calcCalories(ingredient, adjustedAmount) {
+      const basis = ingredient.calorie_basis || ((ingredient.unit === "g" || ingredient.unit === "ml") ? "per_100" : "per_unit");
+      if (basis === "per_100") {
+        return (adjustedAmount * Number(ingredient.calories_per_unit || 0)) / 100;
+      }
+      return adjustedAmount * Number(ingredient.calories_per_unit || 0);
+    }
+
+    function getCurrentRecipe() {
+      return state.recipes[state.currentKey];
+    }
+
+    function renderRecipeList() {
+      els.recipeList.innerHTML = "";
+      const fragment = document.createDocumentFragment();
+      state.filteredKeys.forEach((key) => {
+        const recipe = state.recipes[key];
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className = `recipe-item${key === state.currentKey ? " active" : ""}`;
+        item.dataset.key = key;
+        item.innerHTML = `
+          <p class="recipe-name">${recipe.name}</p>
+          <p class="recipe-meta">
+            <span>${recipe.category || "기타"}</span>
+            <span>${recipe.servings}인분 기준</span>
+            <span>${recipe.cook_time_minutes || "-"}분</span>
+          </p>
+        `;
+        item.addEventListener("click", () => selectRecipe(key));
+        fragment.appendChild(item);
+      });
+      els.recipeList.appendChild(fragment);
+      els.listHead.textContent = `총 ${state.filteredKeys.length}개 레시피`;
+    }
+
+    function renderRecipeDetail() {
+      const recipe = getCurrentRecipe();
+      if (!recipe) return;
+
+      document.body.style.background = `linear-gradient(160deg, ${recipe.color || "#f6f7fb"}22 0%, #f6f7fb 48%)`;
+      els.recipeTitle.textContent = recipe.name;
+      els.servingsInput.value = state.currentServings;
+
+      els.chips.innerHTML = "";
+      const chips = [
+        recipe.category || "기타",
+        `${recipe.cook_time_minutes || "-"}분`,
+        toDifficultyLabel(recipe.difficulty || "medium"),
+        `${recipe.servings}인분 기준`
+      ];
+      chips.forEach((text) => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = text;
+        els.chips.appendChild(chip);
+      });
+
+      let totalCalories = 0;
+      els.ingredientList.innerHTML = "";
+      recipe.ingredients.forEach((ingredient) => {
+        const adjusted = (Number(ingredient.amount) / Number(recipe.servings || 1)) * state.currentServings;
+        totalCalories += calcCalories(ingredient, adjusted);
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span>${sanitizeText(ingredient.name)}</span>
+          <strong>${adjusted.toFixed(1)} ${sanitizeText(ingredient.unit)}</strong>
+        `;
+        els.ingredientList.appendChild(li);
+      });
+      els.caloriesText.textContent = `총 ${Math.round(totalCalories)} kcal`;
+
+      els.instructionList.innerHTML = "";
+      recipe.instructions.forEach((step) => {
+        const li = document.createElement("li");
+        const text = sanitizeText(step.description);
+        const timeInfo = extractTime(text);
+        li.innerHTML = `
+          <div class="step-head">
+            <span class="step-no">Step ${step.step}</span>
+            ${timeInfo ? `<button type="button" class="timer-btn" data-time="${timeInfo.ms}" data-label="${timeInfo.label}">${timeInfo.label} 타이머</button>` : ""}
+          </div>
+          <div>${text}</div>
+        `;
+
+        const img = document.createElement("img");
+        img.className = "step-image";
+        img.loading = "lazy";
+        img.alt = `step ${step.step}`;
+        img.src = `images/${state.currentKey}/${step.step}.png`;
+        img.onerror = () => img.remove();
+        li.appendChild(img);
+        els.instructionList.appendChild(li);
+      });
+
+      els.instructionList.querySelectorAll(".timer-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          startStepTimer({
+            ms: Number(btn.dataset.time),
+            label: btn.dataset.label
+          });
         });
+      });
     }
 
-    // 메인 메뉴 토글 함수
-    function toggleMainMenu() {
-        const mainMenu = document.getElementById("main-menu");
-        mainMenu.style.display = mainMenu.style.display === "none" ? "block" : "none";
+    function selectRecipe(key) {
+      if (!state.recipes[key]) return;
+      state.currentKey = key;
+      const savedServings = parseInt(localStorage.getItem("servings"), 10);
+      if (!Number.isFinite(savedServings) || savedServings < 1) {
+        state.currentServings = state.recipes[key].servings || 2;
+      }
+      localStorage.setItem("lastRecipe", key);
+      renderRecipeList();
+      renderRecipeDetail();
     }
 
-    // 마퀴 내용 업데이트 함수 추가
-    function updateMarquee() {
-        const marqueeContent = document.getElementById('marquee-content');
-        const recipeNames = Object.entries(recipes).map(([key, recipe]) => ({
-            name: recipe.name,
-            key: key
-        }));
-        
-        marqueeContent.innerHTML = recipeNames.map(recipe => 
-            `<span class="marquee-item" data-recipe="${recipe.key}">${recipe.name}</span>`
-        ).join(' • ');
+    function applyFilters() {
+      const q = sanitizeText(els.searchInput.value).toLowerCase();
+      const category = els.categorySelect.value;
+      let keys = [...state.keys];
 
-        // 클릭 이벤트 리스너 추가
-        marqueeContent.querySelectorAll('.marquee-item').forEach(span => {
-            span.style.cursor = 'pointer';
-            span.addEventListener('click', () => {
-                currentRecipe = span.dataset.recipe;
-                renderRecipe(recipes[currentRecipe].servings);
-                speak(`${recipes[currentRecipe].name} 레시피로 이동했습니다.`);
-            });
-        });
+      if (q) {
+        keys = keys.filter((key) => state.recipes[key].name.toLowerCase().includes(q));
+      }
+      if (category !== "all") {
+        keys = keys.filter((key) => (state.recipes[key].category || "기타") === category);
+      }
+      if (state.sortMode === "name") {
+        keys.sort((a, b) => state.recipes[a].name.localeCompare(state.recipes[b].name, "ko"));
+      } else if (state.sortMode === "time") {
+        keys.sort((a, b) => (state.recipes[a].cook_time_minutes || 999) - (state.recipes[b].cook_time_minutes || 999));
+      }
+      state.filteredKeys = keys;
+
+      if (!state.filteredKeys.includes(state.currentKey)) {
+        state.currentKey = state.filteredKeys[0] || null;
+      }
+      renderRecipeList();
+      renderRecipeDetail();
     }
 
-    // 마퀴 애니메이션 추가
-    function startMarquee() {
-        const marquee = document.querySelector('.menu-marquee');
-        const content = document.getElementById('marquee-content');
-        
-        function animate() {
-            if (content.offsetWidth > marquee.offsetWidth) {
-                const firstSpan = content.firstElementChild;
-                content.style.transition = 'transform 20s linear';
-                content.style.transform = `translateX(-${firstSpan.offsetWidth + 30}px)`;
-                
-                setTimeout(() => {
-                    content.style.transition = 'none';
-                    content.style.transform = 'translateX(0)';
-                    content.appendChild(firstSpan);
-                    animate();
-                }, 20000);
-            }
+    function setupCategories() {
+      const categories = new Set(["all"]);
+      state.keys.forEach((key) => categories.add(state.recipes[key].category || "기타"));
+      els.categorySelect.innerHTML = "";
+      [...categories].forEach((cat) => {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat === "all" ? "전체 카테고리" : cat;
+        els.categorySelect.appendChild(opt);
+      });
+    }
+
+    function normalizeRecipe(key, value) {
+      const recipe = { ...value };
+      if (!recipe.category) {
+        if (key.startsWith("popular")) recipe.category = "인기";
+        else recipe.category = "기타";
+      }
+      if (!recipe.difficulty) recipe.difficulty = "medium";
+      if (!recipe.cook_time_minutes) recipe.cook_time_minutes = 25;
+      recipe.ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+      recipe.instructions = Array.isArray(recipe.instructions) ? recipe.instructions : [];
+      return recipe;
+    }
+
+    function bindEvents() {
+      els.searchInput.addEventListener("input", applyFilters);
+      els.categorySelect.addEventListener("change", applyFilters);
+      els.sortBtn.addEventListener("click", () => {
+        state.sortMode = state.sortMode === "name" ? "time" : "name";
+        els.sortBtn.textContent = state.sortMode === "name" ? "이름순" : "조리시간순";
+        applyFilters();
+      });
+      els.randomBtn.addEventListener("click", () => {
+        if (state.filteredKeys.length === 0) return;
+        const key = state.filteredKeys[Math.floor(Math.random() * state.filteredKeys.length)];
+        selectRecipe(key);
+        showToast(`${state.recipes[key].name} 추천`);
+      });
+
+      els.servingMinus.addEventListener("click", () => {
+        state.currentServings = Math.max(1, state.currentServings - 1);
+        els.servingsInput.value = state.currentServings;
+        localStorage.setItem("servings", String(state.currentServings));
+        renderRecipeDetail();
+      });
+      els.servingPlus.addEventListener("click", () => {
+        state.currentServings = Math.min(20, state.currentServings + 1);
+        els.servingsInput.value = state.currentServings;
+        localStorage.setItem("servings", String(state.currentServings));
+        renderRecipeDetail();
+      });
+      els.servingsInput.addEventListener("input", () => {
+        const n = parseInt(els.servingsInput.value, 10);
+        if (!Number.isFinite(n) || n < 1) return;
+        state.currentServings = Math.min(20, n);
+        localStorage.setItem("servings", String(state.currentServings));
+        renderRecipeDetail();
+      });
+
+      els.voiceToggle.addEventListener("click", toggleVoiceControl);
+      document.body.addEventListener("touchstart", () => { state.ttsAllowed = true; }, { once: true });
+      document.body.addEventListener("mousedown", () => { state.ttsAllowed = true; }, { once: true });
+    }
+
+    function moveStep(direction) {
+      const items = [...els.instructionList.querySelectorAll("li")];
+      if (items.length === 0) return;
+      let closest = 0;
+      let min = Number.MAX_SAFE_INTEGER;
+      items.forEach((item, idx) => {
+        const d = Math.abs(item.getBoundingClientRect().top - 120);
+        if (d < min) {
+          min = d;
+          closest = idx;
         }
-        
-        animate();
+      });
+      const next = Math.min(items.length - 1, Math.max(0, closest + direction));
+      items[next].scrollIntoView({ behavior: "smooth", block: "center" });
+      showToast(`Step ${next + 1}`);
     }
 
-    // window.onload 수정
-    window.onload = function() {
-        loadRecipes();
-        startMarquee();
-    };
-    </script>
+    function handleVoiceCommand(command) {
+      const text = command.trim().toLowerCase();
+      if (!text) return;
+
+      if (text.includes("다음")) {
+        moveStep(1);
+        return;
+      }
+      if (text.includes("이전")) {
+        moveStep(-1);
+        return;
+      }
+      const servingsMatch = text.match(/(\d+)\s*인분/);
+      if (servingsMatch) {
+        state.currentServings = Math.max(1, parseInt(servingsMatch[1], 10));
+        localStorage.setItem("servings", String(state.currentServings));
+        renderRecipeDetail();
+        showToast(`${state.currentServings}인분 적용`);
+        return;
+      }
+      for (const key of state.filteredKeys) {
+        const name = state.recipes[key].name.toLowerCase();
+        if (text.includes(name)) {
+          selectRecipe(key);
+          showToast(`${state.recipes[key].name} 이동`);
+          return;
+        }
+      }
+    }
+
+    function stopVoiceRecognition() {
+      if (!state.recognition) return;
+      state.voiceOn = false;
+      state.recognition.onend = null;
+      state.recognition.stop();
+      state.recognition = null;
+      els.voiceToggle.textContent = "음성 시작";
+      showToast("음성 제어 종료");
+    }
+
+    function toggleVoiceControl() {
+      if (state.voiceOn) {
+        stopVoiceRecognition();
+        return;
+      }
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        showToast("이 브라우저는 음성 인식을 지원하지 않습니다");
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = "ko-KR";
+      recognition.continuous = true;
+      recognition.interimResults = false;
+      recognition.onresult = (event) => {
+        const transcript = event.results[event.results.length - 1][0].transcript;
+        handleVoiceCommand(transcript);
+      };
+      recognition.onend = () => {
+        if (!state.voiceOn) return;
+        try {
+          recognition.start();
+        } catch (_) {}
+      };
+      try {
+        recognition.start();
+      } catch (_) {
+        showToast("음성 인식 시작 실패");
+        return;
+      }
+      state.recognition = recognition;
+      state.voiceOn = true;
+      els.voiceToggle.textContent = "음성 중지";
+      showToast("음성 제어 시작");
+    }
+
+    async function init() {
+      bindEvents();
+      const response = await fetch(`recipes.json?t=${Date.now()}`);
+      const payload = await response.json();
+      const normalized = {};
+      Object.entries(payload).forEach(([key, value]) => {
+        normalized[key] = normalizeRecipe(key, value);
+      });
+      state.recipes = normalized;
+      state.keys = Object.keys(normalized);
+
+      setupCategories();
+
+      const savedServings = parseInt(localStorage.getItem("servings"), 10);
+      state.currentServings = Number.isFinite(savedServings) && savedServings > 0 ? savedServings : 2;
+
+      const savedKey = localStorage.getItem("lastRecipe");
+      state.currentKey = state.recipes[savedKey] ? savedKey : state.keys[0];
+      applyFilters();
+    }
+
+    window.addEventListener("beforeunload", () => {
+      stopVoiceRecognition();
+    });
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") moveStep(1);
+      if (e.key === "ArrowUp") moveStep(-1);
+    });
+
+    init().catch((err) => {
+      console.error(err);
+      showToast("초기화 실패");
+    });
+  </script>
 </body>
 </html>
- 
-
