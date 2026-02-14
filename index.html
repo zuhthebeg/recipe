@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="요리 레시피 검색, 인분 계산, 단계별 타이머, 음성 이동을 지원하는 실전용 레시피 앱">
-  <meta name="build-id" content="2026-02-14-recipe-v4-nav-cooking">
+  <meta name="build-id" content="2026-02-14-recipe-v4-food-color">
   <meta name="theme-color" content="#0f766e">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Recipe Cocy">
@@ -12,14 +12,16 @@
   <title>Recipe Cocy</title>
   <style>
     :root {
-      --bg: #f6f7fb;
-      --panel: #ffffff;
-      --text: #111827;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --accent: #0f766e;
-      --accent-soft: #ccfbf1;
-      --shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+      --bg: #fff7ec;
+      --panel: #fffaf3;
+      --text: #2f2318;
+      --muted: #7d6651;
+      --line: #ecdcc8;
+      --accent: #b84a24;
+      --accent-soft: #ffe9d6;
+      --recipe-accent: #b84a24;
+      --recipe-soft: #ffe9d6;
+      --shadow: 0 10px 24px rgba(93, 60, 26, 0.12);
       --radius: 14px;
     }
     * { box-sizing: border-box; }
@@ -27,7 +29,7 @@
       margin: 0;
       font-family: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      background: radial-gradient(circle at top right, #e6fffa 0%, var(--bg) 45%);
+      background: radial-gradient(circle at top right, #ffd9ba 0%, var(--bg) 50%);
     }
     .app {
       max-width: 980px;
@@ -41,7 +43,7 @@
       left: 0;
       right: 0;
       height: 62px;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 247, 236, 0.96);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--line);
       z-index: 120;
@@ -119,7 +121,7 @@
       border-radius: 10px;
       padding: 10px 12px;
       font-size: 0.95rem;
-      background: #fff;
+      background: #fffaf4;
       color: var(--text);
     }
     button {
@@ -134,7 +136,7 @@
       border-color: var(--accent);
     }
     .btn-sub {
-      background: #fff;
+      background: linear-gradient(180deg, #fffdf8 0%, #fff6ea 100%);
       color: var(--text);
     }
     .content { min-height: 0; }
@@ -210,8 +212,8 @@
       background: #fcfcfd;
     }
     .recipe-item.active {
-      border-color: var(--accent);
-      background: var(--accent-soft);
+      border-color: var(--recipe-accent);
+      background: var(--recipe-soft);
     }
     .recipe-name {
       font-weight: 700;
@@ -236,6 +238,7 @@
       border-bottom: 1px solid var(--line);
       display: grid;
       gap: 8px;
+      background: linear-gradient(180deg, #fff8ee 0%, #fff3e5 100%);
     }
     .detail-title {
       margin: 0;
@@ -251,9 +254,9 @@
       font-size: 0.8rem;
       padding: 4px 8px;
       border-radius: 999px;
-      background: #f3f4f6;
-      color: #374151;
-      border: 1px solid #e5e7eb;
+      background: color-mix(in srgb, var(--recipe-soft) 80%, #ffffff 20%);
+      color: #5d3a22;
+      border: 1px solid color-mix(in srgb, var(--recipe-accent) 28%, #eadfce 72%);
     }
     .serving-row {
       padding: 12px 16px;
@@ -329,9 +332,9 @@
     }
     .step-no { font-weight: 700; }
     .timer-btn {
-      border: 1px solid #86efac;
-      background: #f0fdf4;
-      color: #166534;
+      border: 1px solid color-mix(in srgb, var(--recipe-accent) 45%, #7c2d12 55%);
+      background: color-mix(in srgb, var(--recipe-soft) 78%, #ffffff 22%);
+      color: #7c2d12;
       padding: 5px 9px;
       border-radius: 999px;
       font-size: 0.78rem;
@@ -366,7 +369,7 @@
       border-radius: 999px;
       border: 1px solid var(--line);
       padding: 4px 10px;
-      background: #fff;
+      background: #fff7ed;
     }
     .favorite-mark {
       color: #ca8a04;
@@ -379,8 +382,8 @@
       color: #374151;
     }
     .ghost.active {
-      border-color: #f59e0b;
-      background: #fffbeb;
+      border-color: #d97706;
+      background: #fff2cf;
       color: #92400e;
     }
     .toast {
@@ -487,7 +490,7 @@
             <h2>조리 순서</h2>
             <ol id="instruction-list" class="instructions"></ol>
           </section>
-          <div class="footer">Build: <span id="build-id">2026-02-14-recipe-v4-nav-cooking</span></div>
+          <div class="footer">Build: <span id="build-id">2026-02-14-recipe-v4-food-color</span></div>
         </div>
       </section>
     </main>
@@ -624,6 +627,17 @@
       return String(value ?? "").trim();
     }
 
+    function hexToRgba(hex, alpha) {
+      const value = (hex || "").replace("#", "").trim();
+      if (!/^[0-9a-fA-F]{6}$/.test(value)) {
+        return `rgba(184, 74, 36, ${alpha})`;
+      }
+      const r = parseInt(value.slice(0, 2), 16);
+      const g = parseInt(value.slice(2, 4), 16);
+      const b = parseInt(value.slice(4, 6), 16);
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
     function extractTime(text) {
       const tokens = [...text.matchAll(/(\d+)\s*(시간|분|초)/g)];
       if (tokens.length === 0) return null;
@@ -719,7 +733,10 @@
       const recipe = getCurrentRecipe();
       if (!recipe) return;
 
-      document.body.style.background = `linear-gradient(160deg, ${recipe.color || "#f6f7fb"}22 0%, #f6f7fb 48%)`;
+      const recipeColor = recipe.color || "#b84a24";
+      document.documentElement.style.setProperty("--recipe-accent", recipeColor);
+      document.documentElement.style.setProperty("--recipe-soft", hexToRgba(recipeColor, 0.18));
+      document.body.style.background = `radial-gradient(circle at top right, ${hexToRgba(recipeColor, 0.34)} 0%, var(--bg) 54%)`;
       els.recipeTitle.textContent = recipe.name;
       els.navCurrentRecipe.textContent = recipe.name;
       els.servingsInput.value = state.currentServings;
