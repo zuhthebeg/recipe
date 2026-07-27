@@ -1,7 +1,35 @@
 # Recipe Cocy (recipe.cocy.io)
 
-> 요리 레시피 검색, 인분 계산, 단계별 타이머, 음성 이동을 지원하는 실전용 무료 레시피 웹앱.
+> 요즘 뜨는 바이럴 레시피 모음. 인분 자동 계산, 단계별 타이머, 음성 이동을 지원하는 무료 레시피 웹앱 (한국어/영어).
 
-- 한국어 레시피 모음: 검색, 재료 기반 인분 자동 계산, 조리 단계별 타이머 내장
-- 설치 없이 브라우저에서 바로 사용 (PWA 지원)
+- 트렌드 중심 큐레이션: 두바이 초콜릿, 크루키, 스매시버거 타코 등 SNS에서 화제가 된 레시피
+- 재료 기반 인분 자동 계산 + 조리 단계별 타이머 내장
+- 설치 없이 브라우저에서 바로 사용 (PWA, 오프라인 지원)
 - 운영: cocy.io — 전체 서비스 목록은 https://cocy.io/llms.txt 참고
+
+## 레시피 목록
+- [백종원 돼지고기 김치찌개](https://recipe.cocy.io/?r=kimchistew)
+- [고깃집 된장찌개](https://recipe.cocy.io/?r=doenjangstew)
+- [지락실 불닭볶음면](https://recipe.cocy.io/?r=buldakramen)
+- [일반 홍차 밀크티](https://recipe.cocy.io/?r=blacktea)
+- [진한 밀크티](https://recipe.cocy.io/?r=milktea)
+- [밥솥 카스테라](https://recipe.cocy.io/?r=ricecookercastella)
+- [두바이 초콜릿](https://recipe.cocy.io/?r=dubaichocolate)
+- [두쫀쿠 (두바이 쫀득 쿠키)](https://recipe.cocy.io/?r=dujjonku)
+- [버터떡](https://recipe.cocy.io/?r=butterdduk)
+- [크루키 (크루아상+쿠키)](https://recipe.cocy.io/?r=crookie)
+- [요거트 바크](https://recipe.cocy.io/?r=yogurtbark)
+- [프링글스 초코블록](https://recipe.cocy.io/?r=pringleschoco)
+- [양즈깐루 (망고 사고)](https://recipe.cocy.io/?r=mangosago)
+- [밤 티라미수](https://recipe.cocy.io/?r=bamtiramisu)
+- [우베 라떼](https://recipe.cocy.io/?r=ubelatte)
+- [페스토 에그 토스트](https://recipe.cocy.io/?r=pestoegg)
+- [코티지치즈 플랫브레드](https://recipe.cocy.io/?r=cottageflatbread)
+- [틱톡 오이 샐러드](https://recipe.cocy.io/?r=cucumbersalad)
+- [당근 라페 샌드위치](https://recipe.cocy.io/?r=carrotrape)
+- [순두부 열라면](https://recipe.cocy.io/?r=sundubuyeol)
+- [스매시버거 타코](https://recipe.cocy.io/?r=smashtaco)
+- [마라 로제 떡볶이](https://recipe.cocy.io/?r=mararose)
+- [크림치즈 계란장](https://recipe.cocy.io/?r=eggjang)
+- [크리스피 스매시드 포테이토](https://recipe.cocy.io/?r=smashedpotato)
+- [얼그레이 하이볼](https://recipe.cocy.io/?r=earlgreyhighball)

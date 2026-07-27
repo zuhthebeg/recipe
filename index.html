@@ -4,668 +4,971 @@
   <meta charset="UTF-8">
   <meta name="naver-site-verification" content="ac26a2e01a2b43897b512f8a7effd0cf42fcd693">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://recipe.cocy.io/">
+  <link rel="canonical" href="https://recipe.cocy.io/" id="canonical-link">
+  <title>Recipe Cocy — 요즘 뜨는 레시피</title>
+  <meta name="description" content="두바이 초콜릿부터 스매시버거 타코까지, 요즘 뜨는 바이럴 레시피 모음. 인분 자동 계산, 단계별 타이머, 음성 제어를 지원하는 무료 레시피 앱." id="meta-description">
+  <meta property="og:site_name" content="Recipe Cocy">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Recipe Cocy — 요즘 뜨는 레시피" id="og-title">
+  <meta property="og:description" content="두바이 초콜릿부터 스매시버거 타코까지, 요즘 뜨는 바이럴 레시피 모음" id="og-description">
+  <meta property="og:url" content="https://recipe.cocy.io/" id="og-url">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Recipe Cocy",
     "url": "https://recipe.cocy.io/",
-    "description": "요리 레시피 검색, 인분 계산, 단계별 타이머, 음성 이동을 지원하는 실전용 레시피 앱",
+    "description": "요즘 뜨는 바이럴 레시피 모음. 인분 자동 계산, 단계별 타이머, 음성 제어를 지원하는 무료 레시피 앱",
     "applicationCategory": "LifestyleApplication",
     "operatingSystem": "Web",
-    "inLanguage": "ko",
+    "inLanguage": ["ko", "en"],
     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"},
     "publisher": {"@type": "Organization", "name": "cocy.io", "url": "https://cocy.io/"}
   }
   </script>
-  <meta name="description" content="요리 레시피 검색, 인분 계산, 단계별 타이머, 음성 이동을 지원하는 실전용 레시피 앱">
-  <meta name="build-id" content="2026-02-14-recipe-v4-food-color">
-  <meta name="theme-color" content="#0f766e">
+  <script type="application/ld+json" id="recipe-jsonld"></script>
+  <meta name="build-id" content="2026-07-28-recipe-v5-editorial">
+  <meta name="theme-color" content="#9A3412">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Recipe Cocy">
   <link rel="manifest" href="manifest.webmanifest">
-  <title>Recipe Cocy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Jua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <style>
     :root {
-      --bg: #fff7ec;
-      --panel: #fffaf3;
-      --text: #2f2318;
-      --muted: #7d6651;
-      --line: #ecdcc8;
-      --accent: #b84a24;
-      --accent-soft: #ffe9d6;
-      --recipe-accent: #b84a24;
-      --recipe-soft: #ffe9d6;
-      --shadow: 0 10px 24px rgba(93, 60, 26, 0.12);
-      --radius: 14px;
+      --primary: #9A3412;
+      --primary-strong: #7C2D12;
+      --secondary: #C2410C;
+      --accent: #059669;
+      --bg: #FFFBEB;
+      --fg: #1F1408;
+      --muted-fg: #6B5138;
+      --panel: #FFFFFF;
+      --soft: #FBF3E4;
+      --line: #F0E2CB;
+      --recipe-accent: #9A3412;
+      --shadow-sm: 0 1px 2px rgba(124, 45, 18, 0.06), 0 2px 8px rgba(124, 45, 18, 0.06);
+      --shadow-md: 0 4px 12px rgba(124, 45, 18, 0.10), 0 12px 28px rgba(124, 45, 18, 0.08);
+      --radius: 16px;
+      --font-display: "Jua", "Calistoga", sans-serif;
+      --font-brand: "Calistoga", "Jua", serif;
+      --font-body: "Pretendard Variable", Pretendard, -apple-system, "Noto Sans KR", sans-serif;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: radial-gradient(circle at top right, #ffd9ba 0%, var(--bg) 50%);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--fg);
+      background:
+        radial-gradient(1000px 480px at 85% -80px, #FDE8CC 0%, transparent 60%),
+        var(--bg);
     }
-    .app {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 76px 12px 16px;
-      min-height: 100vh;
+    button { font-family: inherit; cursor: pointer; }
+    a { color: var(--primary); }
+    :focus-visible { outline: 3px solid color-mix(in srgb, var(--primary) 55%, transparent); outline-offset: 2px; border-radius: 6px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
     }
+
+    /* ---------- top nav ---------- */
     .global-nav {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      height: 62px;
-      background: rgba(255, 247, 236, 0.96);
-      backdrop-filter: blur(8px);
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 88%, #ffffff 12%);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
-      z-index: 120;
+    }
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 0 12px;
     }
-    .nav-left, .nav-right {
-      display: flex;
-      align-items: center;
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
       gap: 8px;
+      text-decoration: none;
+      color: var(--primary-strong);
       min-width: 0;
     }
-    .nav-title {
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      margin-right: 6px;
+    .brand-name {
+      font-family: var(--font-brand);
+      font-size: 1.34rem;
+      letter-spacing: 0.005em;
       white-space: nowrap;
     }
-    .nav-current {
-      color: var(--muted);
-      font-size: 0.87rem;
-      max-width: 36vw;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    .brand-dot { color: var(--accent); }
+    .nav-actions { display: flex; align-items: center; gap: 6px; }
     .nav-btn {
+      min-height: 44px;
+      padding: 8px 12px;
       border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 9px;
-      padding: 8px 10px;
-      font-size: 0.84rem;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .drawer-backdrop {
-      position: fixed;
-      inset: 62px 0 0 0;
-      background: rgba(17, 24, 39, 0.42);
-      z-index: 98;
-      display: none;
-    }
-    .drawer-backdrop.open {
-      display: block;
-    }
-    .top { display: none; }
-    .brand {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .title {
-      margin: 0;
-      font-size: 1.45rem;
-      letter-spacing: -0.01em;
-    }
-    .subtitle {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-    .controls {
-      display: grid;
-      grid-template-columns: 1.2fr 0.7fr 0.7fr auto auto auto;
-      gap: 8px;
-    }
-    input, select, button {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 10px 12px;
-      font-size: 0.95rem;
-      background: #fffaf4;
-      color: var(--text);
-    }
-    button {
-      cursor: pointer;
-      font-weight: 600;
-      transition: transform 0.15s ease, background-color 0.2s ease;
-    }
-    button:hover { transform: translateY(-1px); }
-    .btn-main {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
-    .btn-sub {
-      background: linear-gradient(180deg, #fffdf8 0%, #fff6ea 100%);
-      color: var(--text);
-    }
-    .content { min-height: 0; }
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      min-height: 0;
-    }
-    .list-panel {
-      position: fixed;
-      top: 62px;
-      left: 0;
-      bottom: 0;
-      width: min(390px, 92vw);
-      display: grid;
-      grid-template-rows: auto auto auto 1fr;
-      transform: translateX(-104%);
-      transition: transform 0.22s ease;
-      z-index: 110;
-      border-radius: 0 14px 14px 0;
-      border-left: none;
-      overflow: hidden;
-    }
-    .list-panel.open {
-      transform: translateX(0);
-    }
-    .drawer-head {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      background: #fff;
-    }
-    .drawer-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin: 0;
-    }
-    .drawer-close {
-      border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 8px;
-      padding: 6px 8px;
-      font-size: 0.84rem;
-      cursor: pointer;
-    }
-    .list-head {
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-    .recipe-list {
-      overflow: auto;
-      padding: 8px;
-      display: grid;
-      gap: 8px;
-    }
-    .recipe-item {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 10px;
-      cursor: pointer;
-      transition: border-color 0.2s ease, background-color 0.2s ease;
-      background: #fff;
-    }
-    .recipe-item:hover {
-      border-color: #9ca3af;
-      background: #fcfcfd;
-    }
-    .recipe-item.active {
-      border-color: var(--recipe-accent);
-      background: var(--recipe-soft);
-    }
-    .recipe-name {
-      font-weight: 700;
-      margin: 0 0 6px;
-      font-size: 0.98rem;
-    }
-    .recipe-meta {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.83rem;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .detail {
-      display: grid;
-      grid-template-rows: auto auto 1fr;
-      min-height: calc(100vh - 92px);
-    }
-    .detail-head {
-      padding: 16px;
-      border-bottom: 1px solid var(--line);
-      display: grid;
-      gap: 8px;
-      background: linear-gradient(180deg, #fff8ee 0%, #fff3e5 100%);
-    }
-    .detail-title {
-      margin: 0;
-      font-size: 1.4rem;
-      letter-spacing: -0.01em;
-    }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .chip {
-      font-size: 0.8rem;
-      padding: 4px 8px;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--recipe-soft) 80%, #ffffff 20%);
-      color: #5d3a22;
-      border: 1px solid color-mix(in srgb, var(--recipe-accent) 28%, #eadfce 72%);
-    }
-    .serving-row {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .serving-row label {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-right: 4px;
-    }
-    .num-box {
-      width: 72px;
-      text-align: center;
+      background: var(--panel);
+      color: var(--fg);
+      font-size: 0.86rem;
       font-weight: 700;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
     }
-    .detail-body {
-      overflow: auto;
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      align-content: start;
+    .nav-btn:hover { background: var(--soft); border-color: #E2CBA4; }
+    .nav-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    /* ---------- home hero ---------- */
+    .hero {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 34px 16px 6px;
     }
-    .section {
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 12px;
-      background: #fff;
-    }
-    .section h2 {
-      margin: 0 0 10px;
-      font-size: 1.02rem;
-    }
-    .ingredients {
-      list-style: none;
+    .hero h1 {
       margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.7rem, 4.6vw, 2.6rem);
+      line-height: 1.25;
+      color: var(--primary-strong);
+      letter-spacing: -0.01em;
     }
-    .ingredients li {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 0.92rem;
-      border-bottom: 1px dashed #e5e7eb;
-      padding-bottom: 6px;
+    .hero p {
+      margin: 8px 0 0;
+      color: var(--muted-fg);
+      font-size: 1rem;
+      max-width: 56ch;
     }
-    .instructions {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+
+    /* ---------- toolbar ---------- */
+    .toolbar {
+      max-width: 1080px;
+      margin: 18px auto 0;
+      padding: 0 16px;
       display: grid;
       gap: 10px;
     }
-    .instructions li {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 10px;
-      display: grid;
-      gap: 8px;
-      background: #fff;
+    .search-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .search-wrap { position: relative; flex: 1 1 240px; }
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--muted-fg);
+      pointer-events: none;
     }
-    .step-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      align-items: center;
-    }
-    .step-no { font-weight: 700; }
-    .timer-btn {
-      border: 1px solid color-mix(in srgb, var(--recipe-accent) 45%, #7c2d12 55%);
-      background: color-mix(in srgb, var(--recipe-soft) 78%, #ffffff 22%);
-      color: #7c2d12;
-      padding: 5px 9px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .step-image {
+    #search-input {
       width: 100%;
-      max-height: 220px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid var(--line);
+      min-height: 48px;
+      padding: 10px 14px 10px 42px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--fg);
+      font-size: 1rem;
+      font-family: inherit;
+      box-shadow: var(--shadow-sm);
     }
-    .footer {
-      color: var(--muted);
-      font-size: 0.8rem;
-      padding-top: 6px;
+    #search-input::placeholder { color: #A8927A; }
+    #search-input:focus { border-color: var(--secondary); outline: none; }
+    .tool-btn {
+      min-height: 48px;
+      padding: 10px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--fg);
+      font-size: 0.92rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
-    .status-bar {
+    .tool-btn:hover { background: var(--soft); }
+    .tool-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+    select.tool-btn { appearance: none; padding-right: 34px; background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B5138' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+    .cat-row {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
-      font-size: 0.84rem;
-      color: var(--muted);
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
     }
-    .pill {
+    .cat-row::-webkit-scrollbar { display: none; }
+    .cat-pill {
+      min-height: 44px;
+      padding: 8px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--muted-fg);
+      font-size: 0.92rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .cat-pill:hover { background: var(--soft); }
+    .cat-pill.active { background: var(--primary-strong); border-color: var(--primary-strong); color: #FFF6E9; }
+    .result-count {
+      color: var(--muted-fg);
+      font-size: 0.88rem;
+      padding: 0 2px;
+    }
+
+    /* ---------- recipe grid ---------- */
+    .grid {
+      max-width: 1080px;
+      margin: 14px auto 0;
+      padding: 0 16px 8px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      padding: 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+    .card:hover { box-shadow: var(--shadow-md); border-color: #E8CFA8; }
+    .card-art {
+      height: 130px;
+      display: grid;
+      place-items: center;
+      font-size: 3.4rem;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--card-color, #9A3412) 26%, #FFF8EC) 0%, color-mix(in srgb, var(--card-color, #9A3412) 10%, #FFFDF6) 100%);
+      border-bottom: 1px solid var(--line);
+      user-select: none;
+    }
+    .card-body { padding: 13px 15px 15px; display: grid; gap: 7px; }
+    .card-cat {
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--card-color, #9A3412) 78%, #3A2413);
+    }
+    .card-name {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.18rem;
+      line-height: 1.3;
+      color: var(--fg);
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted-fg);
+      font-size: 0.84rem;
+    }
+    .card-meta svg { width: 14px; height: 14px; vertical-align: -2px; margin-right: 3px; }
+    .card-fav {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      color: #B9A183;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+    .card-fav:hover { background: #fff; }
+    .card-fav.on { color: #D97706; }
+    .card-fav svg { width: 19px; height: 19px; }
+    .empty-note {
+      max-width: 1080px;
+      margin: 30px auto;
+      padding: 0 16px;
+      color: var(--muted-fg);
+      text-align: center;
+    }
+
+    /* ---------- detail view ---------- */
+    .detail-wrap { max-width: 860px; margin: 0 auto; padding: 14px 16px 40px; }
+    .back-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      min-height: 44px;
+      padding: 8px 16px 8px 12px;
+      border: 1.5px solid var(--line);
       border-radius: 999px;
+      background: var(--panel);
+      color: var(--fg);
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: var(--shadow-sm);
+      transition: background-color 0.2s ease;
+    }
+    .back-btn:hover { background: var(--soft); }
+    .back-btn svg { width: 16px; height: 16px; }
+    .detail-hero {
+      margin-top: 14px;
       border: 1px solid var(--line);
-      padding: 4px 10px;
-      background: #fff7ed;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--panel);
+      box-shadow: var(--shadow-md);
     }
-    .favorite-mark {
-      color: #ca8a04;
-      font-size: 0.85rem;
-      margin-left: 6px;
-    }
-    .ghost {
-      background: #fff;
-      border-color: var(--line);
-      color: #374151;
-    }
-    .ghost.active {
-      border-color: #d97706;
-      background: #fff2cf;
-      color: #92400e;
-    }
-    .toast {
-      position: fixed;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(17, 24, 39, 0.92);
-      color: #fff;
-      border-radius: 999px;
-      padding: 10px 16px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-      z-index: 9999;
-      font-size: 0.9rem;
-    }
-    .toast.show { opacity: 1; }
-    .list-controls {
-      padding: 10px 12px;
+    .detail-art {
+      padding: 30px 22px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--recipe-accent) 30%, #FFF8EC) 0%, color-mix(in srgb, var(--recipe-accent) 10%, #FFFDF6) 100%);
       border-bottom: 1px solid var(--line);
-      background: #fff;
+    }
+    .detail-emoji {
+      width: 88px;
+      height: 88px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      place-items: center;
+      font-size: 3.1rem;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      box-shadow: var(--shadow-sm);
+      user-select: none;
+    }
+    .detail-title-box { flex: 1; min-width: 200px; }
+    .detail-cat {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--recipe-accent) 76%, #3A2413);
+    }
+    .detail-title {
+      margin: 2px 0 0;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.5rem, 4.4vw, 2.15rem);
+      line-height: 1.25;
+      color: var(--fg);
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      color: #4A300F;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+    }
+    .chip svg { width: 13px; height: 13px; }
+    .fav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 44px;
+      padding: 8px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.85);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--fg);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .fav-btn svg { width: 17px; height: 17px; color: #B9A183; transition: color 0.2s ease; }
+    .fav-btn.on { background: #FFF3D6; border-color: #F1CD84; }
+    .fav-btn.on svg { color: #D97706; }
+    .serving-row {
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: var(--panel);
+    }
+    .serving-label { color: var(--muted-fg); font-size: 0.92rem; font-weight: 700; }
+    .step-btn {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: var(--soft);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-strong);
+      transition: background-color 0.2s ease;
+    }
+    .step-btn:hover { background: #F3E6CD; }
+    .num-box {
+      width: 64px;
+      min-height: 44px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+      color: var(--fg);
+      font-family: inherit;
+    }
+    .kcal-badge {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 10%, #ffffff);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, #ffffff);
+      padding: 7px 14px;
+      border-radius: 999px;
+    }
+    .kcal-badge svg { width: 15px; height: 15px; }
+
+    .detail-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(250px, 340px) 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 760px) { .detail-grid { grid-template-columns: 1fr; } }
+    .panel-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow-sm);
+      padding: 18px;
+    }
+    .panel-card h2 {
+      margin: 0 0 12px;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.22rem;
+      color: var(--primary-strong);
+      display: flex;
+      align-items: center;
       gap: 8px;
     }
-    .list-controls input,
-    .list-controls select,
-    .list-controls button {
-      width: 100%;
+    .panel-card h2 svg { width: 19px; height: 19px; color: var(--secondary); }
+    .ingredients { list-style: none; margin: 0; padding: 0; display: grid; }
+    .ingredients li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.95rem;
+      padding: 11px 4px;
+      border-bottom: 1px dashed var(--line);
+      cursor: pointer;
+      min-height: 44px;
+      transition: opacity 0.2s ease;
     }
-    @media (max-width: 1024px) {
-      .nav-current { max-width: 26vw; }
-      .list-controls { grid-template-columns: 1fr; }
-      .app { padding-top: 72px; }
+    .ingredients li:last-child { border-bottom: none; }
+    .ingredients li .ing-name { display: flex; align-items: center; gap: 9px; }
+    .ing-check {
+      width: 19px;
+      height: 19px;
+      flex: none;
+      border: 2px solid #D8C3A5;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      color: transparent;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
     }
+    .ing-check svg { width: 12px; height: 12px; }
+    .ingredients li.done { opacity: 0.48; }
+    .ingredients li.done .ing-name { text-decoration: line-through; }
+    .ingredients li.done .ing-check { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .ingredients strong { font-weight: 800; color: var(--primary-strong); white-space: nowrap; }
+    .ing-hint { margin: 10px 0 0; color: #A8927A; font-size: 0.8rem; }
+
+    .instructions { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: step; }
+    .instructions li {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 15px 15px 15px 58px;
+      background: var(--panel);
+      display: grid;
+      gap: 8px;
+      font-size: 0.96rem;
+    }
+    .step-num {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(160deg, var(--secondary), var(--primary-strong));
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.92rem;
+      border-radius: 10px;
+    }
+    .step-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .timer-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex: none;
+      border: 1.5px solid color-mix(in srgb, var(--accent) 45%, #ffffff);
+      background: color-mix(in srgb, var(--accent) 8%, #ffffff);
+      color: #04785E;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      white-space: nowrap;
+      min-height: 36px;
+      transition: background-color 0.2s ease;
+    }
+    .timer-btn:hover { background: color-mix(in srgb, var(--accent) 16%, #ffffff); }
+    .timer-btn svg { width: 13px; height: 13px; }
+    .step-image { width: 100%; max-height: 230px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); }
+
+    /* ---------- footer / all recipes ---------- */
+    .site-footer {
+      max-width: 1080px;
+      margin: 36px auto 0;
+      padding: 26px 16px 40px;
+      border-top: 1px solid var(--line);
+      color: var(--muted-fg);
+      font-size: 0.86rem;
+    }
+    .site-footer h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.05rem; color: var(--primary-strong); margin: 0 0 10px; }
+    .all-links { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 0; margin: 0 0 18px; list-style: none; }
+    .all-links a { color: var(--muted-fg); text-decoration: none; }
+    .all-links a:hover { color: var(--primary); text-decoration: underline; }
+    .footer-meta { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .footer-meta a { color: var(--muted-fg); }
+
+    .toast {
+      position: fixed;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: rgba(31, 20, 8, 0.93);
+      color: #FFF6E9;
+      border-radius: 999px;
+      padding: 11px 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 100;
+      font-size: 0.92rem;
+      font-weight: 600;
+      max-width: 88vw;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    [hidden] { display: none !important; }
   </style>
 </head>
 <body>
-  <nav class="global-nav">
-    <div class="nav-left">
-      <button id="menu-toggle-btn" class="nav-btn" type="button">메뉴</button>
-      <span class="nav-title">Recipe Cocy</span>
-      <span id="nav-current-recipe" class="nav-current">레시피 로딩 중...</span>
-    </div>
-    <div class="nav-right">
-      <button id="nav-search-btn" class="nav-btn" type="button">검색</button>
-      <button id="random-btn" class="nav-btn" type="button">랜덤</button>
-      <button id="voice-toggle" class="nav-btn" type="button">음성 시작</button>
+  <nav class="global-nav" aria-label="Recipe Cocy">
+    <div class="nav-inner">
+      <a class="brand" href="./" id="brand-link">
+        <span class="brand-name">Recipe Cocy<span class="brand-dot">.</span></span>
+      </a>
+      <div class="nav-actions">
+        <button id="lang-toggle" class="nav-btn" type="button" aria-label="Switch language">EN</button>
+        <button id="random-btn" class="nav-btn" type="button" data-i18n="random">랜덤</button>
+        <button id="voice-toggle" class="nav-btn" type="button" data-i18n="voiceStart">음성</button>
+      </div>
     </div>
   </nav>
-  <div id="drawer-backdrop" class="drawer-backdrop"></div>
 
-  <div class="app">
-    <main class="content">
-      <section id="list-panel" class="panel list-panel">
-        <div class="drawer-head">
-          <p class="drawer-title">레시피 탐색</p>
-          <button id="drawer-close-btn" class="drawer-close" type="button">닫기</button>
-        </div>
-        <div class="list-controls">
-          <input id="search-input" type="search" placeholder="레시피 이름 검색">
-          <select id="category-select">
-            <option value="all">전체 카테고리</option>
-          </select>
-          <select id="difficulty-select">
-            <option value="all">전체 난이도</option>
-            <option value="easy">쉬움</option>
-            <option value="medium">보통</option>
-            <option value="hard">어려움</option>
-          </select>
-          <button id="sort-btn" class="btn-sub" type="button">이름순</button>
-          <button id="favorites-only-btn" class="btn-sub ghost" type="button">즐겨찾기만</button>
-        </div>
-        <div class="status-bar" style="padding:10px 12px;border-bottom:1px solid var(--line);">
-          <span class="pill" id="network-pill">온라인</span>
-          <span class="pill" id="recent-pill">최근 본 없음</span>
-        </div>
-        <div class="list-head" id="list-head">로딩 중...</div>
-        <div id="recipe-list" class="recipe-list"></div>
-      </section>
+  <!-- ============ HOME ============ -->
+  <div id="home-view">
+    <header class="hero">
+      <h1 data-i18n="heroTitle">오늘 뭐 만들지? 요즘 뜨는 레시피만.</h1>
+      <p data-i18n="heroSub">두바이 초콜릿부터 스매시버거 타코까지 — 검색창에서 화제가 된 레시피를 인분 계산·타이머와 함께.</p>
+    </header>
 
-      <section class="panel detail">
-        <div class="detail-head">
-          <h2 id="recipe-title" class="detail-title">레시피 로딩 중...</h2>
-          <div class="chips">
-            <div id="chips" class="chips"></div>
-            <button id="favorite-toggle-btn" class="btn-sub ghost" type="button">☆ 즐겨찾기</button>
-          </div>
+    <div class="toolbar">
+      <div class="search-row">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="search-input" type="search" data-i18n-placeholder="searchPh" placeholder="레시피 검색 (예: 두바이, 타코)" aria-label="레시피 검색">
         </div>
-        <div class="serving-row">
-          <label for="servings-input">인분</label>
-          <button id="serving-minus" class="btn-sub" type="button">-</button>
-          <input id="servings-input" class="num-box" type="number" min="1" value="2">
-          <button id="serving-plus" class="btn-sub" type="button">+</button>
-          <span id="calories-text" style="margin-left:auto;color:#374151;font-weight:700;">총 0 kcal</span>
-        </div>
-        <div class="detail-body">
-          <section class="section">
-            <h2>재료</h2>
-            <ul id="ingredient-list" class="ingredients"></ul>
-          </section>
-          <section class="section">
-            <h2>조리 순서</h2>
-            <ol id="instruction-list" class="instructions"></ol>
-          </section>
-          <div class="footer">Build: <span id="build-id">2026-02-14-recipe-v4-food-color</span></div>
-        </div>
-      </section>
-    </main>
+        <select id="difficulty-select" class="tool-btn" aria-label="난이도 필터">
+          <option value="all" data-i18n="diffAll">전체 난이도</option>
+          <option value="easy" data-i18n="diffEasy">쉬움</option>
+          <option value="medium" data-i18n="diffMedium">보통</option>
+          <option value="hard" data-i18n="diffHard">어려움</option>
+        </select>
+        <button id="sort-btn" class="tool-btn" type="button" data-i18n="sortName">이름순</button>
+        <button id="favorites-only-btn" class="tool-btn" type="button" data-i18n="favOnly">즐겨찾기</button>
+      </div>
+      <div class="cat-row" id="cat-row" role="tablist" aria-label="카테고리"></div>
+      <div class="result-count" id="result-count"></div>
+    </div>
+
+    <div id="recipe-grid" class="grid"></div>
+    <p id="empty-note" class="empty-note" hidden data-i18n="emptyNote">조건에 맞는 레시피가 없어요.</p>
   </div>
 
-  <div id="toast" class="toast"></div>
+  <!-- ============ DETAIL ============ -->
+  <div id="detail-view" hidden>
+    <div class="detail-wrap">
+      <button id="back-btn" class="back-btn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        <span data-i18n="backToList">전체 레시피</span>
+      </button>
+
+      <article class="detail-hero">
+        <div class="detail-art" id="detail-art">
+          <div class="detail-emoji" id="detail-emoji" aria-hidden="true">🍽️</div>
+          <div class="detail-title-box">
+            <div class="detail-cat" id="detail-cat"></div>
+            <h1 class="detail-title" id="recipe-title"></h1>
+            <div class="chips" id="chips"></div>
+          </div>
+          <button id="favorite-toggle-btn" class="fav-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6 14.9 8.5l6.5.95-4.7 4.58 1.1 6.47L12 17.44 6.2 20.5l1.1-6.47L2.6 9.45l6.5-.95Z"/></svg>
+            <span id="favorite-label" data-i18n="fav">즐겨찾기</span>
+          </button>
+        </div>
+        <div class="serving-row">
+          <span class="serving-label" data-i18n="servings">인분</span>
+          <button id="serving-minus" class="step-btn" type="button" aria-label="인분 줄이기">−</button>
+          <input id="servings-input" class="num-box" type="number" min="1" max="20" value="2" aria-label="인분 수">
+          <button id="serving-plus" class="step-btn" type="button" aria-label="인분 늘리기">+</button>
+          <span class="kcal-badge" id="calories-text">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s-6 5.2-6 10a6 6 0 0 0 12 0c0-4.8-6-10-6-10Z"/></svg>
+            <span id="calories-num">0 kcal</span>
+          </span>
+        </div>
+      </article>
+
+      <div class="detail-grid">
+        <section class="panel-card">
+          <h2>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v18M5 8c0-2.8 1.3-5 3-5M5 8c0 2.8-1.3 5-3 5m17-9-7 7m3.5-3.5L19 11m-3.5-3.5L12 4"/></svg>
+            <span data-i18n="ingredients">재료</span>
+          </h2>
+          <ul id="ingredient-list" class="ingredients"></ul>
+          <p class="ing-hint" data-i18n="ingHint">재료를 탭하면 체크돼요</p>
+        </section>
+        <section class="panel-card">
+          <h2>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18M3 7l2 12.5A2 2 0 0 0 7 21h10a2 2 0 0 0 2-1.5L21 7M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+            <span data-i18n="steps">조리 순서</span>
+          </h2>
+          <ol id="instruction-list" class="instructions"></ol>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <h2 data-i18n="allRecipes">전체 레시피</h2>
+    <ul class="all-links" id="all-links">
+      <li><a href="?r=dubaichocolate">두바이 초콜릿</a></li>
+      <li><a href="?r=dujjonku">두쫀쿠 (두바이 쫀득 쿠키)</a></li>
+      <li><a href="?r=butterdduk">버터떡</a></li>
+      <li><a href="?r=crookie">크루키 (크루아상+쿠키)</a></li>
+      <li><a href="?r=yogurtbark">요거트 바크</a></li>
+      <li><a href="?r=pringleschoco">프링글스 초코블록</a></li>
+      <li><a href="?r=mangosago">양즈깐루 (망고 사고)</a></li>
+      <li><a href="?r=bamtiramisu">밤 티라미수</a></li>
+      <li><a href="?r=ubelatte">우베 라떼</a></li>
+      <li><a href="?r=pestoegg">페스토 에그 토스트</a></li>
+      <li><a href="?r=cottageflatbread">코티지치즈 플랫브레드</a></li>
+      <li><a href="?r=cucumbersalad">틱톡 오이 샐러드</a></li>
+      <li><a href="?r=carrotrape">당근 라페 샌드위치</a></li>
+      <li><a href="?r=sundubuyeol">순두부 열라면</a></li>
+      <li><a href="?r=smashtaco">스매시버거 타코</a></li>
+      <li><a href="?r=mararose">마라 로제 떡볶이</a></li>
+      <li><a href="?r=eggjang">크림치즈 계란장</a></li>
+      <li><a href="?r=smashedpotato">크리스피 스매시드 포테이토</a></li>
+      <li><a href="?r=earlgreyhighball">얼그레이 하이볼</a></li>
+      <li><a href="?r=kimchistew">백종원 돼지고기 김치찌개</a></li>
+      <li><a href="?r=doenjangstew">고깃집 된장찌개</a></li>
+      <li><a href="?r=buldakramen">지락실 불닭볶음면</a></li>
+      <li><a href="?r=blacktea">일반 홍차 밀크티</a></li>
+      <li><a href="?r=milktea">진한 밀크티</a></li>
+      <li><a href="?r=ricecookercastella">밥솥 카스테라</a></li>
+    </ul>
+    <div class="footer-meta">
+      <span>© <a href="https://cocy.io/">cocy.io</a> · Recipe Cocy</span>
+      <span>Build: <span id="build-id">2026-07-28-recipe-v5-editorial</span></span>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script>
+    const I18N = {
+      ko: {
+        random: "랜덤", voiceStart: "음성", voiceStop: "음성 중지",
+        heroTitle: "오늘 뭐 만들지? 요즘 뜨는 레시피만.",
+        heroSub: "두바이 초콜릿부터 스매시버거 타코까지 — 화제가 된 레시피를 인분 계산·타이머와 함께.",
+        searchPh: "레시피 검색 (예: 두바이, 타코)",
+        diffAll: "전체 난이도", diffEasy: "쉬움", diffMedium: "보통", diffHard: "어려움",
+        sortName: "이름순", sortTime: "조리시간순", favOnly: "즐겨찾기",
+        emptyNote: "조건에 맞는 레시피가 없어요.",
+        backToList: "전체 레시피", fav: "즐겨찾기", favOn: "즐겨찾기됨",
+        servings: "인분", ingredients: "재료", steps: "조리 순서",
+        ingHint: "재료를 탭하면 체크돼요", allRecipes: "전체 레시피",
+        catAll: "전체", minutes: "분", servingsUnit: "인분",
+        diffLabel: { easy: "쉬움", medium: "보통", hard: "어려움" },
+        toastFavAdd: "즐겨찾기에 추가", toastFavDel: "즐겨찾기 해제",
+        toastTimerStart: (l) => `${l} 타이머 시작`, toastTimerEnd: (l) => `${l} 종료`,
+        speakTimerStart: (l) => `${l} 타이머를 시작합니다.`, speakTimerEnd: (l) => `${l}이 경과했습니다.`,
+        toastRandom: (n) => `${n} 추천`, toastServings: (n) => `${n}인분 적용`,
+        toastOffline: "오프라인 캐시로 로드됨", toastVoiceOn: "음성 제어 시작", toastVoiceOff: "음성 제어 종료",
+        toastNoVoice: "이 브라우저는 음성 인식을 지원하지 않습니다", toastVoiceFail: "음성 인식 시작 실패",
+        toastInitFail: "초기화 실패", timerSuffix: "타이머",
+        metaHome: "두바이 초콜릿부터 스매시버거 타코까지, 요즘 뜨는 바이럴 레시피 모음. 인분 자동 계산, 단계별 타이머, 음성 제어를 지원하는 무료 레시피 앱.",
+        titleHome: "Recipe Cocy — 요즘 뜨는 레시피",
+        metaRecipe: (r, ings) => `${r} 만들기 — 재료: ${ings}. 인분 자동 계산과 단계별 타이머 지원.`,
+        voiceNext: "다음", voicePrev: "이전",
+        speechLang: "ko-KR",
+        unitMap: {},
+      },
+      en: {
+        random: "Random", voiceStart: "Voice", voiceStop: "Stop voice",
+        heroTitle: "What's cooking? Only the recipes trending right now.",
+        heroSub: "From Dubai chocolate to smash burger tacos — viral recipes with serving calculator and step timers.",
+        searchPh: "Search recipes (e.g. dubai, taco)",
+        diffAll: "Any difficulty", diffEasy: "Easy", diffMedium: "Medium", diffHard: "Hard",
+        sortName: "By name", sortTime: "By cook time", favOnly: "Favorites",
+        emptyNote: "No recipes match your filters.",
+        backToList: "All recipes", fav: "Favorite", favOn: "Favorited",
+        servings: "Servings", ingredients: "Ingredients", steps: "Directions",
+        ingHint: "Tap an ingredient to check it off", allRecipes: "All recipes",
+        catAll: "All", minutes: "min", servingsUnit: " servings",
+        diffLabel: { easy: "Easy", medium: "Medium", hard: "Hard" },
+        toastFavAdd: "Added to favorites", toastFavDel: "Removed from favorites",
+        toastTimerStart: (l) => `Timer started: ${l}`, toastTimerEnd: (l) => `Time's up: ${l}`,
+        speakTimerStart: (l) => `Starting a ${l} timer.`, speakTimerEnd: (l) => `${l} has passed.`,
+        toastRandom: (n) => `Try: ${n}`, toastServings: (n) => `Set to ${n} servings`,
+        toastOffline: "Loaded from offline cache", toastVoiceOn: "Voice control on", toastVoiceOff: "Voice control off",
+        toastNoVoice: "Voice recognition is not supported in this browser", toastVoiceFail: "Failed to start voice recognition",
+        toastInitFail: "Failed to initialize", timerSuffix: "timer",
+        metaHome: "From Dubai chocolate to smash burger tacos — trending viral recipes with automatic serving calculator, step timers and voice control. Free recipe app.",
+        titleHome: "Recipe Cocy — Trending Viral Recipes",
+        metaRecipe: (r, ings) => `How to make ${r} — ingredients: ${ings}. With serving calculator and step timers.`,
+        voiceNext: "next", voicePrev: "previous",
+        speechLang: "en-US",
+        unitMap: { "개": "pc", "장": "slice", "봉": "pack", "통": "can", "방울": "drops", "큰술": "tbsp", "작은술": "tsp", "인분": "serv." },
+      }
+    };
+
     const state = {
+      lang: "ko",
       recipes: {},
+      enOverlay: {},
       keys: [],
       filteredKeys: [],
       currentKey: null,
       currentServings: 2,
       sortMode: "name",
+      categoryFilter: "all",
       difficultyFilter: "all",
       favoritesOnly: false,
       voiceOn: false,
       recognition: null,
       ttsAllowed: true,
       favorites: new Set(),
-      recent: []
     };
 
-    const els = {
-      menuToggleBtn: document.getElementById("menu-toggle-btn"),
-      navSearchBtn: document.getElementById("nav-search-btn"),
-      drawerCloseBtn: document.getElementById("drawer-close-btn"),
-      drawerBackdrop: document.getElementById("drawer-backdrop"),
-      listPanel: document.getElementById("list-panel"),
-      navCurrentRecipe: document.getElementById("nav-current-recipe"),
-      searchInput: document.getElementById("search-input"),
-      categorySelect: document.getElementById("category-select"),
-      difficultySelect: document.getElementById("difficulty-select"),
-      sortBtn: document.getElementById("sort-btn"),
-      favoritesOnlyBtn: document.getElementById("favorites-only-btn"),
-      randomBtn: document.getElementById("random-btn"),
-      voiceToggle: document.getElementById("voice-toggle"),
-      favoriteToggleBtn: document.getElementById("favorite-toggle-btn"),
-      networkPill: document.getElementById("network-pill"),
-      recentPill: document.getElementById("recent-pill"),
-      listHead: document.getElementById("list-head"),
-      recipeList: document.getElementById("recipe-list"),
-      recipeTitle: document.getElementById("recipe-title"),
-      chips: document.getElementById("chips"),
-      servingsInput: document.getElementById("servings-input"),
-      servingMinus: document.getElementById("serving-minus"),
-      servingPlus: document.getElementById("serving-plus"),
-      caloriesText: document.getElementById("calories-text"),
-      ingredientList: document.getElementById("ingredient-list"),
-      instructionList: document.getElementById("instruction-list"),
-      toast: document.getElementById("toast")
-    };
+    const els = {};
+    ["home-view", "detail-view", "search-input", "difficulty-select", "sort-btn",
+     "favorites-only-btn", "cat-row", "result-count", "recipe-grid", "empty-note",
+     "back-btn", "detail-art", "detail-emoji", "detail-cat", "recipe-title", "chips",
+     "favorite-toggle-btn", "favorite-label", "serving-minus", "serving-plus",
+     "servings-input", "calories-num", "ingredient-list", "instruction-list",
+     "random-btn", "voice-toggle", "lang-toggle", "toast", "brand-link",
+     "canonical-link", "meta-description", "og-title", "og-description", "og-url",
+     "recipe-jsonld"].forEach((id) => {
+      els[id.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = document.getElementById(id);
+    });
 
+    const t = (key) => I18N[state.lang][key] ?? I18N.ko[key] ?? key;
+
+    /* ---------- i18n helpers ---------- */
+    function rName(key) {
+      if (state.lang === "en" && state.enOverlay[key]?.name) return state.enOverlay[key].name;
+      return state.recipes[key]?.name || key;
+    }
+    function rCategory(key) {
+      if (state.lang === "en" && state.enOverlay[key]?.category) return state.enOverlay[key].category;
+      return state.recipes[key]?.category || "기타";
+    }
+    function rIngredientName(key, idx) {
+      if (state.lang === "en" && state.enOverlay[key]?.ingredients?.[idx]) return state.enOverlay[key].ingredients[idx];
+      return state.recipes[key]?.ingredients?.[idx]?.name || "";
+    }
+    function rInstruction(key, idx) {
+      if (state.lang === "en" && state.enOverlay[key]?.instructions?.[idx]) return state.enOverlay[key].instructions[idx];
+      return state.recipes[key]?.instructions?.[idx]?.description || "";
+    }
+    function rUnit(unit) {
+      if (state.lang === "en") return I18N.en.unitMap[unit] || unit;
+      return unit;
+    }
+
+    function applyStaticI18n() {
+      document.documentElement.lang = state.lang;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const v = t(el.dataset.i18n);
+        if (typeof v === "string") el.textContent = v;
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+        el.placeholder = t(el.dataset.i18nPlaceholder);
+      });
+      els.langToggle.textContent = state.lang === "ko" ? "EN" : "KO";
+      els.langToggle.setAttribute("aria-label", state.lang === "ko" ? "Switch to English" : "한국어로 전환");
+      els.sortBtn.textContent = state.sortMode === "name" ? t("sortName") : t("sortTime");
+      els.voiceToggle.textContent = state.voiceOn ? t("voiceStop") : t("voiceStart");
+    }
+
+    /* ---------- SEO ---------- */
+    function updateHeadForHome() {
+      document.title = t("titleHome");
+      els.metaDescription.setAttribute("content", t("metaHome"));
+      els.ogTitle.setAttribute("content", t("titleHome"));
+      els.ogDescription.setAttribute("content", t("metaHome"));
+      const url = "https://recipe.cocy.io/" + (state.lang === "en" ? "?lang=en" : "");
+      els.canonicalLink.setAttribute("href", url);
+      els.ogUrl.setAttribute("content", url);
+      els.recipeJsonld.textContent = "";
+    }
+
+    function updateHeadForRecipe(key) {
+      const recipe = state.recipes[key];
+      if (!recipe) return;
+      const name = rName(key);
+      const ingNames = recipe.ingredients.map((_, i) => rIngredientName(key, i)).slice(0, 5).join(", ");
+      const title = `${name} — Recipe Cocy`;
+      const desc = t("metaRecipe")(name, ingNames);
+      document.title = title;
+      els.metaDescription.setAttribute("content", desc);
+      els.ogTitle.setAttribute("content", title);
+      els.ogDescription.setAttribute("content", desc);
+      const url = `https://recipe.cocy.io/?r=${key}` + (state.lang === "en" ? "&lang=en" : "");
+      els.canonicalLink.setAttribute("href", url);
+      els.ogUrl.setAttribute("content", url);
+      els.recipeJsonld.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Recipe",
+        "name": name,
+        "url": url,
+        "inLanguage": state.lang,
+        "recipeCategory": rCategory(key),
+        "recipeYield": `${recipe.servings}${t("servingsUnit")}`,
+        "cookTime": `PT${recipe.cook_time_minutes || 25}M`,
+        "recipeIngredient": recipe.ingredients.map((ing, i) => `${rIngredientName(key, i)} ${ing.amount}${rUnit(ing.unit)}`),
+        "recipeInstructions": recipe.instructions.map((s, i) => ({
+          "@type": "HowToStep", "position": s.step, "text": rInstruction(key, i)
+        })),
+        "author": { "@type": "Organization", "name": "cocy.io", "url": "https://cocy.io/" }
+      });
+    }
+
+    /* ---------- routing ---------- */
+    function currentUrl() {
+      const params = new URLSearchParams();
+      if (state.currentKey && !els.detailView.hidden) params.set("r", state.currentKey);
+      if (state.lang === "en") params.set("lang", "en");
+      const q = params.toString();
+      return q ? `?${q}` : "./";
+    }
+
+    function showHome(push) {
+      els.detailView.hidden = true;
+      els.homeView.hidden = false;
+      state.currentKey = null;
+      updateHeadForHome();
+      if (push) history.pushState({}, "", currentUrl());
+      renderGrid();
+    }
+
+    function showDetail(key, push) {
+      if (!state.recipes[key]) { showHome(false); return; }
+      state.currentKey = key;
+      els.homeView.hidden = true;
+      els.detailView.hidden = false;
+      const saved = parseInt(localStorage.getItem("servings"), 10);
+      state.currentServings = Number.isFinite(saved) && saved > 0 ? saved : (state.recipes[key].servings || 2);
+      localStorage.setItem("lastRecipe", key);
+      renderDetail();
+      updateHeadForRecipe(key);
+      if (push) history.pushState({ r: key }, "", currentUrl());
+      window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    }
+
+    function routeFromUrl() {
+      const params = new URLSearchParams(location.search);
+      const key = params.get("r");
+      if (key && state.recipes[key]) showDetail(key, false);
+      else showHome(false);
+    }
+
+    /* ---------- misc helpers ---------- */
     function showToast(message) {
       els.toast.textContent = message;
       els.toast.classList.add("show");
-      setTimeout(() => els.toast.classList.remove("show"), 1400);
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => els.toast.classList.remove("show"), 1600);
     }
 
-    function openDrawer() {
-      els.listPanel.classList.add("open");
-      els.drawerBackdrop.classList.add("open");
-    }
-
-    function closeDrawer() {
-      els.listPanel.classList.remove("open");
-      els.drawerBackdrop.classList.remove("open");
-    }
-
-    function toggleDrawer() {
-      if (els.listPanel.classList.contains("open")) {
-        closeDrawer();
-      } else {
-        openDrawer();
-      }
-    }
-
-    function saveFavorites() {
-      localStorage.setItem("favorites", JSON.stringify([...state.favorites]));
-    }
-
+    function saveFavorites() { localStorage.setItem("favorites", JSON.stringify([...state.favorites])); }
     function loadFavorites() {
       try {
-        const raw = localStorage.getItem("favorites");
-        const arr = raw ? JSON.parse(raw) : [];
-        if (Array.isArray(arr)) {
-          state.favorites = new Set(arr);
-        }
+        const arr = JSON.parse(localStorage.getItem("favorites") || "[]");
+        if (Array.isArray(arr)) state.favorites = new Set(arr);
       } catch (_) {}
     }
 
-    function saveRecent() {
-      localStorage.setItem("recentRecipes", JSON.stringify(state.recent));
-    }
-
-    function loadRecent() {
-      try {
-        const raw = localStorage.getItem("recentRecipes");
-        const arr = raw ? JSON.parse(raw) : [];
-        if (Array.isArray(arr)) {
-          state.recent = arr.slice(0, 5);
-        }
-      } catch (_) {}
-    }
-
-    function pushRecent(key) {
-      state.recent = [key, ...state.recent.filter((k) => k !== key)].slice(0, 5);
-      saveRecent();
-      renderRecentPill();
-    }
-
-    function renderRecentPill() {
-      if (state.recent.length === 0) {
-        els.recentPill.textContent = "최근 본 없음";
-        return;
-      }
-      const names = state.recent
-        .map((k) => state.recipes[k]?.name)
-        .filter(Boolean)
-        .slice(0, 3);
-      els.recentPill.textContent = `최근 본: ${names.join(", ")}`;
-    }
-
-    function updateNetworkPill() {
-      const online = navigator.onLine;
-      els.networkPill.textContent = online ? "온라인" : "오프라인";
-      els.networkPill.style.borderColor = online ? "#86efac" : "#fca5a5";
-      els.networkPill.style.background = online ? "#f0fdf4" : "#fef2f2";
-      els.networkPill.style.color = online ? "#166534" : "#991b1b";
-    }
-
-    function sanitizeText(value) {
-      return String(value ?? "").trim();
-    }
-
-    function hexToRgba(hex, alpha) {
-      const value = (hex || "").replace("#", "").trim();
-      if (!/^[0-9a-fA-F]{6}$/.test(value)) {
-        return `rgba(184, 74, 36, ${alpha})`;
-      }
-      const r = parseInt(value.slice(0, 2), 16);
-      const g = parseInt(value.slice(2, 4), 16);
-      const b = parseInt(value.slice(4, 6), 16);
-      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    function sanitizeText(value) { return String(value ?? "").trim(); }
+    function escapeHtml(value) {
+      return sanitizeText(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     }
 
     function extractTime(text) {
-      const tokens = [...text.matchAll(/(\d+)\s*(시간|분|초)/g)];
+      const tokens = [...text.matchAll(/(\d+)\s*(시간|분|초|hours?|hrs?|minutes?|mins?|seconds?|secs?)(?![a-z])/gi)];
       if (tokens.length === 0) return null;
       let ms = 0;
       const labelParts = [];
       tokens.forEach((m) => {
         const n = parseInt(m[1], 10);
-        const unit = m[2];
-        if (unit === "시간") ms += n * 3600000;
-        if (unit === "분") ms += n * 60000;
-        if (unit === "초") ms += n * 1000;
-        labelParts.push(`${n}${unit}`);
+        const unit = m[2].toLowerCase();
+        if (unit === "시간" || unit.startsWith("hour") || unit.startsWith("hr")) ms += n * 3600000;
+        else if (unit === "분" || unit.startsWith("min")) ms += n * 60000;
+        else if (unit === "초" || unit.startsWith("sec")) ms += n * 1000;
+        labelParts.push(/[a-z]/i.test(m[2]) ? `${n} ${m[2]}` : `${n}${m[2]}`);
       });
       if (ms <= 0) return null;
       return { ms, label: labelParts.join(" ") };
@@ -686,127 +989,184 @@
     }
 
     function speak(text) {
-      if (!state.ttsAllowed) return;
-      if (!("speechSynthesis" in window)) return;
+      if (!state.ttsAllowed || !("speechSynthesis" in window)) return;
       const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "ko-KR";
+      utter.lang = t("speechLang");
       window.speechSynthesis.speak(utter);
     }
 
     function startStepTimer(timeInfo) {
-      showToast(`${timeInfo.label} 타이머 시작`);
-      speak(`${timeInfo.label} 타이머를 시작합니다.`);
+      showToast(t("toastTimerStart")(timeInfo.label));
+      speak(t("speakTimerStart")(timeInfo.label));
       setTimeout(() => {
         beep();
-        showToast(`${timeInfo.label} 종료`);
-        speak(`${timeInfo.label}이 경과했습니다.`);
+        showToast(t("toastTimerEnd")(timeInfo.label));
+        speak(t("speakTimerEnd")(timeInfo.label));
       }, timeInfo.ms);
-    }
-
-    function toDifficultyLabel(level) {
-      if (level === "easy") return "난이도 쉬움";
-      if (level === "hard") return "난이도 어려움";
-      return "난이도 보통";
     }
 
     function calcCalories(ingredient, adjustedAmount) {
       const basis = ingredient.calorie_basis || ((ingredient.unit === "g" || ingredient.unit === "ml") ? "per_100" : "per_unit");
-      if (basis === "per_100") {
-        return (adjustedAmount * Number(ingredient.calories_per_unit || 0)) / 100;
-      }
+      if (basis === "per_100") return (adjustedAmount * Number(ingredient.calories_per_unit || 0)) / 100;
       return adjustedAmount * Number(ingredient.calories_per_unit || 0);
     }
 
-    function getCurrentRecipe() {
-      return state.recipes[state.currentKey];
+    function baseCalories(recipe) {
+      return Math.round(recipe.ingredients.reduce((sum, ing) => sum + calcCalories(ing, Number(ing.amount)), 0));
     }
 
-    function renderRecipeList() {
-      els.recipeList.innerHTML = "";
+    /* ---------- home rendering ---------- */
+    const CLOCK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+    const FLAME_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s-6 5.2-6 10a6 6 0 0 0 12 0c0-4.8-6-10-6-10Z"/></svg>';
+    const STAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.6 14.9 8.5l6.5.95-4.7 4.58 1.1 6.47L12 17.44 6.2 20.5l1.1-6.47L2.6 9.45l6.5-.95Z"/></svg>';
+    const CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>';
+
+    function renderCategories() {
+      const cats = new Set();
+      state.keys.forEach((k) => cats.add(state.recipes[k].category || "기타"));
+      els.catRow.innerHTML = "";
+      const make = (value, label) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `cat-pill${state.categoryFilter === value ? " active" : ""}`;
+        btn.textContent = label;
+        btn.setAttribute("role", "tab");
+        btn.setAttribute("aria-selected", String(state.categoryFilter === value));
+        btn.addEventListener("click", () => {
+          state.categoryFilter = value;
+          applyFilters();
+          renderCategories();
+        });
+        els.catRow.appendChild(btn);
+      };
+      make("all", t("catAll"));
+      [...cats].forEach((c) => make(c, state.lang === "en" ? (catEn(c) || c) : c));
+    }
+
+    function catEn(koCat) {
+      const map = { "한식": "Korean", "양식": "Western", "아시안": "Asian", "중식": "Chinese", "일식": "Japanese", "디저트/음료": "Dessert & Drinks", "기타": "Others" };
+      return map[koCat];
+    }
+
+    function renderGrid() {
+      els.recipeGrid.innerHTML = "";
       const fragment = document.createDocumentFragment();
       state.filteredKeys.forEach((key) => {
         const recipe = state.recipes[key];
-        const item = document.createElement("button");
-        item.type = "button";
-        item.className = `recipe-item${key === state.currentKey ? " active" : ""}`;
-        item.dataset.key = key;
-        item.innerHTML = `
-          <p class="recipe-name">${recipe.name}${state.favorites.has(key) ? '<span class="favorite-mark">★</span>' : ''}</p>
-          <p class="recipe-meta">
-            <span>${recipe.category || "기타"}</span>
-            <span>${recipe.servings}인분 기준</span>
-            <span>${recipe.cook_time_minutes || "-"}분</span>
-          </p>
+        const card = document.createElement("a");
+        card.className = "card";
+        card.href = `?r=${key}${state.lang === "en" ? "&lang=en" : ""}`;
+        card.style.setProperty("--card-color", recipe.color || "#9A3412");
+        card.style.textDecoration = "none";
+        card.innerHTML = `
+          <div class="card-art" aria-hidden="true">${recipe.emoji || "🍽️"}</div>
+          <div class="card-body">
+            <div class="card-cat">${escapeHtml(state.lang === "en" ? (catEn(recipe.category) || recipe.category) : (recipe.category || "기타"))}</div>
+            <h3 class="card-name">${escapeHtml(rName(key))}</h3>
+            <div class="card-meta">
+              <span>${CLOCK_SVG}${recipe.cook_time_minutes || "-"}${t("minutes")}</span>
+              <span>${FLAME_SVG}~${baseCalories(recipe)} kcal</span>
+              <span>${t("diffLabel")[recipe.difficulty || "medium"]}</span>
+            </div>
+          </div>
+          <span class="card-fav${state.favorites.has(key) ? " on" : ""}" data-fav="${key}" role="button" tabindex="0" aria-label="favorite">${STAR_SVG}</span>
         `;
-        item.addEventListener("click", () => selectRecipe(key));
-        fragment.appendChild(item);
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("[data-fav]")) {
+            e.preventDefault();
+            toggleFavorite(key);
+            return;
+          }
+          e.preventDefault();
+          showDetail(key, true);
+        });
+        card.querySelector("[data-fav]").addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleFavorite(key); }
+        });
+        fragment.appendChild(card);
       });
-      els.recipeList.appendChild(fragment);
-      els.listHead.textContent = `총 ${state.filteredKeys.length}개 레시피`;
+      els.recipeGrid.appendChild(fragment);
+      els.resultCount.textContent = state.lang === "en"
+        ? `${state.filteredKeys.length} recipes`
+        : `총 ${state.filteredKeys.length}개 레시피`;
+      els.emptyNote.hidden = state.filteredKeys.length > 0;
     }
 
-    function renderRecipeDetail() {
-      const recipe = getCurrentRecipe();
+    function toggleFavorite(key) {
+      if (state.favorites.has(key)) {
+        state.favorites.delete(key);
+        showToast(t("toastFavDel"));
+      } else {
+        state.favorites.add(key);
+        showToast(t("toastFavAdd"));
+      }
+      saveFavorites();
+      if (!els.homeView.hidden) { applyFilters(); }
+      if (!els.detailView.hidden) renderDetail();
+    }
+
+    /* ---------- detail rendering ---------- */
+    function renderDetail() {
+      const key = state.currentKey;
+      const recipe = state.recipes[key];
       if (!recipe) return;
 
-      const recipeColor = recipe.color || "#b84a24";
+      const recipeColor = recipe.color || "#9A3412";
       document.documentElement.style.setProperty("--recipe-accent", recipeColor);
-      document.documentElement.style.setProperty("--recipe-soft", hexToRgba(recipeColor, 0.18));
-      document.body.style.background = `radial-gradient(circle at top right, ${hexToRgba(recipeColor, 0.34)} 0%, var(--bg) 54%)`;
-      els.recipeTitle.textContent = recipe.name;
-      els.navCurrentRecipe.textContent = recipe.name;
+      els.detailEmoji.textContent = recipe.emoji || "🍽️";
+      els.detailCat.textContent = state.lang === "en" ? (catEn(recipe.category) || recipe.category) : (recipe.category || "기타");
+      els.recipeTitle.textContent = rName(key);
       els.servingsInput.value = state.currentServings;
 
       els.chips.innerHTML = "";
       const chips = [
-        recipe.category || "기타",
-        `${recipe.cook_time_minutes || "-"}분`,
-        toDifficultyLabel(recipe.difficulty || "medium"),
-        `${recipe.servings}인분 기준`
+        `${CLOCK_SVG}${recipe.cook_time_minutes || "-"}${t("minutes")}`,
+        `${t("diffLabel")[recipe.difficulty || "medium"]}`,
+        `${recipe.servings}${t("servingsUnit")}`,
       ];
-      chips.forEach((text) => {
+      chips.forEach((html) => {
         const chip = document.createElement("span");
         chip.className = "chip";
-        chip.textContent = text;
+        chip.innerHTML = html;
         els.chips.appendChild(chip);
       });
 
-      const isFavorite = state.favorites.has(state.currentKey);
-      els.favoriteToggleBtn.textContent = isFavorite ? "★ 즐겨찾기됨" : "☆ 즐겨찾기";
-      els.favoriteToggleBtn.classList.toggle("active", isFavorite);
+      const isFavorite = state.favorites.has(key);
+      els.favoriteLabel.textContent = isFavorite ? t("favOn") : t("fav");
+      els.favoriteToggleBtn.classList.toggle("on", isFavorite);
 
       let totalCalories = 0;
       els.ingredientList.innerHTML = "";
-      recipe.ingredients.forEach((ingredient) => {
+      recipe.ingredients.forEach((ingredient, idx) => {
         const adjusted = (Number(ingredient.amount) / Number(recipe.servings || 1)) * state.currentServings;
         totalCalories += calcCalories(ingredient, adjusted);
         const li = document.createElement("li");
         li.innerHTML = `
-          <span>${sanitizeText(ingredient.name)}</span>
-          <strong>${adjusted.toFixed(1)} ${sanitizeText(ingredient.unit)}</strong>
+          <span class="ing-name"><span class="ing-check">${CHECK_SVG}</span>${escapeHtml(rIngredientName(key, idx))}</span>
+          <strong>${(Math.round(adjusted * 10) / 10)} ${escapeHtml(rUnit(ingredient.unit))}</strong>
         `;
+        li.addEventListener("click", () => li.classList.toggle("done"));
         els.ingredientList.appendChild(li);
       });
-      els.caloriesText.textContent = `총 ${Math.round(totalCalories)} kcal`;
+      els.caloriesNum.textContent = `${Math.round(totalCalories)} kcal`;
 
       els.instructionList.innerHTML = "";
-      recipe.instructions.forEach((step) => {
+      recipe.instructions.forEach((step, idx) => {
         const li = document.createElement("li");
-        const text = sanitizeText(step.description);
+        const text = sanitizeText(rInstruction(key, idx));
         const timeInfo = extractTime(text);
         li.innerHTML = `
-          <div class="step-head">
-            <span class="step-no">Step ${step.step}</span>
-            ${timeInfo ? `<button type="button" class="timer-btn" data-time="${timeInfo.ms}" data-label="${timeInfo.label}">${timeInfo.label} 타이머</button>` : ""}
+          <span class="step-num" aria-hidden="true">${step.step}</span>
+          <div class="step-row">
+            <div>${escapeHtml(text)}</div>
+            ${timeInfo ? `<button type="button" class="timer-btn" data-time="${timeInfo.ms}" data-label="${escapeHtml(timeInfo.label)}">${CLOCK_SVG}${escapeHtml(timeInfo.label)} ${t("timerSuffix")}</button>` : ""}
           </div>
-          <div>${text}</div>
         `;
-
         const img = document.createElement("img");
         img.className = "step-image";
         img.loading = "lazy";
-        img.alt = `step ${step.step}`;
-        img.src = `images/${state.currentKey}/${step.step}.png`;
+        img.alt = `${rName(key)} step ${step.step}`;
+        img.src = `images/${key}/${step.step}.png`;
         img.onerror = () => img.remove();
         li.appendChild(img);
         els.instructionList.appendChild(li);
@@ -814,167 +1174,70 @@
 
       els.instructionList.querySelectorAll(".timer-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
-          startStepTimer({
-            ms: Number(btn.dataset.time),
-            label: btn.dataset.label
-          });
+          startStepTimer({ ms: Number(btn.dataset.time), label: btn.dataset.label });
         });
       });
     }
 
-    function selectRecipe(key) {
-      if (!state.recipes[key]) return;
-      state.currentKey = key;
-      const savedServings = parseInt(localStorage.getItem("servings"), 10);
-      if (!Number.isFinite(savedServings) || savedServings < 1) {
-        state.currentServings = state.recipes[key].servings || 2;
-      }
-      localStorage.setItem("lastRecipe", key);
-      pushRecent(key);
-      renderRecipeList();
-      renderRecipeDetail();
-      closeDrawer();
-    }
-
+    /* ---------- filters ---------- */
     function applyFilters() {
       const q = sanitizeText(els.searchInput.value).toLowerCase();
-      const category = els.categorySelect.value;
-      const difficulty = els.difficultySelect.value;
       let keys = [...state.keys];
-
       if (q) {
-        keys = keys.filter((key) => state.recipes[key].name.toLowerCase().includes(q));
+        keys = keys.filter((key) => {
+          const ko = state.recipes[key].name.toLowerCase();
+          const en = (state.enOverlay[key]?.name || "").toLowerCase();
+          return ko.includes(q) || en.includes(q) || key.includes(q);
+        });
       }
-      if (category !== "all") {
-        keys = keys.filter((key) => (state.recipes[key].category || "기타") === category);
+      if (state.categoryFilter !== "all") {
+        keys = keys.filter((key) => (state.recipes[key].category || "기타") === state.categoryFilter);
       }
-      if (difficulty !== "all") {
-        keys = keys.filter((key) => (state.recipes[key].difficulty || "medium") === difficulty);
+      if (state.difficultyFilter !== "all") {
+        keys = keys.filter((key) => (state.recipes[key].difficulty || "medium") === state.difficultyFilter);
       }
       if (state.favoritesOnly) {
         keys = keys.filter((key) => state.favorites.has(key));
       }
       if (state.sortMode === "name") {
-        keys.sort((a, b) => state.recipes[a].name.localeCompare(state.recipes[b].name, "ko"));
-      } else if (state.sortMode === "time") {
+        keys.sort((a, b) => rName(a).localeCompare(rName(b), state.lang));
+      } else {
         keys.sort((a, b) => (state.recipes[a].cook_time_minutes || 999) - (state.recipes[b].cook_time_minutes || 999));
       }
       state.filteredKeys = keys;
-
-      if (!state.filteredKeys.includes(state.currentKey)) {
-        state.currentKey = state.filteredKeys[0] || null;
-      }
-      renderRecipeList();
-      renderRecipeDetail();
+      renderGrid();
     }
 
-    function setupCategories() {
-      const categories = new Set(["all"]);
-      state.keys.forEach((key) => categories.add(state.recipes[key].category || "기타"));
-      els.categorySelect.innerHTML = "";
-      [...categories].forEach((cat) => {
-        const opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat === "all" ? "전체 카테고리" : cat;
-        els.categorySelect.appendChild(opt);
-      });
-    }
-
-    function normalizeRecipe(key, value) {
-      const recipe = { ...value };
-      if (!recipe.category) {
-        if (key.startsWith("popular")) recipe.category = "인기";
-        else recipe.category = "기타";
-      }
-      if (!recipe.difficulty) recipe.difficulty = "medium";
-      if (!recipe.cook_time_minutes) recipe.cook_time_minutes = 25;
-      recipe.ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
-      recipe.instructions = Array.isArray(recipe.instructions) ? recipe.instructions : [];
-      return recipe;
-    }
-
-    function bindEvents() {
-      els.menuToggleBtn.addEventListener("click", toggleDrawer);
-      els.drawerCloseBtn.addEventListener("click", closeDrawer);
-      els.drawerBackdrop.addEventListener("click", closeDrawer);
-      els.navSearchBtn.addEventListener("click", () => {
-        openDrawer();
-        els.searchInput.focus();
-      });
-
-      let searchDebounce = null;
-      els.searchInput.addEventListener("input", () => {
-        clearTimeout(searchDebounce);
-        searchDebounce = setTimeout(applyFilters, 120);
-      });
-      els.categorySelect.addEventListener("change", applyFilters);
-      els.difficultySelect.addEventListener("change", applyFilters);
-      els.sortBtn.addEventListener("click", () => {
-        state.sortMode = state.sortMode === "name" ? "time" : "name";
-        els.sortBtn.textContent = state.sortMode === "name" ? "이름순" : "조리시간순";
+    /* ---------- language ---------- */
+    function setLang(lang, rerender) {
+      state.lang = lang === "en" ? "en" : "ko";
+      localStorage.setItem("lang", state.lang);
+      applyStaticI18n();
+      if (rerender) {
+        renderCategories();
         applyFilters();
-      });
-      els.randomBtn.addEventListener("click", () => {
-        if (state.filteredKeys.length === 0) return;
-        const key = state.filteredKeys[Math.floor(Math.random() * state.filteredKeys.length)];
-        selectRecipe(key);
-        showToast(`${state.recipes[key].name} 추천`);
-      });
-      els.favoritesOnlyBtn.addEventListener("click", () => {
-        state.favoritesOnly = !state.favoritesOnly;
-        els.favoritesOnlyBtn.classList.toggle("active", state.favoritesOnly);
-        applyFilters();
-      });
-      els.favoriteToggleBtn.addEventListener("click", () => {
-        if (!state.currentKey) return;
-        if (state.favorites.has(state.currentKey)) {
-          state.favorites.delete(state.currentKey);
-          showToast("즐겨찾기 해제");
+        if (!els.detailView.hidden && state.currentKey) {
+          renderDetail();
+          updateHeadForRecipe(state.currentKey);
         } else {
-          state.favorites.add(state.currentKey);
-          showToast("즐겨찾기에 추가");
+          updateHeadForHome();
         }
-        saveFavorites();
-        renderRecipeList();
-        renderRecipeDetail();
-      });
-
-      els.servingMinus.addEventListener("click", () => {
-        state.currentServings = Math.max(1, state.currentServings - 1);
-        els.servingsInput.value = state.currentServings;
-        localStorage.setItem("servings", String(state.currentServings));
-        renderRecipeDetail();
-      });
-      els.servingPlus.addEventListener("click", () => {
-        state.currentServings = Math.min(20, state.currentServings + 1);
-        els.servingsInput.value = state.currentServings;
-        localStorage.setItem("servings", String(state.currentServings));
-        renderRecipeDetail();
-      });
-      els.servingsInput.addEventListener("input", () => {
-        const n = parseInt(els.servingsInput.value, 10);
-        if (!Number.isFinite(n) || n < 1) return;
-        state.currentServings = Math.min(20, n);
-        localStorage.setItem("servings", String(state.currentServings));
-        renderRecipeDetail();
-      });
-
-      els.voiceToggle.addEventListener("click", toggleVoiceControl);
-      document.body.addEventListener("touchstart", () => { state.ttsAllowed = true; }, { once: true });
-      document.body.addEventListener("mousedown", () => { state.ttsAllowed = true; }, { once: true });
+        history.replaceState(history.state, "", currentUrl());
+      }
+      if (state.recognition) {
+        stopVoiceRecognition();
+      }
     }
 
+    /* ---------- voice ---------- */
     function moveStep(direction) {
       const items = [...els.instructionList.querySelectorAll("li")];
       if (items.length === 0) return;
       let closest = 0;
       let min = Number.MAX_SAFE_INTEGER;
       items.forEach((item, idx) => {
-        const d = Math.abs(item.getBoundingClientRect().top - 120);
-        if (d < min) {
-          min = d;
-          closest = idx;
-        }
+        const d = Math.abs(item.getBoundingClientRect().top - 130);
+        if (d < min) { min = d; closest = idx; }
       });
       const next = Math.min(items.length - 1, Math.max(0, closest + direction));
       items[next].scrollIntoView({ behavior: "smooth", block: "center" });
@@ -984,28 +1247,19 @@
     function handleVoiceCommand(command) {
       const text = command.trim().toLowerCase();
       if (!text) return;
-
-      if (text.includes("다음")) {
-        moveStep(1);
-        return;
-      }
-      if (text.includes("이전")) {
-        moveStep(-1);
-        return;
-      }
-      const servingsMatch = text.match(/(\d+)\s*인분/);
+      if (text.includes(t("voiceNext"))) { moveStep(1); return; }
+      if (text.includes(t("voicePrev"))) { moveStep(-1); return; }
+      const servingsMatch = text.match(state.lang === "en" ? /(\d+)\s*servings?/ : /(\d+)\s*인분/);
       if (servingsMatch) {
         state.currentServings = Math.max(1, parseInt(servingsMatch[1], 10));
         localStorage.setItem("servings", String(state.currentServings));
-        renderRecipeDetail();
-        showToast(`${state.currentServings}인분 적용`);
+        renderDetail();
+        showToast(t("toastServings")(state.currentServings));
         return;
       }
-      for (const key of state.filteredKeys) {
-        const name = state.recipes[key].name.toLowerCase();
-        if (text.includes(name)) {
-          selectRecipe(key);
-          showToast(`${state.recipes[key].name} 이동`);
+      for (const key of state.keys) {
+        if (text.includes(rName(key).toLowerCase())) {
+          showDetail(key, true);
           return;
         }
       }
@@ -1017,22 +1271,17 @@
       state.recognition.onend = null;
       state.recognition.stop();
       state.recognition = null;
-      els.voiceToggle.textContent = "음성 시작";
-      showToast("음성 제어 종료");
+      els.voiceToggle.textContent = t("voiceStart");
+      els.voiceToggle.classList.remove("active");
+      showToast(t("toastVoiceOff"));
     }
 
     function toggleVoiceControl() {
-      if (state.voiceOn) {
-        stopVoiceRecognition();
-        return;
-      }
+      if (state.voiceOn) { stopVoiceRecognition(); return; }
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        showToast("이 브라우저는 음성 인식을 지원하지 않습니다");
-        return;
-      }
+      if (!SpeechRecognition) { showToast(t("toastNoVoice")); return; }
       const recognition = new SpeechRecognition();
-      recognition.lang = "ko-KR";
+      recognition.lang = t("speechLang");
       recognition.continuous = true;
       recognition.interimResults = false;
       recognition.onresult = (event) => {
@@ -1041,83 +1290,155 @@
       };
       recognition.onend = () => {
         if (!state.voiceOn) return;
-        try {
-          recognition.start();
-        } catch (_) {}
+        try { recognition.start(); } catch (_) {}
       };
-      try {
-        recognition.start();
-      } catch (_) {
-        showToast("음성 인식 시작 실패");
-        return;
-      }
+      try { recognition.start(); } catch (_) { showToast(t("toastVoiceFail")); return; }
       state.recognition = recognition;
       state.voiceOn = true;
-      els.voiceToggle.textContent = "음성 중지";
-      showToast("음성 제어 시작");
+      els.voiceToggle.textContent = t("voiceStop");
+      els.voiceToggle.classList.add("active");
+      showToast(t("toastVoiceOn"));
+    }
+
+    /* ---------- events ---------- */
+    function bindEvents() {
+      els.brandLink.addEventListener("click", (e) => { e.preventDefault(); showHome(true); });
+      els.backBtn.addEventListener("click", () => showHome(true));
+
+      let searchDebounce = null;
+      els.searchInput.addEventListener("input", () => {
+        clearTimeout(searchDebounce);
+        searchDebounce = setTimeout(applyFilters, 120);
+      });
+      els.difficultySelect.addEventListener("change", () => {
+        state.difficultyFilter = els.difficultySelect.value;
+        applyFilters();
+      });
+      els.sortBtn.addEventListener("click", () => {
+        state.sortMode = state.sortMode === "name" ? "time" : "name";
+        els.sortBtn.textContent = state.sortMode === "name" ? t("sortName") : t("sortTime");
+        applyFilters();
+      });
+      els.favoritesOnlyBtn.addEventListener("click", () => {
+        state.favoritesOnly = !state.favoritesOnly;
+        els.favoritesOnlyBtn.classList.toggle("active", state.favoritesOnly);
+        applyFilters();
+      });
+      els.randomBtn.addEventListener("click", () => {
+        const pool = state.filteredKeys.length ? state.filteredKeys : state.keys;
+        if (pool.length === 0) return;
+        const key = pool[Math.floor(Math.random() * pool.length)];
+        showDetail(key, true);
+        showToast(t("toastRandom")(rName(key)));
+      });
+      els.favoriteToggleBtn.addEventListener("click", () => {
+        if (state.currentKey) toggleFavorite(state.currentKey);
+      });
+
+      const setServings = (n) => {
+        state.currentServings = Math.min(20, Math.max(1, n));
+        els.servingsInput.value = state.currentServings;
+        localStorage.setItem("servings", String(state.currentServings));
+        renderDetail();
+      };
+      els.servingMinus.addEventListener("click", () => setServings(state.currentServings - 1));
+      els.servingPlus.addEventListener("click", () => setServings(state.currentServings + 1));
+      els.servingsInput.addEventListener("input", () => {
+        const n = parseInt(els.servingsInput.value, 10);
+        if (Number.isFinite(n) && n >= 1) setServings(n);
+      });
+
+      els.voiceToggle.addEventListener("click", toggleVoiceControl);
+      els.langToggle.addEventListener("click", () => setLang(state.lang === "ko" ? "en" : "ko", true));
+
+      document.body.addEventListener("touchstart", () => { state.ttsAllowed = true; }, { once: true });
+      document.body.addEventListener("mousedown", () => { state.ttsAllowed = true; }, { once: true });
+
+      // crawlable footer links → SPA navigation
+      document.getElementById("all-links").addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (!a) return;
+        const key = new URL(a.href, location.href).searchParams.get("r");
+        if (key && state.recipes[key]) {
+          e.preventDefault();
+          showDetail(key, true);
+        }
+      });
+
+      window.addEventListener("popstate", routeFromUrl);
+      window.addEventListener("beforeunload", () => { if (state.recognition) { state.recognition.onend = null; state.recognition.stop(); } });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown" && !els.detailView.hidden) moveStep(1);
+        if (e.key === "ArrowUp" && !els.detailView.hidden) moveStep(-1);
+        if (e.key === "/" && document.activeElement !== els.searchInput) {
+          e.preventDefault();
+          if (els.homeView.hidden) showHome(true);
+          els.searchInput.focus();
+        }
+        if (e.key === "Escape" && !els.detailView.hidden) showHome(true);
+      });
+    }
+
+    /* ---------- init ---------- */
+    function normalizeRecipe(key, value) {
+      const recipe = { ...value };
+      if (!recipe.category) recipe.category = "기타";
+      if (!recipe.difficulty) recipe.difficulty = "medium";
+      if (!recipe.cook_time_minutes) recipe.cook_time_minutes = 25;
+      recipe.ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+      recipe.instructions = Array.isArray(recipe.instructions) ? recipe.instructions : [];
+      return recipe;
+    }
+
+    async function fetchJson(url, cacheKey) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        localStorage.setItem(cacheKey, JSON.stringify(data));
+        return data;
+      } catch (err) {
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) { showToast(t("toastOffline")); return JSON.parse(cached); }
+        throw err;
+      }
     }
 
     async function init() {
+      const params = new URLSearchParams(location.search);
+      const urlLang = params.get("lang");
+      const savedLang = localStorage.getItem("lang");
+      state.lang = urlLang === "en" ? "en" : (urlLang === "ko" ? "ko" : (savedLang === "en" ? "en" : "ko"));
+
       bindEvents();
-      updateNetworkPill();
       loadFavorites();
-      loadRecent();
-      let payload;
-      try {
-        const response = await fetch(`recipes.json?t=${Date.now()}`);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        payload = await response.json();
-        localStorage.setItem("recipesCache", JSON.stringify(payload));
-      } catch (err) {
-        const cached = localStorage.getItem("recipesCache");
-        if (cached) {
-          payload = JSON.parse(cached);
-          showToast("오프라인 캐시로 로드됨");
-        } else {
-          throw err;
-        }
-      }
+      applyStaticI18n();
+
+      const [recipes, enOverlay] = await Promise.all([
+        fetchJson(`recipes.json?v=20260728`, "recipesCache"),
+        fetchJson(`recipes.en.json?v=20260728`, "recipesEnCache").catch(() => ({})),
+      ]);
       const normalized = {};
-      Object.entries(payload).forEach(([key, value]) => {
-        normalized[key] = normalizeRecipe(key, value);
-      });
+      Object.entries(recipes).forEach(([key, value]) => { normalized[key] = normalizeRecipe(key, value); });
       state.recipes = normalized;
+      state.enOverlay = enOverlay || {};
       state.keys = Object.keys(normalized);
 
-      setupCategories();
+      const saved = parseInt(localStorage.getItem("servings"), 10);
+      state.currentServings = Number.isFinite(saved) && saved > 0 ? saved : 2;
 
-      const savedServings = parseInt(localStorage.getItem("servings"), 10);
-      state.currentServings = Number.isFinite(savedServings) && savedServings > 0 ? savedServings : 2;
-
-      const savedKey = localStorage.getItem("lastRecipe");
-      state.currentKey = state.recipes[savedKey] ? savedKey : state.keys[0];
-      renderRecentPill();
+      renderCategories();
       applyFilters();
+      routeFromUrl();
 
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./service-worker.js").catch(() => {});
       }
     }
 
-    window.addEventListener("beforeunload", () => {
-      stopVoiceRecognition();
-    });
-    window.addEventListener("online", updateNetworkPill);
-    window.addEventListener("offline", updateNetworkPill);
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeDrawer();
-      if (e.key === "ArrowDown") moveStep(1);
-      if (e.key === "ArrowUp") moveStep(-1);
-      if (e.key === "/" && document.activeElement !== els.searchInput) {
-        e.preventDefault();
-        openDrawer();
-        els.searchInput.focus();
-      }
-    });
-
     init().catch((err) => {
       console.error(err);
-      showToast("초기화 실패");
+      showToast(t("toastInitFail"));
     });
   </script>
 </body>

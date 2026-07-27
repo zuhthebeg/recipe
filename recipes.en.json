@@ -1,0 +1,472 @@
+{
+  "kimchistew": {
+    "name": "Baek Jong-won's Pork Kimchi Stew",
+    "category": "Korean",
+    "ingredients": [
+      "Aged kimchi",
+      "Pork (shoulder)",
+      "Onion",
+      "Green onion",
+      "Garlic (minced)",
+      "Sugar",
+      "Red pepper flakes",
+      "Soy sauce for soup",
+      "Cooking oil",
+      "Water",
+      "Tofu",
+      "Red pepper paste (gochujang)",
+      "MSG (optional)"
+    ],
+    "instructions": [
+      "Cut the pork into bite-size pieces and stir-fry in oil over medium heat until the surface turns white.",
+      "Add the aged kimchi and stir-fry together for about 5 minutes until the kimchi softens.",
+      "Add sugar, minced garlic and red pepper flakes and stir-fry 1 more minute to build the base flavor.",
+      "Pour in the water and bring to a boil over high heat.",
+      "Once boiling, reduce to medium and simmer for 15 minutes.",
+      "Add sliced onion and simmer 5 more minutes.",
+      "Season with soup soy sauce and gochujang, adjusting to taste.",
+      "Add tofu in thick slices and simmer 5 minutes.",
+      "Finish with green onion and boil briefly.",
+      "Taste and adjust seasoning; add a pinch of MSG if you like.",
+      "Serve bubbling hot with rice."
+    ]
+  },
+  "doenjangstew": {
+    "name": "BBQ-House Doenjang Stew",
+    "category": "Korean",
+    "ingredients": [
+      "Doenjang (soybean paste)",
+      "Beef (brisket)",
+      "Tofu",
+      "Zucchini",
+      "Onion",
+      "Chili pepper",
+      "Green onion",
+      "Garlic (minced)",
+      "Rice water",
+      "Red pepper paste"
+    ],
+    "instructions": [
+      "Stir-fry the beef in a pot until browned.",
+      "Pour in the rice water and bring to a boil.",
+      "Dissolve the doenjang and a little gochujang into the broth.",
+      "Add diced zucchini and onion and simmer over medium heat for 10 minutes.",
+      "Add cubed tofu and minced garlic and simmer 5 more minutes.",
+      "Add sliced chili and green onion and boil briefly.",
+      "Let it thicken slightly — BBQ-house style is on the hearty side.",
+      "Serve hot with rice."
+    ]
+  },
+  "buldakramen": {
+    "name": "Buldak Ramen (Jirak-sil Style)",
+    "category": "Korean",
+    "ingredients": [
+      "Buldak ramen",
+      "Onion",
+      "Cheddar cheese",
+      "Egg yolk",
+      "Mayonnaise",
+      "Water",
+      "Cooking oil"
+    ],
+    "instructions": [
+      "Thinly slice half an onion and fry in oil until lightly browned.",
+      "Add 400ml water, bring to a boil and cook the noodles.",
+      "When the noodles are 2/3 cooked, add the sauce packet and a slice of cheddar; stir and reduce.",
+      "With a little liquid left, plate it and top with egg yolk and mayonnaise."
+    ]
+  },
+  "blacktea": {
+    "name": "Classic Black Milk Tea",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Black tea bags",
+      "Milk",
+      "Sugar",
+      "Water"
+    ],
+    "instructions": [
+      "Bring the water to a boil and steep the tea bags for 3 minutes.",
+      "Remove the tea bags and dissolve the sugar.",
+      "Add the milk and heat gently — do not let it boil.",
+      "Turn off the heat right before boiling.",
+      "Strain into a cup and serve."
+    ]
+  },
+  "milktea": {
+    "name": "Rich Royal Milk Tea",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Black tea bags",
+      "Milk",
+      "Condensed milk",
+      "Water"
+    ],
+    "instructions": [
+      "Boil a small amount of water and steep the tea bags strongly for 5 minutes.",
+      "Add milk and warm over low heat for 3 minutes.",
+      "Sweeten with condensed milk.",
+      "Turn off the heat right before it boils.",
+      "Strain and serve hot."
+    ]
+  },
+  "ricecookercastella": {
+    "name": "Rice Cooker Castella",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Eggs",
+      "Sugar",
+      "Cake flour",
+      "Milk",
+      "Canola oil (or melted butter)",
+      "Condensed milk (optional)",
+      "Baking powder (optional)",
+      "Vanilla extract (optional)"
+    ],
+    "instructions": [
+      "In a bowl, whisk together eggs, sugar, milk, oil, condensed milk and 3 drops of vanilla extract.",
+      "Sift in the cake flour and baking powder and mix gently until lump-free.",
+      "Lightly oil the rice cooker pot, pour in the batter, and tap the pot to release big bubbles.",
+      "Cook on the multi-steam setting for 40 minutes (or run the regular cook cycle twice).",
+      "Cool briefly, remove from the pot and slice."
+    ]
+  },
+  "dubaichocolate": {
+    "name": "Dubai Chocolate",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Milk chocolate",
+      "Kataifi (shredded phyllo)",
+      "Pistachio spread",
+      "Butter",
+      "Tahini (optional)"
+    ],
+    "instructions": [
+      "Cut kataifi into 1cm pieces and toast in butter over medium-low heat for 8–10 minutes until golden and crisp; cool.",
+      "Mix the toasted kataifi with pistachio spread (add tahini to taste) to make the filling.",
+      "Melt the chocolate over a double boiler, coat the bottom and sides of a mold thinly, and chill 10 minutes.",
+      "Fill the chocolate shell with the pistachio-kataifi filling and press flat.",
+      "Cover with the remaining chocolate and chill 20+ minutes. The green cross-section is the money shot."
+    ]
+  },
+  "dujjonku": {
+    "name": "Dubai Chewy Cookie (Du-jjon-ku)",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Cookie dough (store-bought or homemade)",
+      "Marshmallows",
+      "Kataifi",
+      "Pistachio spread",
+      "Butter"
+    ],
+    "instructions": [
+      "Toast chopped kataifi in butter until golden, then mix with pistachio spread for the filling.",
+      "Divide the dough into 50g portions, flatten, and wrap each around a spoonful of filling plus a marshmallow.",
+      "Bake at 175°C for 12–14 minutes until golden (air fryer: 160°C, 10–12 min).",
+      "Cool slightly and tear in half — stretchy marshmallow plus crunchy kataifi is the point."
+    ]
+  },
+  "butterdduk": {
+    "name": "Butter-Grilled Rice Cake",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Chewy rice cake (chapssal-tteok or injeolmi)",
+      "Butter",
+      "Honey",
+      "Roasted soybean powder (optional)"
+    ],
+    "instructions": [
+      "Melt half the butter in a pan over medium-low heat and add the rice cakes.",
+      "Grill 4–5 minutes per side until crisp and golden, adding the rest of the butter as you go.",
+      "Plate, drizzle with honey and dust with soybean powder. Crispy outside, chewy inside."
+    ]
+  },
+  "crookie": {
+    "name": "Crookie (Croissant Cookie)",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Croissants",
+      "Cookie dough",
+      "Chocolate chips",
+      "Powdered sugar (optional)"
+    ],
+    "instructions": [
+      "Slice each croissant open sideways and spread half the cookie dough inside.",
+      "Top the croissant with the remaining dough and stud with chocolate chips.",
+      "Bake at 170°C for 12–15 minutes until the dough turns golden (air fryer: 160°C, 10 min).",
+      "Cool briefly and dust with powdered sugar — cookie outside, flaky layers inside."
+    ]
+  },
+  "yogurtbark": {
+    "name": "Frozen Yogurt Bark",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Greek yogurt",
+      "Honey",
+      "Strawberries",
+      "Blueberries",
+      "Granola"
+    ],
+    "instructions": [
+      "Mix Greek yogurt with honey and spread 1cm thick on a lined tray.",
+      "Scatter sliced strawberries, blueberries and granola on top, pressing lightly.",
+      "Freeze 3+ hours, then snap into shards. A low-calorie ice cream stand-in."
+    ]
+  },
+  "pringleschoco": {
+    "name": "Pringles Chocolate Block",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Pringles (1 can)",
+      "Dark chocolate",
+      "Heavy cream"
+    ],
+    "instructions": [
+      "Finely chop the chocolate and melt with cream over a double boiler (or microwave in 30s bursts).",
+      "Leave the chips in the can and slowly pour the melted chocolate in, filling the gaps.",
+      "Chill the whole can for 4+ hours.",
+      "Cut the can away with scissors to reveal a chocolate cylinder. Slice for the cross-section shot."
+    ]
+  },
+  "mangosago": {
+    "name": "Mango Pomelo Sago",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Mango",
+      "Pomelo (or grapefruit)",
+      "Coconut milk",
+      "Milk",
+      "Sago pearls (tapioca)",
+      "Sugar"
+    ],
+    "instructions": [
+      "Boil sago pearls 12–15 minutes, then cover and rest until translucent. Rinse in cold water.",
+      "Blend 200g of mango with milk, coconut milk and sugar for the mango base.",
+      "Pour the base into bowls and add the sago pearls.",
+      "Top with diced mango and pomelo segments. Serve chilled — Hong Kong dessert classic."
+    ]
+  },
+  "bamtiramisu": {
+    "name": "Chestnut Tiramisu",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Mascarpone cheese",
+      "Heavy cream",
+      "Sugar",
+      "Ladyfingers (savoiardi)",
+      "Espresso (or strong coffee)",
+      "Candied chestnuts",
+      "Cocoa powder"
+    ],
+    "instructions": [
+      "Whip cream with sugar until stiff, fold in mascarpone, then fold in half the chopped chestnuts.",
+      "Dip ladyfingers in espresso for just 1 second per side and line the dish.",
+      "Layer: half the cream, dipped ladyfingers, then the remaining cream.",
+      "Chill 4+ hours, dust with cocoa and top with chestnuts — the convenience-store hit, homemade."
+    ]
+  },
+  "ubelatte": {
+    "name": "Ube Latte",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Ube powder",
+      "Milk",
+      "Condensed milk",
+      "Ice"
+    ],
+    "instructions": [
+      "Whisk ube powder with 30ml hot water into a smooth paste.",
+      "Mix the paste with condensed milk and spoon into the bottom of a glass.",
+      "Fill with ice and slowly pour in milk for a purple gradient. Stir before drinking."
+    ]
+  },
+  "pestoegg": {
+    "name": "Pesto Egg Toast",
+    "category": "Western",
+    "ingredients": [
+      "Eggs",
+      "Basil pesto",
+      "Sourdough bread (or toast)",
+      "Cherry tomatoes",
+      "Parmesan cheese"
+    ],
+    "instructions": [
+      "Spread a spoonful of pesto in a pan instead of oil and warm over medium-low heat.",
+      "When the pesto sizzles, crack the eggs on top and fry them in it.",
+      "Toast the bread, spread with a little more pesto, and slide the pesto eggs on.",
+      "Top with halved cherry tomatoes and grated parmesan — the TikTok pan-changer."
+    ]
+  },
+  "cottageflatbread": {
+    "name": "Cottage Cheese Flatbread",
+    "category": "Western",
+    "ingredients": [
+      "Cottage cheese",
+      "Eggs",
+      "Starch (or flour)",
+      "Salt",
+      "Avocado for topping (optional)",
+      "Everything seasoning (optional)"
+    ],
+    "instructions": [
+      "Blend cottage cheese, eggs, starch and salt until smooth.",
+      "Spread the batter thin on a parchment-lined baking tray.",
+      "Bake at 180°C for 25–30 minutes until the edges brown.",
+      "Cool, peel off, add toppings like avocado and roll it up. High-protein, low-carb bread swap."
+    ]
+  },
+  "cucumbersalad": {
+    "name": "TikTok Smashed Cucumber Salad",
+    "category": "Asian",
+    "ingredients": [
+      "Cucumbers",
+      "Soy sauce",
+      "Vinegar",
+      "Sugar",
+      "Chili oil",
+      "Garlic (minced)",
+      "Sesame seeds"
+    ],
+    "instructions": [
+      "Smash the cucumbers with a rolling pin, cut into chunks, salt for 10 minutes and squeeze out water.",
+      "Mix soy sauce, vinegar, sugar, chili oil and garlic for the dressing.",
+      "Shake cucumbers and dressing together in a container. Sprinkle with sesame seeds.",
+      "Chill 30 minutes for best flavor — the 'whole cucumber, gone' viral salad."
+    ]
+  },
+  "carrotrape": {
+    "name": "Carottes Râpées Sandwich",
+    "category": "Western",
+    "ingredients": [
+      "Carrots",
+      "Olive oil",
+      "Lemon juice",
+      "Whole-grain mustard",
+      "Honey",
+      "Salt",
+      "Ciabatta (or toast)",
+      "Cream cheese"
+    ],
+    "instructions": [
+      "Julienne the carrots, salt for 10 minutes and squeeze dry.",
+      "Toss with olive oil, lemon juice, mustard and honey (rest half a day in the fridge for best results).",
+      "Split the ciabatta and spread generously with cream cheese.",
+      "Pile in the carrot slaw. Keeps 5 days chilled — great for meal prep."
+    ]
+  },
+  "sundubuyeol": {
+    "name": "Silken Tofu Yeol Ramen",
+    "category": "Korean",
+    "ingredients": [
+      "Yeol ramen (spicy ramen)",
+      "Silken tofu",
+      "Egg",
+      "Green onion",
+      "Red pepper flakes (optional)"
+    ],
+    "instructions": [
+      "Boil 500ml water and cook the noodles with both soup packets for 2 minutes.",
+      "Add a whole block of silken tofu, breaking it into chunks; boil 1 more minute.",
+      "Add an egg and cook it soft; top with sliced green onion.",
+      "Baek Jong-won's hangover-friendly classic — the tofu soaks up the broth."
+    ]
+  },
+  "smashtaco": {
+    "name": "Smash Burger Taco",
+    "category": "Western",
+    "ingredients": [
+      "Ground beef",
+      "Tortillas",
+      "Cheddar cheese",
+      "Onion",
+      "Lettuce",
+      "Pickles",
+      "Mayonnaise",
+      "Ketchup",
+      "Mustard"
+    ],
+    "instructions": [
+      "Shape beef into 50g balls, season with salt and pepper. Mix mayo, ketchup, mustard and chopped pickles for burger sauce.",
+      "Place a ball on a hot pan, press a tortilla on top, and smash hard so the patty fuses to it.",
+      "Sear the meat side 2–3 minutes until crusty, flip, top with cheese and cook 30 seconds.",
+      "Add lettuce, onion and sauce, fold in half. Smash-burger crust in taco form."
+    ]
+  },
+  "mararose": {
+    "name": "Mala Rosé Tteokbokki",
+    "category": "Korean",
+    "ingredients": [
+      "Tteokbokki rice cakes",
+      "Fish cakes",
+      "Mala sauce",
+      "Gochujang",
+      "Milk",
+      "Heavy cream",
+      "Sugar",
+      "Mozzarella (optional)"
+    ],
+    "instructions": [
+      "Combine milk and cream in a pan; dissolve mala sauce, gochujang and sugar for the rosé base.",
+      "Add rice cakes and fish cakes and simmer 8–10 minutes, stirring, until the sauce thickens.",
+      "Balance the numbing mala heat with the creamy rosé; adjust mala sauce to taste.",
+      "Top with mozzarella and melt. The next act after the mala-tang craze."
+    ]
+  },
+  "eggjang": {
+    "name": "Cream Cheese Mayak Eggs",
+    "category": "Korean",
+    "ingredients": [
+      "Eggs",
+      "Cream cheese",
+      "Soy sauce",
+      "Water",
+      "Sugar",
+      "Green onion",
+      "Chili pepper",
+      "Sesame seeds"
+    ],
+    "instructions": [
+      "Boil eggs for 6 minutes 30 seconds, chill in ice water and peel.",
+      "Mix soy sauce, water and sugar; add chopped green onion and chili for the brine.",
+      "Put eggs and cubed cream cheese in a container, pour over the brine, and marinate 6+ hours.",
+      "Halve an egg over rice with cream cheese and brine — a salty-creamy rice thief."
+    ]
+  },
+  "smashedpotato": {
+    "name": "Crispy Smashed Potatoes",
+    "category": "Western",
+    "ingredients": [
+      "Baby potatoes",
+      "Olive oil",
+      "Parmesan cheese",
+      "Garlic",
+      "Rosemary (optional)",
+      "Sour cream",
+      "Truffle oil (optional)"
+    ],
+    "instructions": [
+      "Boil baby potatoes in salted water for 15 minutes until tender.",
+      "Place on a baking tray and smash flat with the bottom of a cup — more cracks, more crunch.",
+      "Top with olive oil, minced garlic, parmesan and rosemary; roast at 220°C for 25 minutes until crispy.",
+      "Serve with sour cream and a drizzle of truffle oil. Crispy-edge potato perfection."
+    ]
+  },
+  "earlgreyhighball": {
+    "name": "Earl Grey Highball",
+    "category": "Dessert & Drinks",
+    "ingredients": [
+      "Whisky",
+      "Earl Grey tea bag",
+      "Tonic water",
+      "Lemon",
+      "Honey syrup",
+      "Ice"
+    ],
+    "instructions": [
+      "Cold-steep an Earl Grey tea bag in 45ml whisky for 30 minutes — no longer, or it turns bitter.",
+      "Fill a highball glass with ice, add the infused whisky and honey syrup, and stir gently.",
+      "Pour tonic water slowly down the side of the glass to keep the fizz.",
+      "Garnish with a lemon slice. Tea highballs are the next step in home bartending."
+    ]
+  }
+}
