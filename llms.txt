@@ -34,3 +34,16 @@
 - [크리스피 스매시드 포테이토](https://recipe.cocy.io/?r=smashedpotato)
 - [얼그레이 하이볼](https://recipe.cocy.io/?r=earlgreyhighball)
 - [마라 로제 찜닭](https://recipe.cocy.io/?r=mararosejjimdak)
+- [멘보샤](https://recipe.cocy.io/?r=menbosha)
+- [깐풍기](https://recipe.cocy.io/?r=kkanpunggi)
+- [참치마요 덮밥](https://recipe.cocy.io/?r=chamchimayo)
+- [중화풍 가지덮밥](https://recipe.cocy.io/?r=gajidupbap)
+- [스푼 파스타](https://recipe.cocy.io/?r=spoonpasta)
+- [간장버터 계란밥](https://recipe.cocy.io/?r=ganjangbutter)
+- [연어 오차즈케](https://recipe.cocy.io/?r=ochazuke)
+- [김치 크림 파스타](https://recipe.cocy.io/?r=kimchicream)
+- [굴소스 버터 새우](https://recipe.cocy.io/?r=garlicshrimp)
+- [스팸 김치볶음밥](https://recipe.cocy.io/?r=spamkimchibokkeum)
+
+## 언어
+- 한국어(기본) / English `?lang=en` / 繁體中文 `?lang=tw`

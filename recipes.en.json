@@ -495,5 +495,246 @@
       "Pour in the cream and milk, add the soaked noodles and simmer 5-7 more minutes until the sauce thickens.",
       "Melt a slice of cheese on top and finish with green onion. Adjust the heat with the amount of mala sauce — add 50ml more milk if it's too spicy."
     ]
+  },
+  "menbosha": {
+    "name": "Menbosha (Fried Shrimp Toast)",
+    "category": "Chinese",
+    "ingredients": [
+      "White bread",
+      "Raw shrimp",
+      "Egg white",
+      "Starch",
+      "Cooking wine",
+      "Salt",
+      "Black pepper",
+      "Ketchup",
+      "Vinegar",
+      "Oyster sauce",
+      "Sugar",
+      "Frying oil"
+    ],
+    "instructions": [
+      "Trim the crusts and cut each slice into quarters — 16 pieces total. Freezing the bread briefly gives clean cuts.",
+      "Pat the shrimp completely dry and chop coarsely with the flat of a knife; a little texture is better than a paste.",
+      "Mix the shrimp with egg white, starch, cooking wine, salt and pepper, stirring one direction until sticky.",
+      "Mound the filling on one square of bread, cap with another and press the edges to seal.",
+      "Fry first at 130°C until pale gold, then rest for 3 minutes.",
+      "Raise the oil to 190°C and fry again for 10-20 seconds for a crisp shell.",
+      "Stir ketchup, vinegar, oyster sauce and sugar into a dipping sauce. Chef Lee Yeon-bok's signature dish."
+    ]
+  },
+  "kkanpunggi": {
+    "name": "Kkanpunggi (Sweet & Spicy Fried Chicken)",
+    "category": "Chinese",
+    "ingredients": [
+      "Boneless chicken thigh",
+      "Starch",
+      "Egg",
+      "Cheongyang chili",
+      "Green onion",
+      "Minced garlic",
+      "Soy sauce",
+      "Vinegar",
+      "Sugar",
+      "Water",
+      "Red pepper flakes",
+      "Frying oil"
+    ],
+    "instructions": [
+      "Cut the chicken into bite-size pieces and season with a little soy sauce and pepper for 10 minutes.",
+      "Mix egg and starch into a thick batter that coats without running.",
+      "Fry at 170°C, drain, then fry again at 190°C until crisp.",
+      "Premix soy sauce, vinegar, sugar and water — sour and sweet should carry equal weight.",
+      "Sauté minced garlic, sliced chili and green onion in oil until fragrant.",
+      "Pour in the sauce, reduce over high heat, then toss the fried chicken in quickly.",
+      "Almost no liquid should remain. Adjust heat with the pepper flakes."
+    ]
+  },
+  "chamchimayo": {
+    "name": "Tuna Mayo Rice Bowl",
+    "category": "Korean",
+    "ingredients": [
+      "Cooked rice",
+      "Canned tuna",
+      "Mayonnaise",
+      "Onion",
+      "Eggs",
+      "Soy sauce",
+      "Sugar",
+      "Cooking wine",
+      "Minced garlic",
+      "Seaweed flakes",
+      "Perilla leaves"
+    ],
+    "instructions": [
+      "Press the tuna hard and drain every drop of oil — skip this and the whole bowl turns greasy.",
+      "Slice half the onion and finely dice the other half.",
+      "Sauté the garlic and sliced onion in oil until translucent.",
+      "Add soy sauce, sugar and cooking wine; kill the heat once it bubbles.",
+      "Beat the eggs with a pinch of salt and cook into a soft scramble.",
+      "Mix the drained tuna with the diced onion, mayonnaise and a little pepper.",
+      "Layer the onion sauce, tuna mayo and scrambled egg over rice; finish with mayo, seaweed flakes and shredded perilla."
+    ]
+  },
+  "gajidupbap": {
+    "name": "Chinese-Style Eggplant Rice Bowl",
+    "category": "Chinese",
+    "ingredients": [
+      "Eggplant",
+      "Ground pork",
+      "Cooked rice",
+      "Green onion",
+      "Minced garlic",
+      "Oyster sauce",
+      "Soy sauce",
+      "Sugar",
+      "Chili oil",
+      "Starch slurry",
+      "Water"
+    ],
+    "instructions": [
+      "Cut the eggplant into batons, soak in salted water for 5 minutes and squeeze dry — it absorbs far less oil this way.",
+      "Heat chili oil and fry the garlic and green onion until fragrant.",
+      "Add the ground pork and stir-fry over high heat until it changes colour.",
+      "Add the eggplant and stir-fry until the surface softens.",
+      "Pour in oyster sauce, soy sauce, sugar and water and simmer 2-3 minutes.",
+      "Thicken with the starch slurry and spoon over rice."
+    ]
+  },
+  "spoonpasta": {
+    "name": "Spoon Pasta",
+    "category": "Western",
+    "ingredients": [
+      "Spaghetti",
+      "Cherry tomatoes",
+      "Bacon",
+      "Onion",
+      "Minced garlic",
+      "Olive oil",
+      "Parmigiano",
+      "Pasta water",
+      "Salt",
+      "Basil"
+    ],
+    "instructions": [
+      "Snap the spaghetti in half and boil one minute under the package time — short strands are what make it spoonable.",
+      "Crisp the bacon in olive oil, then sauté the garlic and onion.",
+      "Halve the cherry tomatoes, add them and crush with a spatula to build the sauce.",
+      "Loosen with pasta water, add the noodles and toss for 30 seconds.",
+      "Grate in the cheese off the heat and fold it through.",
+      "Serve in a deep bowl with basil — eaten with a spoon, Chef Choi Hyun-seok style."
+    ]
+  },
+  "ganjangbutter": {
+    "name": "Soy Butter Egg Rice",
+    "category": "Korean",
+    "ingredients": [
+      "Cooked rice",
+      "Eggs",
+      "Butter",
+      "Soy sauce",
+      "Sugar",
+      "Green onion",
+      "Seaweed flakes",
+      "Sesame oil"
+    ],
+    "instructions": [
+      "Melt the butter and fry the sliced green onion to flavour the fat.",
+      "Crack in the eggs and fry sunny-side up until the whites crisp at the edges.",
+      "Drizzle soy sauce and sugar around the rim of the pan so they caramelise — that aroma is the whole point.",
+      "Slide the eggs and sauce over hot rice, add sesame oil and seaweed flakes, and mix."
+    ]
+  },
+  "ochazuke": {
+    "name": "Salmon Ochazuke",
+    "category": "Japanese",
+    "ingredients": [
+      "Cooked rice",
+      "Smoked salmon",
+      "Green tea bag",
+      "Hot water",
+      "Soy sauce",
+      "Wasabi",
+      "Seaweed flakes",
+      "Chives",
+      "Sesame seeds"
+    ],
+    "instructions": [
+      "Steep the green tea bag in hot water for 2 minutes for a slightly strong brew.",
+      "Put warm rice in a bowl and drape the smoked salmon over it.",
+      "Add a circle of soy sauce and a dab of wasabi in the centre.",
+      "Pour the tea until the rice is half submerged; top with seaweed, chives and sesame. Good for a hangover too."
+    ]
+  },
+  "kimchicream": {
+    "name": "Kimchi Cream Pasta",
+    "category": "Western",
+    "ingredients": [
+      "Spaghetti",
+      "Well-fermented kimchi",
+      "Heavy cream",
+      "Milk",
+      "Bacon",
+      "Onion",
+      "Minced garlic",
+      "Olive oil",
+      "Parmigiano",
+      "Pasta water"
+    ],
+    "instructions": [
+      "Shake the seasoning off the kimchi and chop it small — the more sour, the better.",
+      "Boil the spaghetti one minute under the package time.",
+      "Sauté bacon, garlic and onion in olive oil.",
+      "Add the kimchi and fry a full 3 minutes to cook off the sharp acidity; skip this and it never marries with the cream.",
+      "Pour in the cream and milk and reduce over low heat for 5 minutes.",
+      "Add the pasta and pasta water to set the consistency, then grate cheese over the top."
+    ]
+  },
+  "garlicshrimp": {
+    "name": "Garlic Butter Oyster-Sauce Shrimp",
+    "category": "Asian",
+    "ingredients": [
+      "Raw shrimp",
+      "Butter",
+      "Minced garlic",
+      "Oyster sauce",
+      "Soy sauce",
+      "Sugar",
+      "Cheongyang chili",
+      "Green onion",
+      "Black pepper"
+    ],
+    "instructions": [
+      "Pat the shrimp dry and season with pepper — leftover water will steam instead of sear.",
+      "Melt the butter and fry the garlic slowly until golden.",
+      "Turn the heat up and cook the shrimp for 2 minutes until the surface turns pink.",
+      "Add oyster sauce, soy sauce and sugar and toss for just 30 seconds; longer and the shrimp turns rubbery.",
+      "Finish with sliced chili and green onion."
+    ]
+  },
+  "spamkimchibokkeum": {
+    "name": "Spam Kimchi Fried Rice",
+    "category": "Korean",
+    "ingredients": [
+      "Cooked rice",
+      "Spam",
+      "Well-fermented kimchi",
+      "Kimchi brine",
+      "Green onion",
+      "Eggs",
+      "Gochujang",
+      "Sugar",
+      "Cooking oil",
+      "Sesame oil",
+      "Seaweed flakes"
+    ],
+    "instructions": [
+      "Dice the Spam and sear it in a dry pan until browned, letting the fat render out.",
+      "Fry the green onion in that fat, then stir-fry the chopped kimchi for 3 minutes.",
+      "Add gochujang, sugar and kimchi brine and fry one more minute.",
+      "Add the rice and press it into the kimchi with the spatula until evenly coated.",
+      "Return the Spam, drizzle sesame oil and fold through.",
+      "Top with a fried egg and seaweed flakes."
+    ]
   }
 }

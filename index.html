@@ -27,7 +27,7 @@
   }
   </script>
   <script type="application/ld+json" id="recipe-jsonld"></script>
-  <meta name="build-id" content="2026-08-07-recipe-v5-mararosejjimdak">
+  <meta name="build-id" content="2026-08-07-recipe-v6-tw-nengbu">
   <meta name="theme-color" content="#9A3412">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Recipe Cocy">
@@ -713,6 +713,16 @@
       <li><a href="?r=smashedpotato">크리스피 스매시드 포테이토</a></li>
       <li><a href="?r=earlgreyhighball">얼그레이 하이볼</a></li>
       <li><a href="?r=mararosejjimdak">마라 로제 찜닭</a></li>
+      <li><a href="?r=menbosha">멘보샤</a></li>
+      <li><a href="?r=kkanpunggi">깐풍기</a></li>
+      <li><a href="?r=chamchimayo">참치마요 덮밥</a></li>
+      <li><a href="?r=gajidupbap">중화풍 가지덮밥</a></li>
+      <li><a href="?r=spoonpasta">스푼 파스타</a></li>
+      <li><a href="?r=ganjangbutter">간장버터 계란밥</a></li>
+      <li><a href="?r=ochazuke">연어 오차즈케</a></li>
+      <li><a href="?r=kimchicream">김치 크림 파스타</a></li>
+      <li><a href="?r=garlicshrimp">굴소스 버터 새우</a></li>
+      <li><a href="?r=spamkimchibokkeum">스팸 김치볶음밥</a></li>
       <li><a href="?r=kimchistew">백종원 돼지고기 김치찌개</a></li>
       <li><a href="?r=doenjangstew">고깃집 된장찌개</a></li>
       <li><a href="?r=buldakramen">지락실 불닭볶음면</a></li>
@@ -782,14 +792,41 @@
         metaRecipe: (r, ings) => `How to make ${r} — ingredients: ${ings}. With serving calculator and step timers.`,
         voiceNext: "next", voicePrev: "previous",
         speechLang: "en-US",
-        unitMap: { "개": "pc", "장": "slice", "봉": "pack", "통": "can", "방울": "drops", "큰술": "tbsp", "작은술": "tsp", "인분": "serv." },
+        unitMap: { "개": "pc", "장": "slice", "봉": "pack", "통": "can", "방울": "drops", "큰술": "tbsp", "작은술": "tsp", "인분": "serv.", "공기": "bowl", "포기": "head" },
+      },
+      tw: {
+        random: "隨機", voiceStart: "語音", voiceStop: "停止語音",
+        heroTitle: "今天煮什麼？只收錄正在紅的食譜。",
+        heroSub: "從杜拜巧克力到韓式泡菜鍋 — 話題料理，附份量換算與分段計時器。",
+        searchPh: "搜尋食譜（例如：杜拜、泡菜）",
+        diffAll: "全部難度", diffEasy: "簡單", diffMedium: "普通", diffHard: "困難",
+        sortName: "依名稱", sortTime: "依烹調時間", favOnly: "收藏",
+        emptyNote: "沒有符合條件的食譜。",
+        backToList: "全部食譜", fav: "收藏", favOn: "已收藏",
+        servings: "人份", ingredients: "食材", steps: "步驟",
+        ingHint: "點一下食材就能打勾", allRecipes: "全部食譜",
+        catAll: "全部", minutes: "分鐘", servingsUnit: "人份",
+        diffLabel: { easy: "簡單", medium: "普通", hard: "困難" },
+        toastFavAdd: "已加入收藏", toastFavDel: "已取消收藏",
+        toastTimerStart: (l) => `${l} 計時開始`, toastTimerEnd: (l) => `${l} 時間到`,
+        speakTimerStart: (l) => `開始 ${l} 計時。`, speakTimerEnd: (l) => `${l} 已經過了。`,
+        toastRandom: (n) => `推薦：${n}`, toastServings: (n) => `已設定為 ${n} 人份`,
+        toastOffline: "已從離線快取載入", toastVoiceOn: "語音控制開啟", toastVoiceOff: "語音控制關閉",
+        toastNoVoice: "此瀏覽器不支援語音辨識", toastVoiceFail: "語音辨識啟動失敗",
+        toastInitFail: "初始化失敗", timerSuffix: "計時器",
+        metaHome: "從杜拜巧克力到韓式泡菜鍋，網路上正紅的話題食譜總整理。份量自動換算、分段計時器、語音控制，完全免費。",
+        titleHome: "Recipe Cocy — 正在紅的話題食譜",
+        metaRecipe: (r, ings) => `${r} 怎麼做 — 食材：${ings}。附份量自動換算與分段計時器。`,
+        voiceNext: "下一步", voicePrev: "上一步",
+        speechLang: "zh-TW",
+        unitMap: { "개": "個", "장": "片", "봉": "包", "통": "罐", "방울": "滴", "큰술": "大匙", "작은술": "小匙", "인분": "人份", "공기": "碗", "포기": "顆" },
       }
     };
 
     const state = {
       lang: "ko",
       recipes: {},
-      enOverlay: {},
+      overlays: { en: {}, tw: {} },
       keys: [],
       filteredKeys: [],
       currentKey: null,
@@ -819,25 +856,23 @@
     const t = (key) => I18N[state.lang][key] ?? I18N.ko[key] ?? key;
 
     /* ---------- i18n helpers ---------- */
+    const LANGS = ["ko", "en", "tw"];
+    const ov = (key) => (state.lang === "ko" ? null : state.overlays[state.lang]?.[key]);
     function rName(key) {
-      if (state.lang === "en" && state.enOverlay[key]?.name) return state.enOverlay[key].name;
-      return state.recipes[key]?.name || key;
+      return ov(key)?.name || state.recipes[key]?.name || key;
     }
     function rCategory(key) {
-      if (state.lang === "en" && state.enOverlay[key]?.category) return state.enOverlay[key].category;
-      return state.recipes[key]?.category || "기타";
+      return ov(key)?.category || state.recipes[key]?.category || "기타";
     }
     function rIngredientName(key, idx) {
-      if (state.lang === "en" && state.enOverlay[key]?.ingredients?.[idx]) return state.enOverlay[key].ingredients[idx];
-      return state.recipes[key]?.ingredients?.[idx]?.name || "";
+      return ov(key)?.ingredients?.[idx] || state.recipes[key]?.ingredients?.[idx]?.name || "";
     }
     function rInstruction(key, idx) {
-      if (state.lang === "en" && state.enOverlay[key]?.instructions?.[idx]) return state.enOverlay[key].instructions[idx];
-      return state.recipes[key]?.instructions?.[idx]?.description || "";
+      return ov(key)?.instructions?.[idx] || state.recipes[key]?.instructions?.[idx]?.description || "";
     }
     function rUnit(unit) {
-      if (state.lang === "en") return I18N.en.unitMap[unit] || unit;
-      return unit;
+      if (state.lang === "ko") return unit;
+      return I18N[state.lang].unitMap[unit] || unit;
     }
 
     function applyStaticI18n() {
@@ -849,8 +884,11 @@
       document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
         el.placeholder = t(el.dataset.i18nPlaceholder);
       });
-      els.langToggle.textContent = state.lang === "ko" ? "EN" : "KO";
-      els.langToggle.setAttribute("aria-label", state.lang === "ko" ? "Switch to English" : "한국어로 전환");
+      document.documentElement.lang = state.lang === "tw" ? "zh-Hant" : state.lang;
+      const nextLang = LANGS[(LANGS.indexOf(state.lang) + 1) % LANGS.length];
+      const LABEL = { ko: "한국어", en: "EN", tw: "繁中" };
+      els.langToggle.textContent = LABEL[nextLang];
+      els.langToggle.setAttribute("aria-label", `Switch to ${LABEL[nextLang]}`);
       els.sortBtn.textContent = state.sortMode === "name" ? t("sortName") : t("sortTime");
       els.voiceToggle.textContent = state.voiceOn ? t("voiceStop") : t("voiceStart");
     }
@@ -861,7 +899,7 @@
       els.metaDescription.setAttribute("content", t("metaHome"));
       els.ogTitle.setAttribute("content", t("titleHome"));
       els.ogDescription.setAttribute("content", t("metaHome"));
-      const url = "https://recipe.cocy.io/" + (state.lang === "en" ? "?lang=en" : "");
+      const url = "https://recipe.cocy.io/" + (state.lang === "ko" ? "" : `?lang=${state.lang}`);
       els.canonicalLink.setAttribute("href", url);
       els.ogUrl.setAttribute("content", url);
       els.recipeJsonld.textContent = "";
@@ -878,7 +916,7 @@
       els.metaDescription.setAttribute("content", desc);
       els.ogTitle.setAttribute("content", title);
       els.ogDescription.setAttribute("content", desc);
-      const url = `https://recipe.cocy.io/?r=${key}` + (state.lang === "en" ? "&lang=en" : "");
+      const url = `https://recipe.cocy.io/?r=${key}` + (state.lang === "ko" ? "" : `&lang=${state.lang}`);
       els.canonicalLink.setAttribute("href", url);
       els.ogUrl.setAttribute("content", url);
       els.recipeJsonld.textContent = JSON.stringify({
@@ -886,7 +924,7 @@
         "@type": "Recipe",
         "name": name,
         "url": url,
-        "inLanguage": state.lang,
+        "inLanguage": state.lang === "tw" ? "zh-Hant" : state.lang,
         "recipeCategory": rCategory(key),
         "recipeYield": `${recipe.servings}${t("servingsUnit")}`,
         "cookTime": `PT${recipe.cook_time_minutes || 25}M`,
@@ -902,7 +940,7 @@
     function currentUrl() {
       const params = new URLSearchParams();
       if (state.currentKey && !els.detailView.hidden) params.set("r", state.currentKey);
-      if (state.lang === "en") params.set("lang", "en");
+      if (state.lang !== "ko") params.set("lang", state.lang);
       const q = params.toString();
       return q ? `?${q}` : "./";
     }
@@ -1041,12 +1079,16 @@
         els.catRow.appendChild(btn);
       };
       make("all", t("catAll"));
-      [...cats].forEach((c) => make(c, state.lang === "en" ? (catEn(c) || c) : c));
+      [...cats].forEach((c) => make(c, catLocal(c)));
     }
 
-    function catEn(koCat) {
-      const map = { "한식": "Korean", "양식": "Western", "아시안": "Asian", "중식": "Chinese", "일식": "Japanese", "디저트/음료": "Dessert & Drinks", "기타": "Others" };
-      return map[koCat];
+    const CAT_MAP = {
+      en: { "한식": "Korean", "양식": "Western", "아시안": "Asian", "중식": "Chinese", "일식": "Japanese", "디저트/음료": "Dessert & Drinks", "기타": "Others" },
+      tw: { "한식": "韓式", "양식": "西式", "아시안": "亞洲", "중식": "中式", "일식": "日式", "디저트/음료": "甜點/飲品", "기타": "其他" },
+    };
+    function catLocal(koCat) {
+      if (state.lang === "ko") return koCat;
+      return CAT_MAP[state.lang]?.[koCat] || koCat;
     }
 
     function renderGrid() {
@@ -1056,13 +1098,13 @@
         const recipe = state.recipes[key];
         const card = document.createElement("a");
         card.className = "card";
-        card.href = `?r=${key}${state.lang === "en" ? "&lang=en" : ""}`;
+        card.href = `?r=${key}${state.lang === "ko" ? "" : "&lang=" + state.lang}`;
         card.style.setProperty("--card-color", recipe.color || "#9A3412");
         card.style.textDecoration = "none";
         card.innerHTML = `
           <div class="card-art" aria-hidden="true">${recipe.emoji || "🍽️"}</div>
           <div class="card-body">
-            <div class="card-cat">${escapeHtml(state.lang === "en" ? (catEn(recipe.category) || recipe.category) : (recipe.category || "기타"))}</div>
+            <div class="card-cat">${escapeHtml(catLocal(recipe.category || "기타"))}</div>
             <h3 class="card-name">${escapeHtml(rName(key))}</h3>
             <div class="card-meta">
               <span>${CLOCK_SVG}${recipe.cook_time_minutes || "-"}${t("minutes")}</span>
@@ -1115,7 +1157,7 @@
       const recipeColor = recipe.color || "#9A3412";
       document.documentElement.style.setProperty("--recipe-accent", recipeColor);
       els.detailEmoji.textContent = recipe.emoji || "🍽️";
-      els.detailCat.textContent = state.lang === "en" ? (catEn(recipe.category) || recipe.category) : (recipe.category || "기타");
+      els.detailCat.textContent = catLocal(recipe.category || "기타");
       els.recipeTitle.textContent = rName(key);
       els.servingsInput.value = state.currentServings;
 
@@ -1187,8 +1229,9 @@
       if (q) {
         keys = keys.filter((key) => {
           const ko = state.recipes[key].name.toLowerCase();
-          const en = (state.enOverlay[key]?.name || "").toLowerCase();
-          return ko.includes(q) || en.includes(q) || key.includes(q);
+          const en = (state.overlays.en[key]?.name || "").toLowerCase();
+          const tw = (state.overlays.tw[key]?.name || "").toLowerCase();
+          return ko.includes(q) || en.includes(q) || tw.includes(q) || key.includes(q);
         });
       }
       if (state.categoryFilter !== "all") {
@@ -1211,7 +1254,7 @@
 
     /* ---------- language ---------- */
     function setLang(lang, rerender) {
-      state.lang = lang === "en" ? "en" : "ko";
+      state.lang = LANGS.includes(lang) ? lang : "ko";
       localStorage.setItem("lang", state.lang);
       applyStaticI18n();
       if (rerender) {
@@ -1350,7 +1393,7 @@
       });
 
       els.voiceToggle.addEventListener("click", toggleVoiceControl);
-      els.langToggle.addEventListener("click", () => setLang(state.lang === "ko" ? "en" : "ko", true));
+      els.langToggle.addEventListener("click", () => setLang(LANGS[(LANGS.indexOf(state.lang) + 1) % LANGS.length], true));
 
       document.body.addEventListener("touchstart", () => { state.ttsAllowed = true; }, { once: true });
       document.body.addEventListener("mousedown", () => { state.ttsAllowed = true; }, { once: true });
@@ -1409,20 +1452,21 @@
       const params = new URLSearchParams(location.search);
       const urlLang = params.get("lang");
       const savedLang = localStorage.getItem("lang");
-      state.lang = urlLang === "en" ? "en" : (urlLang === "ko" ? "ko" : (savedLang === "en" ? "en" : "ko"));
+      state.lang = LANGS.includes(urlLang) ? urlLang : (LANGS.includes(savedLang) ? savedLang : "ko");
 
       bindEvents();
       loadFavorites();
       applyStaticI18n();
 
-      const [recipes, enOverlay] = await Promise.all([
-        fetchJson(`recipes.json?v=20260728`, "recipesCache"),
-        fetchJson(`recipes.en.json?v=20260728`, "recipesEnCache").catch(() => ({})),
+      const [recipes, enOverlay, twOverlay] = await Promise.all([
+        fetchJson(`recipes.json?v=20260807`, "recipesCache"),
+        fetchJson(`recipes.en.json?v=20260807`, "recipesEnCache").catch(() => ({})),
+        fetchJson(`recipes.tw.json?v=20260807`, "recipesTwCache").catch(() => ({})),
       ]);
       const normalized = {};
       Object.entries(recipes).forEach(([key, value]) => { normalized[key] = normalizeRecipe(key, value); });
       state.recipes = normalized;
-      state.enOverlay = enOverlay || {};
+      state.overlays = { en: enOverlay || {}, tw: twOverlay || {} };
       state.keys = Object.keys(normalized);
 
       const saved = parseInt(localStorage.getItem("servings"), 10);

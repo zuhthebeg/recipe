@@ -1832,5 +1832,985 @@
             }
         ],
         "emoji": "🍗"
+    },
+    "menbosha": {
+        "name": "멘보샤",
+        "color": "#E8A33D",
+        "servings": 2,
+        "category": "중식",
+        "difficulty": "medium",
+        "cook_time_minutes": 30,
+        "ingredients": [
+            {
+                "name": "식빵",
+                "amount": 8,
+                "unit": "장",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "생새우살",
+                "amount": 300,
+                "unit": "g",
+                "calories_per_unit": 90
+            },
+            {
+                "name": "달걀흰자",
+                "amount": 1,
+                "unit": "개",
+                "calories_per_unit": 17
+            },
+            {
+                "name": "전분",
+                "amount": 15,
+                "unit": "g",
+                "calories_per_unit": 340
+            },
+            {
+                "name": "맛술",
+                "amount": 8,
+                "unit": "ml",
+                "calories_per_unit": 100
+            },
+            {
+                "name": "소금",
+                "amount": 2,
+                "unit": "g",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "후춧가루",
+                "amount": 1,
+                "unit": "g",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "케첩",
+                "amount": 45,
+                "unit": "g",
+                "calories_per_unit": 100
+            },
+            {
+                "name": "식초",
+                "amount": 15,
+                "unit": "ml",
+                "calories_per_unit": 20
+            },
+            {
+                "name": "굴소스",
+                "amount": 8,
+                "unit": "g",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "설탕",
+                "amount": 12,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "식용유",
+                "amount": 500,
+                "unit": "ml",
+                "calories_per_unit": 900
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "식빵은 테두리를 잘라내고 4등분해 총 16조각을 만듭니다. 살짝 얼려두면 깔끔하게 썰립니다."
+            },
+            {
+                "step": 2,
+                "description": "새우살은 물기를 완전히 닦고 칼 옆면으로 눌러가며 거칠게 다집니다. 알갱이가 조금 살아 있어야 식감이 좋습니다."
+            },
+            {
+                "step": 3,
+                "description": "다진 새우에 달걀흰자, 전분, 맛술, 소금, 후춧가루를 넣고 한 방향으로 치대 끈기를 냅니다."
+            },
+            {
+                "step": 4,
+                "description": "식빵 한 조각에 새우소를 도톰하게 올리고 다른 조각을 덮어 가장자리를 눌러 붙입니다."
+            },
+            {
+                "step": 5,
+                "description": "기름을 130도로 맞춰 노릇해질 때까지 초벌로 튀기고 3분간 꺼내 둡니다."
+            },
+            {
+                "step": 6,
+                "description": "기름을 190도로 올려 10~20초 재빨리 재벌 튀김하면 겉이 바삭해집니다."
+            },
+            {
+                "step": 7,
+                "description": "케첩·식초·굴소스·설탕을 섞어 소스를 만들어 곁들입니다. 이연복 셰프의 냉부해 대표 요리입니다."
+            }
+        ],
+        "emoji": "🍤"
+    },
+    "kkanpunggi": {
+        "name": "깐풍기",
+        "color": "#C0392B",
+        "servings": 2,
+        "category": "중식",
+        "difficulty": "medium",
+        "cook_time_minutes": 35,
+        "ingredients": [
+            {
+                "name": "닭다리살",
+                "amount": 400,
+                "unit": "g",
+                "calories_per_unit": 200
+            },
+            {
+                "name": "전분",
+                "amount": 60,
+                "unit": "g",
+                "calories_per_unit": 340
+            },
+            {
+                "name": "달걀",
+                "amount": 1,
+                "unit": "개",
+                "calories_per_unit": 70
+            },
+            {
+                "name": "청양고추",
+                "amount": 2,
+                "unit": "개",
+                "calories_per_unit": 20
+            },
+            {
+                "name": "대파",
+                "amount": 30,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 15,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "간장",
+                "amount": 30,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "식초",
+                "amount": 20,
+                "unit": "ml",
+                "calories_per_unit": 20
+            },
+            {
+                "name": "설탕",
+                "amount": 25,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "물",
+                "amount": 30,
+                "unit": "ml",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "고춧가루",
+                "amount": 4,
+                "unit": "g",
+                "calories_per_unit": 280
+            },
+            {
+                "name": "식용유",
+                "amount": 500,
+                "unit": "ml",
+                "calories_per_unit": 900
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "닭다리살은 한입 크기로 썰어 간장 약간과 후춧가루로 밑간하고 10분 둡니다."
+            },
+            {
+                "step": 2,
+                "description": "달걀과 전분을 섞어 되직한 튀김옷을 입힙니다. 반죽이 흐르지 않을 정도가 좋습니다."
+            },
+            {
+                "step": 3,
+                "description": "170도 기름에 튀겨 건진 뒤, 190도에서 한 번 더 튀겨 바삭하게 만듭니다."
+            },
+            {
+                "step": 4,
+                "description": "간장·식초·설탕·물을 미리 섞어 깐풍 소스를 만들어 둡니다. 신맛과 단맛이 같은 무게로 잡혀야 합니다."
+            },
+            {
+                "step": 5,
+                "description": "팬에 기름을 두르고 다진 마늘, 송송 썬 청양고추와 대파를 볶아 향을 냅니다."
+            },
+            {
+                "step": 6,
+                "description": "소스를 붓고 센 불에서 자글자글 졸인 뒤 튀긴 닭을 넣고 재빨리 버무립니다."
+            },
+            {
+                "step": 7,
+                "description": "국물이 거의 없어야 제대로 된 깐풍기입니다. 고춧가루로 매운맛을 조절하세요."
+            }
+        ],
+        "emoji": "🍗"
+    },
+    "chamchimayo": {
+        "name": "참치마요 덮밥",
+        "color": "#F0A202",
+        "servings": 2,
+        "category": "한식",
+        "difficulty": "easy",
+        "cook_time_minutes": 15,
+        "ingredients": [
+            {
+                "name": "밥",
+                "amount": 2,
+                "unit": "공기",
+                "calories_per_unit": 300
+            },
+            {
+                "name": "참치캔",
+                "amount": 1,
+                "unit": "개",
+                "calories_per_unit": 250
+            },
+            {
+                "name": "마요네즈",
+                "amount": 40,
+                "unit": "g",
+                "calories_per_unit": 700
+            },
+            {
+                "name": "양파",
+                "amount": 100,
+                "unit": "g",
+                "calories_per_unit": 40
+            },
+            {
+                "name": "달걀",
+                "amount": 2,
+                "unit": "개",
+                "calories_per_unit": 70
+            },
+            {
+                "name": "간장",
+                "amount": 30,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "설탕",
+                "amount": 10,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "맛술",
+                "amount": 20,
+                "unit": "ml",
+                "calories_per_unit": 100
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "김가루",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "깻잎",
+                "amount": 4,
+                "unit": "장",
+                "calories_per_unit": 5
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "참치캔은 기름을 꽉 눌러 완전히 빼냅니다. 이걸 대충 하면 전체가 느끼해집니다."
+            },
+            {
+                "step": 2,
+                "description": "양파 절반은 채 썰고 절반은 잘게 다집니다."
+            },
+            {
+                "step": 3,
+                "description": "팬에 기름을 두르고 다진 마늘과 채 썬 양파를 투명해질 때까지 볶습니다."
+            },
+            {
+                "step": 4,
+                "description": "간장·설탕·맛술을 넣고 자글자글 끓어오르면 불을 끕니다."
+            },
+            {
+                "step": 5,
+                "description": "달걀은 소금 한 꼬집을 넣고 풀어 부드러운 스크램블로 만듭니다."
+            },
+            {
+                "step": 6,
+                "description": "기름 뺀 참치에 다진 양파와 마요네즈를 넣고 후춧가루를 살짝 뿌려 섞습니다."
+            },
+            {
+                "step": 7,
+                "description": "밥 위에 양파 소스, 참치마요, 스크램블을 올리고 마요네즈·김가루·채 썬 깻잎으로 마무리합니다."
+            }
+        ],
+        "emoji": "🍚"
+    },
+    "gajidupbap": {
+        "name": "중화풍 가지덮밥",
+        "color": "#7D3C98",
+        "servings": 2,
+        "category": "중식",
+        "difficulty": "easy",
+        "cook_time_minutes": 20,
+        "ingredients": [
+            {
+                "name": "가지",
+                "amount": 2,
+                "unit": "개",
+                "calories_per_unit": 25
+            },
+            {
+                "name": "다진 돼지고기",
+                "amount": 150,
+                "unit": "g",
+                "calories_per_unit": 250
+            },
+            {
+                "name": "밥",
+                "amount": 2,
+                "unit": "공기",
+                "calories_per_unit": 300
+            },
+            {
+                "name": "대파",
+                "amount": 30,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 15,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "굴소스",
+                "amount": 20,
+                "unit": "g",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "간장",
+                "amount": 20,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "설탕",
+                "amount": 8,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "고추기름",
+                "amount": 15,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "전분물",
+                "amount": 30,
+                "unit": "ml",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "물",
+                "amount": 100,
+                "unit": "ml",
+                "calories_per_unit": 0
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "가지는 길쭉하게 썰어 소금물에 5분 담갔다가 물기를 꼭 짜냅니다. 기름 흡수가 확 줄어듭니다."
+            },
+            {
+                "step": 2,
+                "description": "팬에 고추기름을 두르고 다진 마늘과 대파를 볶아 향을 올립니다."
+            },
+            {
+                "step": 3,
+                "description": "다진 돼지고기를 넣고 색이 바뀔 때까지 센 불로 볶습니다."
+            },
+            {
+                "step": 4,
+                "description": "가지를 넣고 겉면이 살짝 무를 때까지 볶습니다."
+            },
+            {
+                "step": 5,
+                "description": "굴소스·간장·설탕·물을 넣고 2~3분 끓입니다."
+            },
+            {
+                "step": 6,
+                "description": "전분물을 조금씩 넣어 소스를 걸쭉하게 잡고 밥 위에 얹으면 완성입니다."
+            }
+        ],
+        "emoji": "🍆"
+    },
+    "spoonpasta": {
+        "name": "스푼 파스타",
+        "color": "#D35400",
+        "servings": 2,
+        "category": "양식",
+        "difficulty": "easy",
+        "cook_time_minutes": 20,
+        "ingredients": [
+            {
+                "name": "스파게티",
+                "amount": 180,
+                "unit": "g",
+                "calories_per_unit": 350
+            },
+            {
+                "name": "방울토마토",
+                "amount": 200,
+                "unit": "g",
+                "calories_per_unit": 20
+            },
+            {
+                "name": "베이컨",
+                "amount": 60,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "양파",
+                "amount": 80,
+                "unit": "g",
+                "calories_per_unit": 40
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 15,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "올리브유",
+                "amount": 30,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "파르미지아노 치즈",
+                "amount": 20,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "면수",
+                "amount": 150,
+                "unit": "ml",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "소금",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "바질",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 25
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "스파게티를 반으로 잘라 소금물에 표기 시간보다 1분 짧게 삶습니다. 숟가락으로 뜰 수 있게 짧은 면을 씁니다."
+            },
+            {
+                "step": 2,
+                "description": "팬에 올리브유를 두르고 베이컨을 바삭하게 구운 뒤 다진 마늘과 양파를 볶습니다."
+            },
+            {
+                "step": 3,
+                "description": "방울토마토를 반으로 갈라 넣고 주걱으로 눌러가며 으깨 소스를 냅니다."
+            },
+            {
+                "step": 4,
+                "description": "면수를 넣어 농도를 잡고 삶은 면을 넣어 30초간 버무립니다."
+            },
+            {
+                "step": 5,
+                "description": "치즈를 갈아 넣고 불을 끈 뒤 잔열로 섞습니다."
+            },
+            {
+                "step": 6,
+                "description": "우묵한 그릇에 담고 바질을 올립니다. 포크 대신 숟가락으로 떠먹는 최현석 셰프식 구성입니다."
+            }
+        ],
+        "emoji": "🍝"
+    },
+    "ganjangbutter": {
+        "name": "간장버터 계란밥",
+        "color": "#E67E22",
+        "servings": 1,
+        "category": "한식",
+        "difficulty": "easy",
+        "cook_time_minutes": 10,
+        "ingredients": [
+            {
+                "name": "밥",
+                "amount": 1,
+                "unit": "공기",
+                "calories_per_unit": 300
+            },
+            {
+                "name": "달걀",
+                "amount": 2,
+                "unit": "개",
+                "calories_per_unit": 70
+            },
+            {
+                "name": "버터",
+                "amount": 15,
+                "unit": "g",
+                "calories_per_unit": 720
+            },
+            {
+                "name": "간장",
+                "amount": 15,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "설탕",
+                "amount": 3,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "대파",
+                "amount": 15,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "김가루",
+                "amount": 3,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "참기름",
+                "amount": 5,
+                "unit": "ml",
+                "calories_per_unit": 900
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "팬에 버터를 녹이고 송송 썬 대파를 볶아 파기름을 냅니다."
+            },
+            {
+                "step": 2,
+                "description": "달걀을 깨 넣고 흰자 가장자리가 바삭해질 때까지 반숙으로 굽습니다."
+            },
+            {
+                "step": 3,
+                "description": "간장과 설탕을 팬 가장자리에 둘러 살짝 태우듯 졸입니다. 이 향이 핵심입니다."
+            },
+            {
+                "step": 4,
+                "description": "따뜻한 밥에 계란과 소스를 얹고 참기름과 김가루를 뿌려 비벼 먹습니다."
+            }
+        ],
+        "emoji": "🍳"
+    },
+    "ochazuke": {
+        "name": "연어 오차즈케",
+        "color": "#5DADE2",
+        "servings": 1,
+        "category": "일식",
+        "difficulty": "easy",
+        "cook_time_minutes": 10,
+        "ingredients": [
+            {
+                "name": "밥",
+                "amount": 1,
+                "unit": "공기",
+                "calories_per_unit": 300
+            },
+            {
+                "name": "훈제연어",
+                "amount": 80,
+                "unit": "g",
+                "calories_per_unit": 200
+            },
+            {
+                "name": "녹차 티백",
+                "amount": 1,
+                "unit": "개",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "뜨거운 물",
+                "amount": 300,
+                "unit": "ml",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "간장",
+                "amount": 10,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "와사비",
+                "amount": 3,
+                "unit": "g",
+                "calories_per_unit": 100
+            },
+            {
+                "name": "김가루",
+                "amount": 3,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "쪽파",
+                "amount": 10,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "참깨",
+                "amount": 2,
+                "unit": "g",
+                "calories_per_unit": 580
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "녹차 티백을 뜨거운 물에 2분 우려 살짝 진한 녹차를 만듭니다."
+            },
+            {
+                "step": 2,
+                "description": "그릇에 따뜻한 밥을 담고 훈제연어를 펼쳐 올립니다."
+            },
+            {
+                "step": 3,
+                "description": "간장을 한 바퀴 두르고 와사비를 가운데 얹습니다."
+            },
+            {
+                "step": 4,
+                "description": "우려낸 녹차를 밥이 반쯤 잠기게 붓고 김가루·쪽파·참깨를 뿌립니다. 해장에도 좋습니다."
+            }
+        ],
+        "emoji": "🍵"
+    },
+    "kimchicream": {
+        "name": "김치 크림 파스타",
+        "color": "#CB4335",
+        "servings": 2,
+        "category": "양식",
+        "difficulty": "easy",
+        "cook_time_minutes": 20,
+        "ingredients": [
+            {
+                "name": "스파게티",
+                "amount": 180,
+                "unit": "g",
+                "calories_per_unit": 350
+            },
+            {
+                "name": "잘 익은 김치",
+                "amount": 150,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "생크림",
+                "amount": 200,
+                "unit": "ml",
+                "calories_per_unit": 340
+            },
+            {
+                "name": "우유",
+                "amount": 100,
+                "unit": "ml",
+                "calories_per_unit": 65
+            },
+            {
+                "name": "베이컨",
+                "amount": 60,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "양파",
+                "amount": 80,
+                "unit": "g",
+                "calories_per_unit": 40
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 10,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "올리브유",
+                "amount": 20,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "파르미지아노 치즈",
+                "amount": 20,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "면수",
+                "amount": 100,
+                "unit": "ml",
+                "calories_per_unit": 0
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "김치는 속을 털어내고 잘게 썹니다. 신김치일수록 좋습니다."
+            },
+            {
+                "step": 2,
+                "description": "스파게티를 소금물에 표기 시간보다 1분 짧게 삶습니다."
+            },
+            {
+                "step": 3,
+                "description": "팬에 올리브유를 두르고 베이컨, 다진 마늘, 양파를 볶습니다."
+            },
+            {
+                "step": 4,
+                "description": "김치를 넣고 3분간 충분히 볶아 신맛을 날립니다. 이 단계를 건너뛰면 크림과 겉돕니다."
+            },
+            {
+                "step": 5,
+                "description": "생크림과 우유를 붓고 약불에서 5분 졸입니다."
+            },
+            {
+                "step": 6,
+                "description": "면과 면수를 넣어 농도를 맞추고 치즈를 갈아 올려 마무리합니다."
+            }
+        ],
+        "emoji": "🥘"
+    },
+    "garlicshrimp": {
+        "name": "굴소스 버터 새우",
+        "color": "#E59866",
+        "servings": 2,
+        "category": "아시안",
+        "difficulty": "easy",
+        "cook_time_minutes": 15,
+        "ingredients": [
+            {
+                "name": "생새우살",
+                "amount": 300,
+                "unit": "g",
+                "calories_per_unit": 90
+            },
+            {
+                "name": "버터",
+                "amount": 20,
+                "unit": "g",
+                "calories_per_unit": 720
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 25,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "굴소스",
+                "amount": 20,
+                "unit": "g",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "간장",
+                "amount": 10,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "설탕",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "청양고추",
+                "amount": 1,
+                "unit": "개",
+                "calories_per_unit": 20
+            },
+            {
+                "name": "대파",
+                "amount": 20,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "후춧가루",
+                "amount": 1,
+                "unit": "g",
+                "calories_per_unit": 0
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "새우는 물기를 닦고 후춧가루로 밑간합니다. 물기가 남으면 볶을 때 물이 생깁니다."
+            },
+            {
+                "step": 2,
+                "description": "팬에 버터를 녹이고 다진 마늘을 약불에서 노릇해질 때까지 볶습니다."
+            },
+            {
+                "step": 3,
+                "description": "불을 올리고 새우를 넣어 겉면이 붉어질 때까지 2분 볶습니다."
+            },
+            {
+                "step": 4,
+                "description": "굴소스·간장·설탕을 넣고 30초만 빠르게 버무립니다. 오래 익히면 새우가 질겨집니다."
+            },
+            {
+                "step": 5,
+                "description": "송송 썬 청양고추와 대파를 올려 마무리합니다."
+            }
+        ],
+        "emoji": "🦐"
+    },
+    "spamkimchibokkeum": {
+        "name": "스팸 김치볶음밥",
+        "color": "#B03A2E",
+        "servings": 2,
+        "category": "한식",
+        "difficulty": "easy",
+        "cook_time_minutes": 15,
+        "ingredients": [
+            {
+                "name": "밥",
+                "amount": 2,
+                "unit": "공기",
+                "calories_per_unit": 300
+            },
+            {
+                "name": "스팸",
+                "amount": 200,
+                "unit": "g",
+                "calories_per_unit": 300
+            },
+            {
+                "name": "잘 익은 김치",
+                "amount": 200,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "김칫국물",
+                "amount": 30,
+                "unit": "ml",
+                "calories_per_unit": 10
+            },
+            {
+                "name": "대파",
+                "amount": 30,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "달걀",
+                "amount": 2,
+                "unit": "개",
+                "calories_per_unit": 70
+            },
+            {
+                "name": "고추장",
+                "amount": 10,
+                "unit": "g",
+                "calories_per_unit": 200
+            },
+            {
+                "name": "설탕",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "식용유",
+                "amount": 20,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "참기름",
+                "amount": 5,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "김가루",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 400
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "스팸은 깍둑썰어 기름 없이 팬에 노릇하게 구워 기름을 뺍니다."
+            },
+            {
+                "step": 2,
+                "description": "그 기름에 대파를 넣고 파기름을 낸 뒤 잘게 썬 김치를 3분간 볶습니다."
+            },
+            {
+                "step": 3,
+                "description": "고추장과 설탕, 김칫국물을 넣고 1분 더 볶아 양념을 입힙니다."
+            },
+            {
+                "step": 4,
+                "description": "밥을 넣고 주걱으로 눌러가며 김치와 골고루 섞습니다."
+            },
+            {
+                "step": 5,
+                "description": "구워둔 스팸을 다시 넣고 참기름을 둘러 섞습니다."
+            },
+            {
+                "step": 6,
+                "description": "달걀프라이를 올리고 김가루를 뿌리면 완성입니다."
+            }
+        ],
+        "emoji": "🍳"
     }
 }

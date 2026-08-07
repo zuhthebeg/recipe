@@ -2,185 +2,238 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://recipe.cocy.io/</loc>
-    <lastmod>2026-07-28</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=kimchistew</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=kimchistew"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=kimchistew&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=kimchistew&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=kimchistew"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=doenjangstew</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=doenjangstew"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=doenjangstew&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=doenjangstew&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=doenjangstew"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=buldakramen</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=buldakramen"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=buldakramen&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=buldakramen&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=buldakramen"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=blacktea</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=blacktea"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=blacktea&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=blacktea&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=blacktea"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=milktea</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=milktea"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=milktea&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=milktea&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=milktea"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=ricecookercastella</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=ricecookercastella"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=ricecookercastella&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=ricecookercastella&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=ricecookercastella"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=dubaichocolate</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=dubaichocolate"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=dubaichocolate&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=dubaichocolate&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=dubaichocolate"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=dujjonku</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=dujjonku"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=dujjonku&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=dujjonku&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=dujjonku"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=butterdduk</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=butterdduk"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=butterdduk&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=butterdduk&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=butterdduk"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=crookie</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=crookie"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=crookie&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=crookie&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=crookie"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=yogurtbark</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=yogurtbark"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=yogurtbark&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=yogurtbark&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=yogurtbark"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=pringleschoco</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=pringleschoco"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=pringleschoco&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=pringleschoco&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=pringleschoco"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=mangosago</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=mangosago"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=mangosago&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=mangosago&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=mangosago"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=bamtiramisu</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=bamtiramisu"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=bamtiramisu&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=bamtiramisu&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=bamtiramisu"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=ubelatte</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=ubelatte"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=ubelatte&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=ubelatte&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=ubelatte"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=pestoegg</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=pestoegg"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=pestoegg&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=pestoegg&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=pestoegg"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=cottageflatbread</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=cottageflatbread"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=cottageflatbread&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=cottageflatbread&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=cottageflatbread"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=cucumbersalad</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=cucumbersalad"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=cucumbersalad&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=cucumbersalad&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=cucumbersalad"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=carrotrape</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=carrotrape"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=carrotrape&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=carrotrape&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=carrotrape"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=sundubuyeol</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=sundubuyeol"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=sundubuyeol&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=sundubuyeol&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=sundubuyeol"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=smashtaco</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=smashtaco"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=smashtaco&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=smashtaco&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=smashtaco"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=mararose</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=mararose"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=mararose&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=mararose&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=mararose"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=eggjang</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=eggjang"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=eggjang&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=eggjang&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=eggjang"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=smashedpotato</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=smashedpotato"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=smashedpotato&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=smashedpotato&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=smashedpotato"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=earlgreyhighball</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=earlgreyhighball"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=earlgreyhighball&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=earlgreyhighball&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=earlgreyhighball"/>
   </url>
   <url>
     <loc>https://recipe.cocy.io/?r=mararosejjimdak</loc>
@@ -188,5 +241,97 @@
     <changefreq>weekly</changefreq>
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=mararosejjimdak"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=mararosejjimdak&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=mararosejjimdak&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=mararosejjimdak"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=menbosha</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=menbosha"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=menbosha&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=menbosha&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=menbosha"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=kkanpunggi</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=kkanpunggi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=kkanpunggi&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=kkanpunggi&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=kkanpunggi"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=chamchimayo</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=chamchimayo"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=chamchimayo&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=chamchimayo&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=chamchimayo"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=gajidupbap</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=gajidupbap"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=gajidupbap&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=gajidupbap&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=gajidupbap"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=spoonpasta</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=spoonpasta"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=spoonpasta&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=spoonpasta&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=spoonpasta"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=ganjangbutter</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=ganjangbutter"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=ganjangbutter&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=ganjangbutter&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=ganjangbutter"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=ochazuke</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=ochazuke"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=ochazuke&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=ochazuke&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=ochazuke"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=kimchicream</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=kimchicream"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=kimchicream&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=kimchicream&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=kimchicream"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=garlicshrimp</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=garlicshrimp"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=garlicshrimp&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=garlicshrimp&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=garlicshrimp"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=spamkimchibokkeum</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=spamkimchibokkeum"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=spamkimchibokkeum&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/?r=spamkimchibokkeum&amp;lang=tw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=spamkimchibokkeum"/>
   </url>
 </urlset>
