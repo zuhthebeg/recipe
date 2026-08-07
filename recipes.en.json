@@ -736,5 +736,75 @@
       "Return the Spam, drizzle sesame oil and fold through.",
       "Top with a fried egg and seaweed flakes."
     ]
+  },
+  "oisandwich": {
+    "name": "Cucumber Cream Cheese Sandwich",
+    "category": "Western",
+    "ingredients": [
+      "White bread",
+      "Cucumber",
+      "Cream cheese",
+      "Sugar",
+      "Salt",
+      "Black pepper",
+      "Butter"
+    ],
+    "instructions": [
+      "Shave the cucumber into long thin ribbons, salt lightly, rest 5 minutes and press out the water.",
+      "Whip the cream cheese with sugar and pepper until smooth.",
+      "Spread a thin layer of butter on the bread — this moisture barrier is what keeps it from going soggy.",
+      "Spread the cream cheese thickly and lay the cucumber ribbons in overlapping rows.",
+      "Top with the second slice, wrap tightly in cling film, press in the fridge for 10 minutes, then halve.",
+      "Chef Lee Won-il's solo-meal recipe from Please Take Care of My Refrigerator."
+    ]
+  },
+  "daepasotbap": {
+    "name": "Green Onion Pot Rice",
+    "category": "Korean",
+    "ingredients": [
+      "Rice",
+      "Green onion",
+      "Water",
+      "Sesame oil",
+      "Soy sauce",
+      "Perilla oil",
+      "Minced garlic",
+      "Cheongyang chili",
+      "Sesame seeds"
+    ],
+    "instructions": [
+      "Soak the rice for 30 minutes, then drain well.",
+      "Cut half the green onion into large diagonal slices; finely chop the rest for the sauce.",
+      "Fry the sliced green onion in sesame oil until golden to draw out its sweetness.",
+      "Add the drained rice and stir-fry for 2 minutes — the grains need to take on the oil.",
+      "Add the water, bring to a boil, drop to low heat for 12 minutes, then rest off the heat for 10.",
+      "Mix the chopped green onion with soy sauce, perilla oil, garlic, chili and sesame for the sauce.",
+      "Chef Sam Kim's best-received green onion dish from the show."
+    ]
+  },
+  "gonjangpatteok": {
+    "name": "Soy Sauce Green Onion Tteokbokki",
+    "category": "Korean",
+    "ingredients": [
+      "Rice cakes",
+      "Green onion",
+      "Onion",
+      "Soy sauce",
+      "Sugar",
+      "Cooking wine",
+      "Minced garlic",
+      "Sesame oil",
+      "Cooking oil",
+      "Water",
+      "Sesame seeds"
+    ],
+    "instructions": [
+      "Soak the rice cakes in lukewarm water for 10 minutes until pliable.",
+      "Fry roughly cut green onion in oil over low heat for 5 minutes — this scallion oil is 80% of the flavour.",
+      "Add the onion and garlic and cook until translucent.",
+      "Add soy sauce, sugar, cooking wine and water; add the rice cakes once it boils.",
+      "Simmer over medium heat until the liquid halves and the rice cakes turn glossy.",
+      "Finish off the heat with sesame oil and sesame seeds. No chili needed for a deep savoury note."
+    ]
   }
 }

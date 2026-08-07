@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="naver-site-verification" content="ac26a2e01a2b43897b512f8a7effd0cf42fcd693">
@@ -9,7 +9,7 @@
   <link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?lang=en">
   <link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/tw/">
   <link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/">
-  <title>Recipe Cocy — 요즘 뜨는 레시피</title>
+  <title>Recipe Cocy — 正在紅的話題食譜</title>
   <meta name="description" content="두바이 초콜릿부터 스매시버거 타코까지, 요즘 뜨는 바이럴 레시피 모음. 인분 자동 계산, 단계별 타이머, 음성 제어를 지원하는 무료 레시피 앱." id="meta-description">
   <meta property="og:site_name" content="Recipe Cocy">
   <meta property="og:type" content="website">
@@ -35,7 +35,7 @@
   <meta name="theme-color" content="#9A3412">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Recipe Cocy">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="manifest" href="../manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Jua&display=swap" rel="stylesheet">
@@ -868,8 +868,8 @@
     const t = (key) => I18N[state.lang][key] ?? I18N.ko[key] ?? key;
 
     /* ---------- i18n helpers ---------- */
-    const SITE_BASE = "https://recipe.cocy.io/";
-    const FORCE_LANG = null;
+    const SITE_BASE = "https://recipe.cocy.io/tw/";
+    const FORCE_LANG = "tw";
     const LANGS = ["ko", "en", "tw"];
     const ov = (key) => (state.lang === "ko" ? null : state.overlays[state.lang]?.[key]);
     function rName(key) {
@@ -1499,9 +1499,9 @@
       applyStaticI18n();
 
       const [recipes, enOverlay, twOverlay] = await Promise.all([
-        fetchJson(`recipes.json?v=20260807b`, "recipesCache"),
-        fetchJson(`recipes.en.json?v=20260807b`, "recipesEnCache").catch(() => ({})),
-        fetchJson(`recipes.tw.json?v=20260807b`, "recipesTwCache").catch(() => ({})),
+        fetchJson(`../recipes.json?v=20260807b`, "recipesCache"),
+        fetchJson(`../recipes.en.json?v=20260807b`, "recipesEnCache").catch(() => ({})),
+        fetchJson(`../recipes.tw.json?v=20260807b`, "recipesTwCache").catch(() => ({})),
       ]);
       const normalized = {};
       Object.entries(recipes).forEach(([key, value]) => { normalized[key] = normalizeRecipe(key, value); });
@@ -1517,7 +1517,7 @@
       routeFromUrl();
 
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+        /* locale copy: service worker는 루트에서만 등록 */
       }
     }
 

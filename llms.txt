@@ -44,6 +44,12 @@
 - [김치 크림 파스타](https://recipe.cocy.io/?r=kimchicream)
 - [굴소스 버터 새우](https://recipe.cocy.io/?r=garlicshrimp)
 - [스팸 김치볶음밥](https://recipe.cocy.io/?r=spamkimchibokkeum)
+- [오이 크림치즈 샌드위치](https://recipe.cocy.io/?r=oisandwich)
+- [대파 솥밥](https://recipe.cocy.io/?r=daepasotbap)
+- [간장 파 떡볶이](https://recipe.cocy.io/?r=gonjangpatteok)
+
+## 컬렉션
+- 냉부(JTBC 냉장고를 부탁해 공개 레시피) 8종: 멘보샤, 깐풍기, 참치마요 덮밥, 중화풍 가지덮밥, 스푼 파스타, 오이 크림치즈 샌드위치, 대파 솥밥, 간장 파 떡볶이
 
 ## 언어
-- 한국어(기본) / English `?lang=en` / 繁體中文 `?lang=tw`
+- 한국어(기본) / English `?lang=en` / 繁體中文 https://recipe.cocy.io/tw/

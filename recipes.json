@@ -1838,6 +1838,7 @@
         "color": "#E8A33D",
         "servings": 2,
         "category": "중식",
+        "collection": "냉부",
         "difficulty": "medium",
         "cook_time_minutes": 30,
         "ingredients": [
@@ -1951,6 +1952,7 @@
         "color": "#C0392B",
         "servings": 2,
         "category": "중식",
+        "collection": "냉부",
         "difficulty": "medium",
         "cook_time_minutes": 35,
         "ingredients": [
@@ -2064,6 +2066,7 @@
         "color": "#F0A202",
         "servings": 2,
         "category": "한식",
+        "collection": "냉부",
         "difficulty": "easy",
         "cook_time_minutes": 15,
         "ingredients": [
@@ -2171,6 +2174,7 @@
         "color": "#7D3C98",
         "servings": 2,
         "category": "중식",
+        "collection": "냉부",
         "difficulty": "easy",
         "cook_time_minutes": 20,
         "ingredients": [
@@ -2274,6 +2278,7 @@
         "color": "#D35400",
         "servings": 2,
         "category": "양식",
+        "collection": "냉부",
         "difficulty": "easy",
         "cook_time_minutes": 20,
         "ingredients": [
@@ -2812,5 +2817,285 @@
             }
         ],
         "emoji": "🍳"
+    },
+    "oisandwich": {
+        "name": "오이 크림치즈 샌드위치",
+        "color": "#7DCEA0",
+        "servings": 1,
+        "category": "양식",
+        "collection": "냉부",
+        "difficulty": "easy",
+        "cook_time_minutes": 10,
+        "ingredients": [
+            {
+                "name": "식빵",
+                "amount": 2,
+                "unit": "장",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "오이",
+                "amount": 1,
+                "unit": "개",
+                "calories_per_unit": 15
+            },
+            {
+                "name": "크림치즈",
+                "amount": 60,
+                "unit": "g",
+                "calories_per_unit": 340
+            },
+            {
+                "name": "설탕",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "소금",
+                "amount": 2,
+                "unit": "g",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "후춧가루",
+                "amount": 1,
+                "unit": "g",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "버터",
+                "amount": 10,
+                "unit": "g",
+                "calories_per_unit": 720
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "오이는 필러로 얇고 길게 저며 소금을 살짝 뿌리고 5분 두었다가 물기를 눌러 뺍니다."
+            },
+            {
+                "step": 2,
+                "description": "크림치즈에 설탕과 후춧가루를 넣고 부드럽게 풀어줍니다."
+            },
+            {
+                "step": 3,
+                "description": "식빵 한쪽 면에 버터를 얇게 발라 수분 차단막을 만듭니다. 이걸 해야 눅눅해지지 않습니다."
+            },
+            {
+                "step": 4,
+                "description": "크림치즈를 두껍게 바르고 오이를 겹쳐 촘촘히 깝니다."
+            },
+            {
+                "step": 5,
+                "description": "다른 식빵을 덮고 랩으로 단단히 싸 냉장실에서 10분 눌러둔 뒤 반으로 자릅니다."
+            },
+            {
+                "step": 6,
+                "description": "이원일 셰프가 냉부해에서 선보인 혼밥 레시피입니다."
+            }
+        ],
+        "emoji": "🥪"
+    },
+    "daepasotbap": {
+        "name": "대파 솥밥",
+        "color": "#58D68D",
+        "servings": 2,
+        "category": "한식",
+        "collection": "냉부",
+        "difficulty": "medium",
+        "cook_time_minutes": 30,
+        "ingredients": [
+            {
+                "name": "쌀",
+                "amount": 2,
+                "unit": "컵",
+                "calories_per_unit": 370
+            },
+            {
+                "name": "대파",
+                "amount": 200,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "물",
+                "amount": 400,
+                "unit": "ml",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "참기름",
+                "amount": 15,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "간장",
+                "amount": 30,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "들기름",
+                "amount": 10,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 10,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "청양고추",
+                "amount": 1,
+                "unit": "개",
+                "calories_per_unit": 20
+            },
+            {
+                "name": "깨",
+                "amount": 3,
+                "unit": "g",
+                "calories_per_unit": 580
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "쌀은 30분 불린 뒤 체에 밭쳐 물기를 뺍니다."
+            },
+            {
+                "step": 2,
+                "description": "대파는 절반은 큼직하게 어슷 썰고 절반은 잘게 썰어 양념장용으로 둡니다."
+            },
+            {
+                "step": 3,
+                "description": "솥에 참기름을 두르고 어슷 썬 대파를 노릇해질 때까지 볶아 단맛을 끌어냅니다."
+            },
+            {
+                "step": 4,
+                "description": "불린 쌀을 넣고 2분간 함께 볶습니다. 쌀알이 기름을 머금어야 밥알이 살아납니다."
+            },
+            {
+                "step": 5,
+                "description": "물을 붓고 센 불에서 끓이다가 끓어오르면 약불로 줄여 12분, 불을 끄고 10분 뜸 들입니다."
+            },
+            {
+                "step": 6,
+                "description": "잘게 썬 대파에 간장·들기름·다진 마늘·청양고추·깨를 섞어 양념장을 만들어 곁들입니다."
+            },
+            {
+                "step": 7,
+                "description": "샘킴 셰프의 냉부해 대파 요리 중 가장 반응이 좋았던 구성입니다."
+            }
+        ],
+        "emoji": "🍚"
+    },
+    "gonjangpatteok": {
+        "name": "간장 파 떡볶이",
+        "color": "#F5B041",
+        "servings": 2,
+        "category": "한식",
+        "collection": "냉부",
+        "difficulty": "easy",
+        "cook_time_minutes": 20,
+        "ingredients": [
+            {
+                "name": "떡볶이 떡",
+                "amount": 300,
+                "unit": "g",
+                "calories_per_unit": 230
+            },
+            {
+                "name": "대파",
+                "amount": 100,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "양파",
+                "amount": 80,
+                "unit": "g",
+                "calories_per_unit": 40
+            },
+            {
+                "name": "간장",
+                "amount": 45,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "설탕",
+                "amount": 20,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "맛술",
+                "amount": 20,
+                "unit": "ml",
+                "calories_per_unit": 100
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 10,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "참기름",
+                "amount": 10,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "식용유",
+                "amount": 20,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "물",
+                "amount": 200,
+                "unit": "ml",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "깨",
+                "amount": 3,
+                "unit": "g",
+                "calories_per_unit": 580
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "떡은 미지근한 물에 10분 불려 부드럽게 만듭니다."
+            },
+            {
+                "step": 2,
+                "description": "팬에 식용유를 두르고 큼직하게 썬 대파를 약불에서 5분간 볶아 파기름을 냅니다. 이 과정이 맛의 8할입니다."
+            },
+            {
+                "step": 3,
+                "description": "양파와 다진 마늘을 넣고 투명해질 때까지 볶습니다."
+            },
+            {
+                "step": 4,
+                "description": "간장·설탕·맛술·물을 넣고 끓어오르면 떡을 넣습니다."
+            },
+            {
+                "step": 5,
+                "description": "중불에서 국물이 반으로 졸아 떡에 윤기가 돌 때까지 조립니다."
+            },
+            {
+                "step": 6,
+                "description": "불을 끄고 참기름과 깨를 뿌려 마무리합니다. 고춧가루 없이도 충분히 감칠맛이 납니다."
+            }
+        ],
+        "emoji": "🍢"
     }
 }
