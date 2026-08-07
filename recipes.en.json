@@ -806,5 +806,38 @@
       "Simmer over medium heat until the liquid halves and the rice cakes turn glossy.",
       "Finish off the heat with sesame oil and sesame seeds. No chili needed for a deep savoury note."
     ]
+  },
+  "ganjangjjimdak": {
+    "name": "Andong Jjimdak (Braised Soy Chicken)",
+    "category": "Korean",
+    "ingredients": [
+      "Whole chicken, cut up",
+      "Potatoes",
+      "Onion",
+      "Carrot",
+      "Green onion",
+      "Dried red chilies",
+      "Glass noodles (dangmyeon)",
+      "Soy sauce",
+      "Sugar",
+      "Cooking wine",
+      "Minced garlic",
+      "Ginger",
+      "Black pepper",
+      "Water",
+      "Sesame oil",
+      "Sesame seeds"
+    ],
+    "instructions": [
+      "Blanch the chicken for 2 minutes, rinse in cold water and pull off the fat pockets. Skip this and the broth turns cloudy and gamey.",
+      "Soak the glass noodles in lukewarm water for 30 minutes; they go in last so they don't turn to mush.",
+      "Cut the potatoes and carrot into large chunks with the edges rounded off, the onion into thick wedges and the green onion on the diagonal.",
+      "Premix soy sauce, sugar, cooking wine, garlic, ginger and pepper into the braising sauce.",
+      "Put the blanched chicken, 600ml water, half the sauce and the dried chilies in a pot and bring to a boil over high heat.",
+      "Once boiling, lower to medium and add the potatoes and carrot; cook for 15 minutes.",
+      "Add the rest of the sauce and the onion and simmer 10 more minutes until the liquid reduces by two thirds.",
+      "Add the soaked noodles and green onion and toss for 3 minutes to coat.",
+      "Finish off the heat with sesame oil and sesame seeds. Add cheongyang chili at the end if you want it spicy."
+    ]
   }
 }

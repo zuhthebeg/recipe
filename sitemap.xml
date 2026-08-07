@@ -722,4 +722,22 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/tw/?r=gonjangpatteok"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=gonjangpatteok"/>
   </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=ganjangjjimdak</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=ganjangjjimdak"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=ganjangjjimdak&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/tw/?r=ganjangjjimdak"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=ganjangjjimdak"/>
+  </url>
+  <url>
+    <loc>https://recipe.cocy.io/tw/?r=ganjangjjimdak</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=ganjangjjimdak"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=ganjangjjimdak&amp;lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/tw/?r=ganjangjjimdak"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/?r=ganjangjjimdak"/>
+  </url>
 </urlset>

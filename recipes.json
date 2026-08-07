@@ -3097,5 +3097,150 @@
             }
         ],
         "emoji": "🍢"
+    },
+    "ganjangjjimdak": {
+        "name": "안동 간장찜닭",
+        "color": "#8B5A2B",
+        "servings": 3,
+        "category": "한식",
+        "difficulty": "medium",
+        "cook_time_minutes": 40,
+        "ingredients": [
+            {
+                "name": "닭볶음탕용 닭",
+                "amount": 1,
+                "unit": "마리",
+                "calories_per_unit": 220
+            },
+            {
+                "name": "감자",
+                "amount": 2,
+                "unit": "개",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "양파",
+                "amount": 150,
+                "unit": "g",
+                "calories_per_unit": 40
+            },
+            {
+                "name": "당근",
+                "amount": 100,
+                "unit": "g",
+                "calories_per_unit": 35
+            },
+            {
+                "name": "대파",
+                "amount": 100,
+                "unit": "g",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "건고추",
+                "amount": 3,
+                "unit": "개",
+                "calories_per_unit": 30
+            },
+            {
+                "name": "당면",
+                "amount": 100,
+                "unit": "g",
+                "calories_per_unit": 350
+            },
+            {
+                "name": "진간장",
+                "amount": 120,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "설탕",
+                "amount": 45,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "맛술",
+                "amount": 45,
+                "unit": "ml",
+                "calories_per_unit": 100
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 30,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "생강",
+                "amount": 5,
+                "unit": "g",
+                "calories_per_unit": 80
+            },
+            {
+                "name": "후춧가루",
+                "amount": 2,
+                "unit": "g",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "물",
+                "amount": 600,
+                "unit": "ml",
+                "calories_per_unit": 0
+            },
+            {
+                "name": "참기름",
+                "amount": 10,
+                "unit": "ml",
+                "calories_per_unit": 900
+            },
+            {
+                "name": "통깨",
+                "amount": 3,
+                "unit": "g",
+                "calories_per_unit": 580
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "닭은 끓는 물에 2분 데쳐 찬물에 헹구고 기름 덩어리를 떼어냅니다. 이 초벌을 건너뛰면 국물이 탁하고 누린내가 남습니다."
+            },
+            {
+                "step": 2,
+                "description": "당면은 미지근한 물에 30분 불려둡니다. 마지막에 넣어야 퍼지지 않습니다."
+            },
+            {
+                "step": 3,
+                "description": "감자·당근은 큼직하게 썰어 모서리를 살짝 다듬고, 양파는 굵게, 대파는 어슷 썹니다."
+            },
+            {
+                "step": 4,
+                "description": "진간장·설탕·맛술·다진 마늘·생강·후춧가루를 섞어 양념장을 미리 만들어 둡니다."
+            },
+            {
+                "step": 5,
+                "description": "냄비에 데친 닭과 물 600ml, 양념장 절반, 건고추를 넣고 센 불에서 끓입니다."
+            },
+            {
+                "step": 6,
+                "description": "끓어오르면 중불로 줄이고 감자·당근을 넣어 15분간 익힙니다."
+            },
+            {
+                "step": 7,
+                "description": "남은 양념장과 양파를 넣고 국물이 3분의 1로 졸 때까지 10분 더 끓입니다."
+            },
+            {
+                "step": 8,
+                "description": "불린 당면과 대파를 넣고 3분간 뒤적이며 국물을 입힙니다."
+            },
+            {
+                "step": 9,
+                "description": "불을 끄고 참기름과 통깨를 뿌리면 완성. 매콤하게 먹으려면 청양고추를 마지막에 넣으세요."
+            }
+        ],
+        "emoji": "🍲"
     }
 }

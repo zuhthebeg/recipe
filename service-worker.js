@@ -1,4 +1,4 @@
-const CACHE_NAME = "recipe-cocy-v7";
+const CACHE_NAME = "recipe-cocy-v8";
 const ASSETS = [
   "/",
   "/index.html",

@@ -31,7 +31,7 @@
   }
   </script>
   <script type="application/ld+json" id="recipe-jsonld"></script>
-  <meta name="build-id" content="2026-08-07-recipe-v7-nengbu-collection">
+  <meta name="build-id" content="2026-08-07-recipe-v8-ganjangjjimdak">
   <meta name="theme-color" content="#9A3412">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Recipe Cocy">
@@ -721,6 +721,7 @@
       <li><a href="?r=smashedpotato">크리스피 스매시드 포테이토</a></li>
       <li><a href="?r=earlgreyhighball">얼그레이 하이볼</a></li>
       <li><a href="?r=mararosejjimdak">마라 로제 찜닭</a></li>
+      <li><a href="?r=ganjangjjimdak">안동 간장찜닭</a></li>
       <li><a href="?r=menbosha">멘보샤</a></li>
       <li><a href="?r=kkanpunggi">깐풍기</a></li>
       <li><a href="?r=chamchimayo">참치마요 덮밥</a></li>
@@ -1499,9 +1500,9 @@
       applyStaticI18n();
 
       const [recipes, enOverlay, twOverlay] = await Promise.all([
-        fetchJson(`recipes.json?v=20260807b`, "recipesCache"),
-        fetchJson(`recipes.en.json?v=20260807b`, "recipesEnCache").catch(() => ({})),
-        fetchJson(`recipes.tw.json?v=20260807b`, "recipesTwCache").catch(() => ({})),
+        fetchJson(`recipes.json?v=20260807c`, "recipesCache"),
+        fetchJson(`recipes.en.json?v=20260807c`, "recipesEnCache").catch(() => ({})),
+        fetchJson(`recipes.tw.json?v=20260807c`, "recipesTwCache").catch(() => ({})),
       ]);
       const normalized = {};
       Object.entries(recipes).forEach(([key, value]) => { normalized[key] = normalizeRecipe(key, value); });

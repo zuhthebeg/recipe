@@ -47,6 +47,7 @@
 - [오이 크림치즈 샌드위치](https://recipe.cocy.io/?r=oisandwich)
 - [대파 솥밥](https://recipe.cocy.io/?r=daepasotbap)
 - [간장 파 떡볶이](https://recipe.cocy.io/?r=gonjangpatteok)
+- [안동 간장찜닭](https://recipe.cocy.io/?r=ganjangjjimdak)
 
 ## 컬렉션
 - 냉부(JTBC 냉장고를 부탁해 공개 레시피) 8종: 멘보샤, 깐풍기, 참치마요 덮밥, 중화풍 가지덮밥, 스푼 파스타, 오이 크림치즈 샌드위치, 대파 솥밥, 간장 파 떡볶이
