@@ -468,5 +468,32 @@
       "Pour tonic water slowly down the side of the glass to keep the fizz.",
       "Garnish with a lemon slice. Tea highballs are the next step in home bartending."
     ]
+  },
+  "mararosejjimdak": {
+    "name": "Mala Rosé Jjimdak (Braised Chicken)",
+    "category": "Korean",
+    "ingredients": [
+      "Boneless chicken thigh",
+      "Potato",
+      "Onion",
+      "Glass noodles (dangmyeon)",
+      "Mala sauce",
+      "Soy sauce",
+      "Gochujang",
+      "Sugar",
+      "Minced garlic",
+      "Heavy cream",
+      "Milk",
+      "Sliced cheese",
+      "Green onion"
+    ],
+    "instructions": [
+      "Soak the glass noodles in lukewarm water for 30 minutes. Cut the potato and onion into chunks and slice the green onion diagonally.",
+      "Heat oil in a pan and sear the bite-sized chicken thigh over high heat until the surface turns opaque.",
+      "Add minced garlic and mala sauce, stir-fry for 1 minute, then mix in soy sauce, gochujang and sugar.",
+      "Add the potato, onion and 200ml water, cover and simmer over medium heat for 10 minutes.",
+      "Pour in the cream and milk, add the soaked noodles and simmer 5-7 more minutes until the sauce thickens.",
+      "Melt a slice of cheese on top and finish with green onion. Adjust the heat with the amount of mala sauce — add 50ml more milk if it's too spicy."
+    ]
   }
 }

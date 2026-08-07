@@ -182,4 +182,11 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=earlgreyhighball"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=earlgreyhighball&amp;lang=en"/>
   </url>
+  <url>
+    <loc>https://recipe.cocy.io/?r=mararosejjimdak</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/?r=mararosejjimdak"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?r=mararosejjimdak&amp;lang=en"/>
+  </url>
 </urlset>

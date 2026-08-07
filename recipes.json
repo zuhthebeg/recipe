@@ -1717,5 +1717,120 @@
             }
         ],
         "emoji": "🥃"
+    },
+    "mararosejjimdak": {
+        "name": "마라 로제 찜닭",
+        "color": "#CF4A5C",
+        "servings": 2,
+        "category": "한식",
+        "difficulty": "medium",
+        "cook_time_minutes": 30,
+        "ingredients": [
+            {
+                "name": "닭다리살(순살)",
+                "amount": 500,
+                "unit": "g",
+                "calories_per_unit": 200
+            },
+            {
+                "name": "감자",
+                "amount": 1,
+                "unit": "개",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "양파",
+                "amount": 100,
+                "unit": "g",
+                "calories_per_unit": 40
+            },
+            {
+                "name": "당면",
+                "amount": 100,
+                "unit": "g",
+                "calories_per_unit": 350
+            },
+            {
+                "name": "마라소스",
+                "amount": 30,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "진간장",
+                "amount": 30,
+                "unit": "ml",
+                "calories_per_unit": 50
+            },
+            {
+                "name": "고추장",
+                "amount": 15,
+                "unit": "g",
+                "calories_per_unit": 200
+            },
+            {
+                "name": "설탕",
+                "amount": 10,
+                "unit": "g",
+                "calories_per_unit": 400
+            },
+            {
+                "name": "다진 마늘",
+                "amount": 15,
+                "unit": "g",
+                "calories_per_unit": 130
+            },
+            {
+                "name": "생크림",
+                "amount": 200,
+                "unit": "ml",
+                "calories_per_unit": 340
+            },
+            {
+                "name": "우유",
+                "amount": 100,
+                "unit": "ml",
+                "calories_per_unit": 65
+            },
+            {
+                "name": "슬라이스 치즈",
+                "amount": 1,
+                "unit": "장",
+                "calories_per_unit": 60
+            },
+            {
+                "name": "대파",
+                "amount": 30,
+                "unit": "g",
+                "calories_per_unit": 30
+            }
+        ],
+        "instructions": [
+            {
+                "step": 1,
+                "description": "당면은 미지근한 물에 30분 불려둡니다. 감자와 양파는 큼직하게, 대파는 어슷 썹니다."
+            },
+            {
+                "step": 2,
+                "description": "팬에 기름을 두르고 한입 크기로 썬 닭다리살을 겉면이 하얘질 때까지 센 불로 볶습니다."
+            },
+            {
+                "step": 3,
+                "description": "다진 마늘과 마라소스를 넣고 1분간 볶아 향을 낸 뒤, 진간장·고추장·설탕을 넣고 골고루 버무립니다."
+            },
+            {
+                "step": 4,
+                "description": "감자와 양파, 물 200ml를 넣고 뚜껑을 덮어 중불에서 10분간 익힙니다."
+            },
+            {
+                "step": 5,
+                "description": "생크림과 우유를 붓고 불린 당면을 넣어 5~7분 더 끓입니다. 소스가 걸쭉해지면 불을 줄입니다."
+            },
+            {
+                "step": 6,
+                "description": "슬라이스 치즈를 올려 녹이고 대파를 뿌리면 완성. 마라소스 양으로 맵기를 조절하고, 매운 게 부담되면 우유를 50ml 더 넣으세요."
+            }
+        ],
+        "emoji": "🍗"
     }
 }

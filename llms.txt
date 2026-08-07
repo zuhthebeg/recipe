@@ -33,3 +33,4 @@
 - [크림치즈 계란장](https://recipe.cocy.io/?r=eggjang)
 - [크리스피 스매시드 포테이토](https://recipe.cocy.io/?r=smashedpotato)
 - [얼그레이 하이볼](https://recipe.cocy.io/?r=earlgreyhighball)
+- [마라 로제 찜닭](https://recipe.cocy.io/?r=mararosejjimdak)
