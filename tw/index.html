@@ -31,7 +31,7 @@
   }
   </script>
   <script type="application/ld+json" id="recipe-jsonld"></script>
-  <meta name="build-id" content="2026-08-07-recipe-v8-ganjangjjimdak">
+  <meta name="build-id" content="2026-09-21-recipe-v9-seasonal-ingredients">
   <meta name="theme-color" content="#9A3412">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Recipe Cocy">
@@ -151,6 +151,75 @@
       font-size: 1rem;
       max-width: 56ch;
     }
+
+    /* ---------- seasonal ---------- */
+    .seasonal-section {
+      max-width: 1080px;
+      margin: 18px auto 0;
+      padding: 0 16px;
+    }
+    .seasonal-title {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.06rem;
+      color: var(--primary-strong);
+    }
+    .seasonal-chips {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .seasonal-chips::-webkit-scrollbar { display: none; }
+    .seasonal-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+      min-height: 44px;
+      padding: 8px 16px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--fg);
+      font-size: 0.92rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: var(--shadow-sm);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .seasonal-chip:hover { background: var(--soft); border-color: var(--accent); }
+    .seasonal-chip .chip-emoji { font-size: 1.1rem; }
+
+    /* ---------- ingredient info ---------- */
+    .ingredient-info {
+      max-width: 1080px;
+      margin: 14px auto 0;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--panel);
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+    .ingredient-info .ing-info-emoji {
+      font-size: 1.8rem;
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--soft);
+      border-radius: 12px;
+      flex: 0 0 auto;
+    }
+    .ing-info-name { font-weight: 800; color: var(--primary-strong); }
+    .ing-info-season { color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+    .ing-info-season.out-of-season { color: var(--muted-fg); }
 
     /* ---------- toolbar ---------- */
     .toolbar {
@@ -622,6 +691,11 @@
       <p data-i18n="heroSub">두바이 초콜릿부터 스매시버거 타코까지 — 검색창에서 화제가 된 레시피를 인분 계산·타이머와 함께.</p>
     </header>
 
+    <section class="seasonal-section" id="seasonal-section" hidden>
+      <h2 class="seasonal-title" data-i18n="seasonalTitle">이달의 제철 식재료</h2>
+      <div class="seasonal-chips" id="seasonal-chips"></div>
+    </section>
+
     <div class="toolbar">
       <div class="search-row">
         <div class="search-wrap">
@@ -639,6 +713,14 @@
       </div>
       <div class="cat-row" id="cat-row" role="tablist" aria-label="카테고리"></div>
       <div class="result-count" id="result-count"></div>
+    </div>
+
+    <div id="ingredient-info" class="ingredient-info" hidden>
+      <div class="ing-info-emoji" id="ing-info-emoji" aria-hidden="true"></div>
+      <div class="ing-info-body">
+        <div class="ing-info-name" id="ing-info-name"></div>
+        <div class="ing-info-season" id="ing-info-season"></div>
+      </div>
     </div>
 
     <div id="recipe-grid" class="grid"></div>
@@ -741,7 +823,7 @@
     </ul>
     <div class="footer-meta">
       <span>© <a href="https://cocy.io/">cocy.io</a> · Recipe Cocy</span>
-      <span>Build: <span id="build-id">2026-07-28-recipe-v5-editorial</span></span>
+      <span>Build: <span id="build-id">2026-09-21-recipe-v9-seasonal-ingredients</span></span>
     </div>
   </footer>
 
@@ -776,6 +858,11 @@
         voiceNext: "다음", voicePrev: "이전",
         speechLang: "ko-KR",
         unitMap: {},
+        seasonalTitle: "이달의 제철 식재료",
+        monthUnit: "월",
+        inSeason: (r) => `제철: ${r}`,
+        outOfSeason: (r) => `제철은 ${r}이에요`,
+        ingRecipeCount: (n) => n > 0 ? `이 재료로 만드는 레시피 ${n}개` : `이 재료가 들어간 레시피가 아직 없어요`,
       },
       en: {
         random: "Random", voiceStart: "Voice", voiceStop: "Stop voice",
@@ -804,6 +891,11 @@
         voiceNext: "next", voicePrev: "previous",
         speechLang: "en-US",
         unitMap: { "개": "pc", "장": "slice", "봉": "pack", "통": "can", "방울": "drops", "큰술": "tbsp", "작은술": "tsp", "인분": "serv.", "공기": "bowl", "포기": "head" },
+        seasonalTitle: "In season this month",
+        monthUnit: "",
+        inSeason: (r) => `In season: ${r}`,
+        outOfSeason: (r) => `In season: ${r}`,
+        ingRecipeCount: (n) => n > 0 ? `${n} recipe${n > 1 ? "s" : ""} with this ingredient` : `No recipes with this ingredient yet`,
       },
       tw: {
         random: "隨機", voiceStart: "語音", voiceStop: "停止語音",
@@ -832,6 +924,11 @@
         voiceNext: "下一步", voicePrev: "上一步",
         speechLang: "zh-TW",
         unitMap: { "개": "個", "장": "片", "봉": "包", "통": "罐", "방울": "滴", "큰술": "大匙", "작은술": "小匙", "인분": "人份", "공기": "碗", "포기": "顆" },
+        seasonalTitle: "本月當季食材",
+        monthUnit: "月",
+        inSeason: (r) => `產季：${r}`,
+        outOfSeason: (r) => `產季是 ${r}`,
+        ingRecipeCount: (n) => n > 0 ? `用這個食材做的食譜 ${n} 道` : `目前還沒有用這個食材的食譜`,
       }
     };
 
@@ -839,6 +936,7 @@
       lang: "ko",
       recipes: {},
       overlays: { en: {}, tw: {} },
+      seasonal: {},
       keys: [],
       filteredKeys: [],
       currentKey: null,
@@ -862,7 +960,8 @@
      "servings-input", "calories-num", "ingredient-list", "instruction-list",
      "random-btn", "voice-toggle", "lang-toggle", "toast", "brand-link",
      "canonical-link", "meta-description", "og-title", "og-description", "og-url",
-     "recipe-jsonld"].forEach((id) => {
+     "recipe-jsonld", "seasonal-section", "seasonal-chips", "ingredient-info",
+     "ing-info-emoji", "ing-info-name", "ing-info-season"].forEach((id) => {
       els[id.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = document.getElementById(id);
     });
 
@@ -1009,6 +1108,93 @@
     function sanitizeText(value) { return String(value ?? "").trim(); }
     function escapeHtml(value) {
       return sanitizeText(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    /* ---------- seasonal ingredients ---------- */
+    function normalizeIng(value) { return sanitizeText(value).toLowerCase().replace(/\s+/g, ""); }
+
+    function monthsLabel(months, lang) {
+      if (!months || !months.length) return "";
+      const runs = [];
+      let start = months[0], prev = months[0];
+      for (let i = 1; i < months.length; i++) {
+        const m = months[i];
+        if (m === (prev % 12) + 1) { prev = m; }
+        else { runs.push([start, prev]); start = m; prev = m; }
+      }
+      runs.push([start, prev]);
+      const MN = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return runs.map(([a, b]) => {
+        if (lang === "en") return a === b ? MN[a] : `${MN[a]}–${MN[b]}`;
+        const unit = t("monthUnit");
+        return a === b ? `${a}${unit}` : `${a}~${b}${unit}`;
+      }).join(", ");
+    }
+
+    function findSeasonalKey(nq) {
+      if (!nq || nq.length < 1) return null;
+      const keys = Object.keys(state.seasonal);
+      const exact = keys.find((k) => normalizeIng(k) === nq);
+      if (exact) return exact;
+      if (nq.length < 2) return null;
+      const contains = keys.filter((k) => normalizeIng(k).includes(nq));
+      if (contains.length) return contains.sort((a, b) => a.length - b.length)[0];
+      const containedBy = keys.filter((k) => nq.includes(normalizeIng(k)));
+      if (containedBy.length) return containedBy.sort((a, b) => b.length - a.length)[0];
+      return null;
+    }
+
+    function ingredientMatchCount(nq) {
+      if (!nq || nq.length < 2) return 0;
+      return state.keys.filter((key) => (state.recipes[key].ingredients || []).some((ing) => {
+        const n = normalizeIng(ing.name);
+        return n.includes(nq) || nq.includes(n);
+      })).length;
+    }
+
+    function updateIngredientInfo(rawQuery) {
+      const nq = normalizeIng(rawQuery);
+      const seasonalKey = findSeasonalKey(nq);
+      const ingCount = ingredientMatchCount(nq);
+      if (!seasonalKey && ingCount === 0) { els.ingredientInfo.hidden = true; return; }
+      els.ingredientInfo.hidden = false;
+      const entry = seasonalKey ? state.seasonal[seasonalKey] : null;
+      els.ingInfoEmoji.textContent = entry?.emoji || "🥕";
+      els.ingInfoName.textContent = seasonalKey || sanitizeText(rawQuery);
+      let seasonLine = "";
+      if (entry) {
+        const label = monthsLabel(entry.months, state.lang);
+        const now = new Date().getMonth() + 1;
+        const inSeasonNow = entry.months.includes(now);
+        seasonLine = inSeasonNow ? t("inSeason")(label) : t("outOfSeason")(label);
+        els.ingInfoSeason.classList.toggle("out-of-season", !inSeasonNow);
+      } else {
+        els.ingInfoSeason.classList.remove("out-of-season");
+      }
+      const countLine = t("ingRecipeCount")(ingCount);
+      els.ingInfoSeason.textContent = seasonLine ? `${seasonLine} · ${countLine}` : countLine;
+    }
+
+    function renderSeasonal() {
+      const now = new Date().getMonth() + 1;
+      const items = Object.entries(state.seasonal).filter(([, e]) => e.months.includes(now));
+      if (!items.length) { els.seasonalSection.hidden = true; return; }
+      els.seasonalSection.hidden = false;
+      els.seasonalChips.innerHTML = "";
+      const fragment = document.createDocumentFragment();
+      items.forEach(([name, entry]) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "seasonal-chip";
+        btn.innerHTML = `<span class="chip-emoji" aria-hidden="true">${entry.emoji || "🥕"}</span><span>${escapeHtml(name)}</span>`;
+        btn.addEventListener("click", () => {
+          els.searchInput.value = name;
+          applyFilters();
+          els.ingredientInfo.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        fragment.appendChild(btn);
+      });
+      els.seasonalChips.appendChild(fragment);
     }
 
     function extractTime(text) {
@@ -1263,15 +1449,22 @@
     /* ---------- filters ---------- */
     function applyFilters() {
       const q = sanitizeText(els.searchInput.value).toLowerCase();
+      const nq = normalizeIng(q);
       let keys = [...state.keys];
       if (q) {
         keys = keys.filter((key) => {
           const ko = state.recipes[key].name.toLowerCase();
           const en = (state.overlays.en[key]?.name || "").toLowerCase();
           const tw = (state.overlays.tw[key]?.name || "").toLowerCase();
-          return ko.includes(q) || en.includes(q) || tw.includes(q) || key.includes(q);
+          const nameMatch = ko.includes(q) || en.includes(q) || tw.includes(q) || key.includes(q);
+          const ingredientMatch = nq.length >= 2 && (state.recipes[key].ingredients || []).some((ing) => {
+            const n = normalizeIng(ing.name);
+            return n.includes(nq) || nq.includes(n);
+          });
+          return nameMatch || ingredientMatch;
         });
       }
+      updateIngredientInfo(els.searchInput.value);
       if (state.collectionOnly) {
         keys = keys.filter((key) => state.recipes[key].collection === "냉부");
       }
@@ -1499,21 +1692,24 @@
       loadFavorites();
       applyStaticI18n();
 
-      const [recipes, enOverlay, twOverlay] = await Promise.all([
-        fetchJson(`../recipes.json?v=20260807c`, "recipesCache"),
-        fetchJson(`../recipes.en.json?v=20260807c`, "recipesEnCache").catch(() => ({})),
-        fetchJson(`../recipes.tw.json?v=20260807c`, "recipesTwCache").catch(() => ({})),
+      const [recipes, enOverlay, twOverlay, seasonal] = await Promise.all([
+        fetchJson(`../recipes.json?v=20260921a`, "recipesCache"),
+        fetchJson(`../recipes.en.json?v=20260921a`, "recipesEnCache").catch(() => ({})),
+        fetchJson(`../recipes.tw.json?v=20260921a`, "recipesTwCache").catch(() => ({})),
+        fetchJson(`../seasonal.json?v=20260921a`, "seasonalCache").catch(() => ({})),
       ]);
       const normalized = {};
       Object.entries(recipes).forEach(([key, value]) => { normalized[key] = normalizeRecipe(key, value); });
       state.recipes = normalized;
       state.overlays = { en: enOverlay || {}, tw: twOverlay || {} };
+      state.seasonal = seasonal || {};
       state.keys = Object.keys(normalized);
 
       const saved = parseInt(localStorage.getItem("servings"), 10);
       state.currentServings = Number.isFinite(saved) && saved > 0 ? saved : 2;
 
       renderCategories();
+      renderSeasonal();
       applyFilters();
       routeFromUrl();
 

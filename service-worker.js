@@ -1,9 +1,11 @@
-const CACHE_NAME = "recipe-cocy-v8";
+const CACHE_NAME = "recipe-cocy-v9";
 const ASSETS = [
   "/",
   "/index.html",
   "/recipes.json",
   "/recipes.en.json",
+  "/recipes.tw.json",
+  "/seasonal.json",
   "/manifest.webmanifest"
 ];
 

@@ -20,6 +20,7 @@ def build(code, meta):
     s = s.replace('<html lang="ko">', f'<html lang="{meta["htmlLang"]}">', 1)
     # 데이터/정적 자산은 한 단계 위
     s = re.sub(r'`recipes(\.[a-z]+)?\.json\?v=', lambda m: '`../recipes%s.json?v=' % (m.group(1) or ''), s)
+    s = re.sub(r'`seasonal\.json\?v=', '`../seasonal.json?v=', s)
     for asset in ("manifest.webmanifest", "icon.svg", "images/"):
         s = s.replace(f'"{asset}', f'"../{asset}').replace(f"'{asset}", f"'../{asset}")
     # 로케일 고정
