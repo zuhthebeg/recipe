@@ -253,7 +253,7 @@
       font-family: inherit;
       box-shadow: var(--shadow-sm);
     }
-    #search-input::placeholder { color: #A8927A; }
+    #search-input::placeholder { color: #7A6047; opacity: 1; }
     #search-input:focus { border-color: var(--secondary); outline: none; }
     .tool-btn {
       min-height: 48px;
@@ -336,7 +336,8 @@
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: color-mix(in srgb, var(--card-color, #9A3412) 78%, #3A2413);
+      /* Keep the category hue from the artwork, darkened for AA on white. */
+      color: color-mix(in srgb, color-mix(in srgb, var(--card-color, #9A3412) 78%, #3A2413) 63%, #000);
     }
     .card-name {
       margin: 0;
