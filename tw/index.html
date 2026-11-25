@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="naver-site-verification" content="ac26a2e01a2b43897b512f8a7effd0cf42fcd693">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://recipe.cocy.io/" id="canonical-link">
+  <link rel="canonical" href="https://recipe.cocy.io/tw/" id="canonical-link">
   <link rel="alternate" hreflang="ko" href="https://recipe.cocy.io/">
   <link rel="alternate" hreflang="en" href="https://recipe.cocy.io/?lang=en">
   <link rel="alternate" hreflang="zh-Hant" href="https://recipe.cocy.io/tw/">
   <link rel="alternate" hreflang="x-default" href="https://recipe.cocy.io/">
   <title>Recipe Cocy — 正在紅的話題食譜</title>
-  <meta name="description" content="두바이 초콜릿부터 스매시버거 타코까지, 요즘 뜨는 바이럴 레시피 모음. 인분 자동 계산, 단계별 타이머, 음성 제어를 지원하는 무료 레시피 앱." id="meta-description">
+  <meta name="description" content="從杜拜巧克力到韓式泡菜鍋，網路上正紅的話題食譜總整理。份量自動換算、分段計時器、語音控制，完全免費。" id="meta-description">
   <meta property="og:site_name" content="Recipe Cocy">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Recipe Cocy — 요즘 뜨는 레시피" id="og-title">
-  <meta property="og:description" content="두바이 초콜릿부터 스매시버거 타코까지, 요즘 뜨는 바이럴 레시피 모음" id="og-description">
-  <meta property="og:url" content="https://recipe.cocy.io/" id="og-url">
+  <meta property="og:title" content="Recipe Cocy — 正在紅的話題食譜" id="og-title">
+  <meta property="og:description" content="從杜拜巧克力到韓式泡菜鍋，網路上正紅的話題食譜總整理。份量自動換算、分段計時器、語音控制，完全免費。" id="og-description">
+  <meta property="og:url" content="https://recipe.cocy.io/tw/" id="og-url">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,7 +30,8 @@
     "publisher": {"@type": "Organization", "name": "cocy.io", "url": "https://cocy.io/"}
   }
   </script>
-  <script type="application/ld+json" id="recipe-jsonld"></script>
+  <meta property="og:image" content="https://recipe.cocy.io/images/milktea/5.png">
+  <meta name="twitter:card" content="summary">
   <meta name="build-id" content="2026-09-21-recipe-v9-seasonal-ingredients">
   <meta name="theme-color" content="#9A3412">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -688,7 +689,7 @@
   <!-- ============ HOME ============ -->
   <div id="home-view">
     <header class="hero">
-      <h1 data-i18n="heroTitle">오늘 뭐 만들지? 요즘 뜨는 레시피만.</h1>
+      <h1 data-i18n="heroTitle">今天煮什麼？只收錄正在紅的食譜。</h1>
       <p data-i18n="heroSub">두바이 초콜릿부터 스매시버거 타코까지 — 검색창에서 화제가 된 레시피를 인분 계산·타이머와 함께.</p>
     </header>
 
@@ -741,7 +742,6 @@
           <div class="detail-emoji" id="detail-emoji" aria-hidden="true">🍽️</div>
           <div class="detail-title-box">
             <div class="detail-cat" id="detail-cat"></div>
-            <h1 class="detail-title" id="recipe-title"></h1>
             <div class="chips" id="chips"></div>
           </div>
           <button id="favorite-toggle-btn" class="fav-btn" type="button">
@@ -956,12 +956,12 @@
     const els = {};
     ["home-view", "detail-view", "search-input", "difficulty-select", "sort-btn",
      "favorites-only-btn", "cat-row", "result-count", "recipe-grid", "empty-note",
-     "back-btn", "detail-art", "detail-emoji", "detail-cat", "recipe-title", "chips",
+     "back-btn", "detail-art", "detail-emoji", "detail-cat", "chips",
      "favorite-toggle-btn", "favorite-label", "serving-minus", "serving-plus",
      "servings-input", "calories-num", "ingredient-list", "instruction-list",
      "random-btn", "voice-toggle", "lang-toggle", "toast", "brand-link",
      "canonical-link", "meta-description", "og-title", "og-description", "og-url",
-     "recipe-jsonld", "seasonal-section", "seasonal-chips", "ingredient-info",
+     "seasonal-section", "seasonal-chips", "ingredient-info",
      "ing-info-emoji", "ing-info-name", "ing-info-season"].forEach((id) => {
       els[id.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = document.getElementById(id);
     });
@@ -1017,7 +1017,7 @@
       const url = SITE_BASE + (FORCE_LANG || state.lang === "ko" ? "" : `?lang=${state.lang}`);
       els.canonicalLink.setAttribute("href", url);
       els.ogUrl.setAttribute("content", url);
-      els.recipeJsonld.textContent = "";
+      document.getElementById("recipe-jsonld")?.remove();
     }
 
     function updateHeadForRecipe(key) {
@@ -1034,7 +1034,13 @@
       const url = `${SITE_BASE}?r=${key}` + (FORCE_LANG || state.lang === "ko" ? "" : `&lang=${state.lang}`);
       els.canonicalLink.setAttribute("href", url);
       els.ogUrl.setAttribute("content", url);
-      els.recipeJsonld.textContent = JSON.stringify({
+      let jsonld = document.getElementById("recipe-jsonld");
+      if (!jsonld) {
+        jsonld = document.createElement("script");
+        jsonld.type = "application/ld+json";
+        jsonld.id = "recipe-jsonld";
+      }
+      jsonld.textContent = JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Recipe",
         "name": name,
@@ -1049,6 +1055,7 @@
         })),
         "author": { "@type": "Organization", "name": "cocy.io", "url": "https://cocy.io/" }
       });
+      if (!jsonld.isConnected) document.head.appendChild(jsonld);
     }
 
     /* ---------- routing ---------- */
@@ -1062,6 +1069,7 @@
 
     function showHome(push) {
       els.detailView.hidden = true;
+      document.getElementById("recipe-title")?.remove();
       els.homeView.hidden = false;
       state.currentKey = null;
       updateHeadForHome();
@@ -1383,7 +1391,14 @@
         b.title = t("collectionNote");
         els.detailCat.appendChild(b);
       }
-      els.recipeTitle.textContent = rName(key);
+      let heading = document.getElementById("recipe-title");
+      if (!heading) {
+        heading = document.createElement("h1");
+        heading.className = "detail-title";
+        heading.id = "recipe-title";
+      }
+      heading.textContent = rName(key);
+      if (!heading.isConnected) els.chips.before(heading);
       els.servingsInput.value = state.currentServings;
 
       els.chips.innerHTML = "";
